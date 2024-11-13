@@ -20,5 +20,5 @@ The goal of this project is to connect FRC gaming and early season prototyping l
 ***Non targeted features (unlikley/never)***
 - Non unity editor support
 - Counted scoring for fields
-- Game piece physics
+- Robot to game piece physics
 - color coded subsystems (unity gets mad due to the editor requirements)
