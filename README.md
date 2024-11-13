@@ -1,4 +1,4 @@
-The goal of this project is to connect FRC gaming and early season prototyping like crayon cad into one thing. Allowing for robots to be conceptualized then put through virtual representations that assume perfect execution of the design.
+The goal of this project is to be able to progress early season prototyping after crayon cadding using easy to make simulated versions in unity. Allowing for robots to be conceptualized then put through virtual representations that assume perfect execution of the design.
 
 ***Alpha 1 proggress***
 - generate drive train (in progress)
