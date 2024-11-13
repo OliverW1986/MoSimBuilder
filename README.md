@@ -1,4 +1,4 @@
-The goal of this project is to be able to progress early season prototyping after crayon cadding using easy to make simulated versions in unity. Allowing for robots to be conceptualized then put through virtual representations that assume perfect execution of the design.
+The goal of this project is to be able to progress early season prototyping in FRC after crayon cadding by making an easy to use tool for making simulated versions of robotsnin unity. Allowing for FRC robots to be conceptualized then put through virtual representations that assume perfect execution of the design.
 
 ***Alpha 1 proggress***
 - generate drive train (in progress)
