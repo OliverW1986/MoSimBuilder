@@ -8,7 +8,7 @@ The goal of this project is to be able to progress early season prototyping in F
     - set the width of the elevator in inches
     - Set the weight of the "stationary" stage
     - set the weight individually of the moving stages
-    - Customizable setpoints with ability to choose toggle and hold(for all setpoints)
+    - Customizable setpoints with ability to choose toggle, hold, sequence
 - generate Arm (not started)
 - Changeable field (not started)
 - Generate hook (not Started)
