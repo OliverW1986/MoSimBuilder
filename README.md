@@ -2,7 +2,13 @@ The goal of this project is to be able to progress early season prototyping in F
 
 ***Alpha 1 proggress***
 - generate drive train (in progress)
-- Generate Elevator (in progress)
+- Generate Elevator (Complete)
+    - One Script as many stages as you want
+    - Set the height of the elevator in inch
+    - set the width of the elevator in inch
+    - Set the weight of the "stationary" stage
+    - set the weight individually of the moving stages
+    - Customizable setpoints with ability to choose toggle and hold(for all setpoints)
 - generate Arm (not started)
 - Changeable field (not started)
 - Generate hook (not Started)
