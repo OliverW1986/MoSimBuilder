@@ -4,8 +4,8 @@ The goal of this project is to be able to progress early season prototyping in F
 - generate drive train (in progress)
 - Generate Elevator (Complete)
     - One Script as many stages as you want
-    - Set the height of the elevator in inch
-    - set the width of the elevator in inch
+    - Set the height of the elevator in inches
+    - set the width of the elevator in inches
     - Set the weight of the "stationary" stage
     - set the weight individually of the moving stages
     - Customizable setpoints with ability to choose toggle and hold(for all setpoints)
