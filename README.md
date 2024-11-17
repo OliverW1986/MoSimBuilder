@@ -26,7 +26,7 @@ The goal of this project is to be able to progress early season prototyping in F
 - Basic Motor simulation
 
 ***Non targeted features (unlikley/never)***
-- Non unity editor support
+- Non unity editor support (including any kind of "game")
 - Counted scoring for fields
 - Robot to game piece physics
 - color coded subsystems (unity gets mad due to the editor requirements)
