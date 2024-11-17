@@ -9,7 +9,7 @@ The goal of this project is to be able to progress early season prototyping in F
     - Set the weight of the "stationary" stage
     - set the weight individually of the moving stages
     - Customizable setpoints with ability to choose toggle, hold, sequence
-- generate Arm (not started)
+- generate Arm (in progress)
 - Changeable field (not started)
 - Generate hook (not Started)
 - Game Piece animation system (not started)
