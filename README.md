@@ -10,9 +10,9 @@ The goal of this project is to be able to progress early season prototyping in F
     - set the weight individually of the moving stages
     - Customizable setpoints with ability to choose toggle, hold, sequence
 - generate Arm (at alpha 1 goal)
-      -single stage only
-      -setpoint control same as elevator
-      -continuous aim mode for shooting games
+    -single stage only
+    -setpoint control same as elevator
+    -continuous aim mode for shooting games
 - Changeable field (not started)
 - Generate hook (not Started)
 - Game Piece animation system (not started)
