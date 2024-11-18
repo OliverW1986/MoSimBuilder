@@ -13,7 +13,7 @@ The goal of this project is to be able to progress early season prototyping in F
     - single stage only
     - setpoint control same as elevator
     - continuous aim mode for shooting games
-- Changeable field (not started)
+- Changeable field (in Proggress)
 - Generate hook (not Started)
 - Game Piece animation system (not started)
 - File Cleanup (in progress)
