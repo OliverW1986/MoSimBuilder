@@ -435,11 +435,6 @@ public class DriveController : MonoBehaviour
             isGrounded = CheckGround();
             areRobotsTouching = RobotsTouching;
 
-            if (!_flag && (GameManager.GameState == GameState.Endgame || GameManager.endBuzzerPlaying))
-            {
-                isTouchingGround = CheckTouchingGround();
-            }
-
             if (!_dontUpdateBeforeVelocity)
             {
                 if (!IsTouchingWallColliderBlue && !isRedRobot || !IsTouchingWallColliderRed && isRedRobot)
@@ -1106,15 +1101,6 @@ public class DriveController : MonoBehaviour
                     return true;
                 }
             }
-        }
-        return false;
-    }
-
-    private bool CheckTouchingGround()
-    {
-        if (_field.bounds.Intersects(gameObject.GetComponent<Collider>().bounds))
-        {
-            return true;
         }
         return false;
     }
