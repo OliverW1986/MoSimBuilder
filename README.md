@@ -16,7 +16,7 @@ The goal of this project is to be able to progress early season prototyping in F
 - Changeable field (In Proggress)
 - Generate hook (not Started)
 - Game Piece animation system (not started)
-- File Cleanup (in progress)
+- File Cleanup (Complete)
 - Example Robots (not started)
 - Early Documentation (not started)
 
