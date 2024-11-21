@@ -1,4 +1,4 @@
-The goal of this project is to be able to progress early season prototyping in FRC after crayon cadding by making an easy to use tool for making simulated versions of robotsnin unity. Allowing for FRC robots to be conceptualized then put through virtual representations that assume perfect execution of the design.
+The goal of this project is to be able to progress early season prototyping in FRC after crayon cadding by making an easy to use tool for making simulated versions of robots in unity. Allowing for FRC robots to be conceptualized then put through virtual representations that assume perfect execution of the design.
 
 ***Alpha 1 proggress***
 - generate drive train (in progress)
@@ -14,8 +14,8 @@ The goal of this project is to be able to progress early season prototyping in F
     - setpoint control same as elevator
     - continuous aim mode for shooting games
 - Changeable field (at Alpha 1 goal)
-      - Swap between The Crescendo and Evergreen fields
-      - Crescendo feature a fully dynamic chain
+    - Swap between The Crescendo and Evergreen fields
+    - Crescendo feature a fully dynamic chain
 - Generate hook (not Started)
 - Game Piece animation system (not started)
 - File Cleanup (Complete)
