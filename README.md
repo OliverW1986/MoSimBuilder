@@ -13,7 +13,7 @@ The goal of this project is to be able to progress early season prototyping in F
     - single stage only
     - setpoint control same as elevator
     - continuous aim mode for shooting games
-- Changeable field (In Alpha 1 state)
+- Changeable field (at Alpha 1 goal)
       - Swap between The Crescendo and Evergreen fields
       - Crescendo feature a fully dynamic chain
 - Generate hook (not Started)
