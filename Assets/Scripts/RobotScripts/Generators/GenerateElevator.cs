@@ -85,26 +85,41 @@ public class GenerateElevator : MonoBehaviour
         //create/update values
         if (!EditorApplication.isPlaying)
         {
-            if (stageWeights.Length != numOfStages)
+            if (stageWeights != null)
             {
-                _stageWeightBuffer = stageWeights;
-                
+                if (stageWeights.Length != numOfStages)
+                {
+                    if (stageWeights != null)
+                    {
+                        _stageWeightBuffer = stageWeights;
+                    }
+
+                    stageWeights = new float[numOfStages];
+
+                    for (int i = 0; i < numOfStages; i++)
+                    {
+                        stageWeights[i] = 3;
+                    }
+
+                    for (int i = 0; i < _stageWeightBuffer.Length; i++)
+                    {
+                        if (i < stageWeights.Length && i < _stageWeightBuffer.Length)
+                        {
+                            stageWeights[i] = _stageWeightBuffer[i];
+                        }
+                    }
+                }
+            }
+            else
+            {
                 stageWeights = new float[numOfStages];
 
                 for (int i = 0; i < numOfStages; i++)
                 {
                     stageWeights[i] = 3;
                 }
-                
-                for (int i = 0; i < _stageWeightBuffer.Length; i++)
-                {
-                    if (i < stageWeights.Length && i < _stageWeightBuffer.Length)
-                    {
-                        stageWeights[i] = _stageWeightBuffer[i];
-                    }
-                }
             }
-            
+
             if (_elevator == null)
             {
                 _elevator = gameObject;
@@ -117,6 +132,7 @@ public class GenerateElevator : MonoBehaviour
                 _stationary.name = "Stationary";
                 _stationary.transform.parent = _elevator.transform;
                 _stationary.transform.localPosition = Vector3.zero;
+                _stationary.transform.localRotation = Quaternion.Euler(Vector3.zero);
             }
             
             if (_rb == null)
@@ -142,6 +158,8 @@ public class GenerateElevator : MonoBehaviour
                 _stationaryLeftModel.name = "StationaryLeftModel";
                 _stationaryLeftModel.transform.parent = _stationary.transform;
                 _stationaryLeftModel.layer = LayerMask.NameToLayer("Robot");
+                _stationaryLeftModel.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                
             }
             
             _stationaryLeftModel.transform.localPosition = new Vector3(-elevatorWidth/2 * 0.0254f+(0.5f*0.0254f), elevatorHeight/2 * 0.0254f, 0);
@@ -153,142 +171,164 @@ public class GenerateElevator : MonoBehaviour
                 _stationaryRightModel.name = "StationaryRightModel";
                 _stationaryRightModel.transform.parent = _stationary.transform;
                 _stationaryRightModel.layer = LayerMask.NameToLayer("Robot");
+                _stationaryRightModel.transform.localRotation = Quaternion.Euler(Vector3.zero);
             }
             
             _stationaryRightModel.transform.localPosition = new Vector3(elevatorWidth/2 * 0.0254f-(0.5f*0.0254f), elevatorHeight/2 * 0.0254f, 0);
             _stationaryRightModel.transform.localScale = new Vector3(1*0.0254f, elevatorHeight*0.0254f, 2*0.0254f);
-
-            if (numOfStages != _stage.Length)
+            if (_stage != null)
             {
-                _stageBuffer = _stage;
-                _stageLeftModelBuffer = _stageLeftModel;
-                _stageRightModelBuffer = _stageRightModel;
-                _rbsBuffer = _rbs;
-                _cgsBuffer = _cgs;
+                if (numOfStages != _stage.Length)
+                {
+                    _stageBuffer = _stage;
+                    _stageLeftModelBuffer = _stageLeftModel;
+                    _stageRightModelBuffer = _stageRightModel;
+                    _rbsBuffer = _rbs;
+                    _cgsBuffer = _cgs;
 
+                    _stage = new GameObject[numOfStages];
+                    _stageLeftModel = new GameObject[numOfStages];
+                    _stageRightModel = new GameObject[numOfStages];
+                    _rbs = new Rigidbody[numOfStages];
+                    _cgs = new ConfigurableJoint[numOfStages];
+
+                    for (int i = 0; i < _stageBuffer.Length; i++)
+                    {
+                        if (i < _stage.Length && i < _stageBuffer.Length)
+                        {
+                            _stage[i] = _stageBuffer[i];
+                            _stageLeftModel[i] = _stageLeftModelBuffer[i];
+                            _stageRightModel[i] = _stageRightModelBuffer[i];
+                            _rbs[i] = _rbsBuffer[i];
+                            _cgs[i] = _cgsBuffer[i];
+                        }
+                        else
+                        {
+                            DestroyImmediate(_stageBuffer[i]);
+                            DestroyImmediate(_stageLeftModelBuffer[i]);
+                            DestroyImmediate(_stageRightModelBuffer[i]);
+                        }
+                    }
+                }
+            }
+            else
+            {
                 _stage = new GameObject[numOfStages];
                 _stageLeftModel = new GameObject[numOfStages];
                 _stageRightModel = new GameObject[numOfStages];
                 _rbs = new Rigidbody[numOfStages];
                 _cgs = new ConfigurableJoint[numOfStages];
-                
-                for (int i = 0; i < _stageBuffer.Length; i++)
-                {
-                    if ( i < _stage.Length && i < _stageBuffer.Length)
-                    {
-                        _stage[i] = _stageBuffer[i];
-                        _stageLeftModel[i] = _stageLeftModelBuffer[i];
-                        _stageRightModel[i] = _stageRightModelBuffer[i];
-                        _rbs[i] = _rbsBuffer[i];
-                        _cgs[i] = _cgsBuffer[i];
-                    }
-                    else
-                    {
-                        DestroyImmediate(_stageBuffer[i]);
-                        DestroyImmediate(_stageLeftModelBuffer[i]);
-                        DestroyImmediate(_stageRightModelBuffer[i]);
-                    }
-                }
             }
-            
+
             for (int i = 0; i < numOfStages; i++)
             {
-                 if (_stage[i] == null)
-                 {
-                     _stage[i] = new GameObject("Stage"+(i+1));
-                     _stage[i].transform.gameObject.layer = LayerMask.NameToLayer("Robot");
-                     _stage[i].transform.parent = _stationary.transform;
-                     _stage[i].transform.localPosition = Vector3.zero;
-                 }
+                    
+                if (_stage[i] == null)
+                {
+                    _stage[i] = new GameObject("Stage"+(i+1));
+                    _stage[i].transform.gameObject.layer = LayerMask.NameToLayer("Robot");
+                    _stage[i].transform.parent = _stationary.transform;
+                    _stage[i].transform.localPosition = Vector3.zero;
+                    _stage[i].transform.localRotation = Quaternion.Euler(Vector3.zero);
+                }
 
-                 if (_rbs[i] == null)
-                 {
-                     _rbs[i] = _stage[i].AddComponent<Rigidbody>();
-                     _rbs[i].drag = 1;
-                     _rbs[i].angularDrag = 1;
-                 }
+                if (_rbs[i] == null)
+                {
+                    _rbs[i] = _stage[i].AddComponent<Rigidbody>();
+                    _rbs[i].drag = 1;
+                    _rbs[i].angularDrag = 1;
+                }
             
-                 _rbs[i].interpolation = RigidbodyInterpolation.Interpolate;
-                 _rbs[i].collisionDetectionMode = CollisionDetectionMode.Continuous;
-                 _rbs[i].useGravity = true;
-                 _rbs[i].mass = stageWeights[i];
-                 _rbs[i].excludeLayers = _layer;
+                _rbs[i].interpolation = RigidbodyInterpolation.Interpolate;
+                _rbs[i].collisionDetectionMode = CollisionDetectionMode.Continuous;
+                _rbs[i].useGravity = true;
+                _rbs[i].mass = stageWeights[i];
+                _rbs[i].excludeLayers = _layer;
             
-                 if (_stageLeftModel[i] == null)
-                 {
-                     _stageLeftModel[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                     _stageLeftModel[i].transform.gameObject.layer = LayerMask.NameToLayer("Robot");
-                     _stageLeftModel[i].name = "Stage"+(i+1)+"LeftModel";
-                     _stageLeftModel[i].transform.parent = _stage[i].transform;
-                 }
+                if (_stageLeftModel[i] == null)
+                {
+                    _stageLeftModel[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    _stageLeftModel[i].transform.gameObject.layer = LayerMask.NameToLayer("Robot");
+                    _stageLeftModel[i].name = "Stage"+(i+1)+"LeftModel";
+                    _stageLeftModel[i].transform.parent = _stage[i].transform;
+                    _stageLeftModel[i].transform.localRotation = Quaternion.Euler(Vector3.zero);
+                }
 
-                 if (i + 1 == numOfStages)
-                 {
-                     _stageLeftModel[i].transform.localPosition = new Vector3(-elevatorWidth/4 * 0.0254f+(((i+1)*0.5f)*0.0254f+(((i)*0.05f)*0.0254f)), elevatorHeight/2 * 0.0254f,0);
-                     _stageLeftModel[i].transform.localScale = new Vector3((elevatorWidth/2*0.0254f) - ((i + 1)*0.0254f), 1*0.0254f, 2*0.0254f);
-                 }
-                 else
-                 {
-                     _stageLeftModel[i].transform.localPosition = new Vector3( -elevatorWidth/2 * 0.0254f+((i +1 +0.5f +((i+1)*0.05f))*0.0254f), elevatorHeight/2 * 0.0254f,0);
-                     _stageLeftModel[i].transform.localScale = new Vector3(1*0.0254f, elevatorHeight*0.0254f, 2*0.0254f);
-                 }
+                if (i + 1 == numOfStages)
+                {
+                    _stageLeftModel[i].transform.localPosition = new Vector3(-elevatorWidth/4 * 0.0254f+(((i+1)*0.5f)*0.0254f+(((i)*0.05f)*0.0254f)), elevatorHeight/2 * 0.0254f,0);
+                    _stageLeftModel[i].transform.localScale = new Vector3((elevatorWidth/2*0.0254f) - ((i + 1)*0.0254f), 1*0.0254f, 2*0.0254f);
+                }
+                else
+                {
+                    _stageLeftModel[i].transform.localPosition = new Vector3( -elevatorWidth/2 * 0.0254f+((i +1 +0.5f +((i+1)*0.05f))*0.0254f), elevatorHeight/2 * 0.0254f,0);
+                    _stageLeftModel[i].transform.localScale = new Vector3(1*0.0254f, elevatorHeight*0.0254f, 2*0.0254f);
+                }
                  
             
-                 if (_stageRightModel[i] == null)
-                 {
-                     _stageRightModel[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                     _stageRightModel[i].name = "Stage"+(i+1)+"RightModel";
-                     _stageRightModel[i].transform.gameObject.layer = LayerMask.NameToLayer("Robot");
-                     _stageRightModel[i].transform.parent = _stage[i].transform;
-                 }
+                if (_stageRightModel[i] == null)
+                {
+                    _stageRightModel[i] = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    _stageRightModel[i].name = "Stage"+(i+1)+"RightModel";
+                    _stageRightModel[i].transform.gameObject.layer = LayerMask.NameToLayer("Robot");
+                    _stageRightModel[i].transform.parent = _stage[i].transform;
+                    _stageRightModel[i].transform.localRotation = Quaternion.Euler(Vector3.zero);
+                }
 
-                 if (i + 1 == numOfStages)
-                 {
-                     _stageRightModel[i].transform.localPosition = new Vector3(elevatorWidth/4 * 0.0254f-(((i+1)*0.5f)*0.0254f-(((i)*0.05f)*0.0254f)), elevatorHeight/2 * 0.0254f,0);
-                     _stageRightModel[i].transform.localScale = new Vector3((elevatorWidth/2*0.0254f) - ((i + 1)*0.0254f), 1*0.0254f, 2*0.0254f);
-                 }
-                 else
-                 {
-                     _stageRightModel[i].transform.localPosition = new Vector3(elevatorWidth/2 * 0.0254f-((i +1 +0.5f +((i+1)*0.05f))*0.0254f), elevatorHeight / 2 * 0.0254f, 0);
-                     _stageRightModel[i].transform.localScale = new Vector3(1 * 0.0254f, elevatorHeight * 0.0254f, 2 * 0.0254f);
-                 }
+                if (i + 1 == numOfStages)
+                {
+                    _stageRightModel[i].transform.localPosition = new Vector3(elevatorWidth/4 * 0.0254f-(((i+1)*0.5f)*0.0254f-(((i)*0.05f)*0.0254f)), elevatorHeight/2 * 0.0254f,0);
+                    _stageRightModel[i].transform.localScale = new Vector3((elevatorWidth/2*0.0254f) - ((i + 1)*0.0254f), 1*0.0254f, 2*0.0254f);
+                }
+                else
+                {
+                    _stageRightModel[i].transform.localPosition = new Vector3(elevatorWidth/2 * 0.0254f-((i +1 +0.5f +((i+1)*0.05f))*0.0254f), elevatorHeight / 2 * 0.0254f, 0);
+                    _stageRightModel[i].transform.localScale = new Vector3(1 * 0.0254f, elevatorHeight * 0.0254f, 2 * 0.0254f);
+                }
 
-                 if (_cgs[i] == null)
-                 {
-                     _cgs[i] = _stage[i].AddComponent<ConfigurableJoint>();
-                     _cgs[i].connectedBody = _rb;
-                     _cgs[i].projectionMode = JointProjectionMode.PositionAndRotation;
-                     _cgs[i].enablePreprocessing = true;
-                 }
+                if (_cgs[i] == null)
+                {
+                    _cgs[i] = _stage[i].AddComponent<ConfigurableJoint>();
+                    _cgs[i].connectedBody = _rb;
+                    _cgs[i].projectionMode = JointProjectionMode.PositionAndRotation;
+                    _cgs[i].enablePreprocessing = true;
+                }
 
-                 _cgs[i].xMotion = ConfigurableJointMotion.Locked;
-                 _cgs[i].zMotion = ConfigurableJointMotion.Locked;
-                 _cgs[i].angularXMotion = ConfigurableJointMotion.Locked;
-                 _cgs[i].angularYMotion = ConfigurableJointMotion.Locked;
-                 _cgs[i].angularZMotion = ConfigurableJointMotion.Locked;
+                _cgs[i].xMotion = ConfigurableJointMotion.Locked;
+                _cgs[i].zMotion = ConfigurableJointMotion.Locked;
+                _cgs[i].angularXMotion = ConfigurableJointMotion.Locked;
+                _cgs[i].angularYMotion = ConfigurableJointMotion.Locked;
+                _cgs[i].angularZMotion = ConfigurableJointMotion.Locked;
 
-                 _stage1Drive.maximumForce = 900000000f;
-                 _stage1Drive.positionDamper = 40000000f;
-                 _stage1Drive.positionSpring = 0;
+                _stage1Drive.maximumForce = 900000000000f;
+                _stage1Drive.positionDamper = 90000000f;
+                _stage1Drive.positionSpring = 0;
 
-                 _cgs[i].yDrive = _stage1Drive;
+                _cgs[i].yDrive = _stage1Drive;
             }
 
-            
-            if (setpointButton.Length != setpoints.Length)
+            if (setpointButton != null)
             {
-                _setpointBuffer = setpointButton;
-                
-                setpointButton = new Buttons[setpoints.Length];
-                for (int i = 0; i < _setpointBuffer.Length; i++)
+                if (setpointButton.Length != setpoints.Length)
                 {
-                    if (i < setpoints.Length && i < _setpointBuffer.Length)
+                    _setpointBuffer = setpointButton;
+
+                    setpointButton = new Buttons[setpoints.Length];
+                    for (int i = 0; i < _setpointBuffer.Length; i++)
                     {
-                        setpointButton[i] = _setpointBuffer[i];
+                        if (i < setpoints.Length && i < _setpointBuffer.Length)
+                        {
+                            setpointButton[i] = _setpointBuffer[i];
+                        }
                     }
                 }
             }
-            
+            else
+            {
+                setpoints = new float[1];
+                setpointButton = new Buttons[setpoints.Length];
+            }
+
         }
         else //running logic
         {

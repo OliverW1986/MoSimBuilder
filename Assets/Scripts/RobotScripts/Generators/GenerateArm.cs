@@ -272,7 +272,7 @@ public class GenerateArm : MonoBehaviour
                 {
                     positionError = -1 * positionError;
                 }
-                _jm.force = 90000000000;
+                _jm.force = 90000000000000;
                 _jm.targetVelocity = Mathf.Clamp(positionError * 8f, -360,360);
                 _hj.useMotor = true;
                 _hj.useSpring = false;

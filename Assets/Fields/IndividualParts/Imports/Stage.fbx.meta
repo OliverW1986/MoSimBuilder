@@ -3,7 +3,52 @@ guid: edef918ed4db9604d9452a36d20f8bea
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0.250980_0.250980_0.250980_0.000000_0.000000
+    second: {fileID: 2100000, guid: 5a0ecfe0518188846b86187f633d3b5a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0.529412_0.549020_0.549020_0.000000_0.000000
+    second: {fileID: 2100000, guid: 4de12a5f6e9368742bc4cc8b6e1ee6a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0.694118_0.098039_0.098039_0.000000_0.000000
+    second: {fileID: 2100000, guid: e368c1829115f524691423beed63b10a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0.701961_0.701961_0.701961_0.000000_0.000000
+    second: {fileID: 2100000, guid: ceb5735246f8c6b4fa11735f6d8b5dd1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0.792157_0.819608_0.933333_0.000000_0.001
+    second: {fileID: 2100000, guid: ceb5735246f8c6b4fa11735f6d8b5dd1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0.898039_0.917647_0.929412_0.000000_0.001
+    second: {fileID: 2100000, guid: ceb5735246f8c6b4fa11735f6d8b5dd1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1.000000_1.000000_1.000000_0.000000_0.001
+    second: {fileID: 2100000, guid: 2d61172fcaefc024ab33b85723a70768, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1.000000_1.000000_1.000000_0.000000_0.002
+    second: {fileID: 2100000, guid: 2d61172fcaefc024ab33b85723a70768, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1.000000_1.000000_1.000000_0.000000_0.901961
+    second: {fileID: 2100000, guid: 2d61172fcaefc024ab33b85723a70768, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
