@@ -15,7 +15,7 @@ The goal of this project is to be able to progress early season prototyping in F
     - continuous aim mode for shooting games
 - Changeable field (at Alpha 1 goal)
     - Swap between The Crescendo and Evergreen fields
-    - Crescendo feature a fully dynamic chain
+    - Crescendo features a fully dynamic chain
 - Generate hook (not Started)
 - Game Piece animation system (not started)
 - File Cleanup (Complete)
