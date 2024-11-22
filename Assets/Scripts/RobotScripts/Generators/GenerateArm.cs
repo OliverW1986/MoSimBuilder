@@ -48,6 +48,10 @@ public class GenerateArm : MonoBehaviour
 
     private float _position;
     
+    private Buttons _lastButton;
+
+    [SerializeField] private float stowAngle = 0;
+    
     void Start()
     {
         Startup();
@@ -87,14 +91,24 @@ public class GenerateArm : MonoBehaviour
                 _rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
                 _rb.excludeLayers = LayerMask.GetMask("Robot");
                 _rb.useGravity = false;
+                _rb.drag = 0;
             }
 
             if (_hj == null)
             {
-                _hj = _armSec1.AddComponent<HingeJoint>();
-                _hj.axis = new Vector3(1, 0, 0);
-                _hj.useMotor = true;
-                _hj.connectedBody = _robotRb;
+                var t = transform;
+                while (t.GetComponent<Rigidbody>() == null)
+                {
+                    t = t.parent.transform;
+                }
+
+                if (t.GetComponent<Rigidbody>() != null)
+                {
+                    _hj = _armSec1.AddComponent<HingeJoint>();
+                    _hj.axis = new Vector3(1, 0, 0);
+                    _hj.useMotor = true;
+                    _hj.connectedBody = t.GetComponent<Rigidbody>();
+                }
             }
             
             _rb.mass = armWeight;
@@ -109,19 +123,27 @@ public class GenerateArm : MonoBehaviour
             
             _armSec1Model.transform.localScale = new Vector3(armWidth*0.0254f, armHeight*0.0254f, armLength*0.0254f);
             _armSec1Model.transform.localPosition = new Vector3(0, 0, armLength/2*0.0254f);
-            
-            if (setPointButtons.Length != setPoints.Length)
+
+            if (setPointButtons != null)
             {
-                _setPointButtonsBuffer = setPointButtons;
-                
-                setPointButtons = new Buttons[setPoints.Length];
-                for (int i = 0; i < _setPointButtonsBuffer.Length; i++)
+                if (setPointButtons.Length != setPoints.Length)
                 {
-                    if (i < setPoints.Length && i < _setPointButtonsBuffer.Length)
+                    _setPointButtonsBuffer = setPointButtons;
+
+                    setPointButtons = new Buttons[setPoints.Length];
+                    for (int i = 0; i < _setPointButtonsBuffer.Length; i++)
                     {
-                        setPointButtons[i] = _setPointButtonsBuffer[i];
+                        if (i < setPoints.Length && i < _setPointButtonsBuffer.Length)
+                        {
+                            setPointButtons[i] = _setPointButtonsBuffer[i];
+                        }
                     }
                 }
+            }
+            else
+            {
+                setPoints = new float[1];
+                setPointButtons = new Buttons[setPoints.Length];
             }
         }
         else
@@ -134,7 +156,7 @@ public class GenerateArm : MonoBehaviour
                     {
                         if (Mathf.Approximately(_activeTarget, -setPoints[i]))
                         {
-                            _activeTarget = 0;
+                            _activeTarget = -stowAngle;
                         }
                         else
                         {
@@ -172,37 +194,58 @@ public class GenerateArm : MonoBehaviour
                     }
                     else
                     {
-                        _activeTarget = 0;
+                        _activeTarget = -stowAngle;
                     }
                 }
                 else if (controlType == ControlType.sequence)
                 {
-                    if (_inputMap.FindAction(setPointButtons[0].ToString()).triggered && _sequenceDebounce == false)
+                    if (_inputMap.FindAction(setPointButtons[i].ToString()).triggered && _sequenceDebounce == false)
                     {
                         if (_setpointSequence < setPoints.Length)
                         {
+                            if (_lastButton != setPointButtons[i])
+                            {
+                                _setpointSequence = 0;
+                                _lastButton = setPointButtons[i];
+                            }
+                            
+                            while (setPointButtons[i] != setPointButtons[_setpointSequence])
+                            {
+                                _setpointSequence ++;
+
+                                if (_setpointSequence+1 > setPoints.Length)
+                                {
+                                    _setpointSequence = 0;
+                                    _activeTarget = -stowAngle;
+                                    return;
+                                }
+
+
+                            }
                             _activeTarget = -setPoints[_setpointSequence];
 
                             _setpointSequence += 1;
-                            
-                            float currentAngle = _hj.transform.localEulerAngles.x + 0;
-                
-                            if (Mathf.Abs(currentAngle) > 180)
-                            {
-                                currentAngle -= 360 * (currentAngle / Mathf.Abs(currentAngle));
-                            }
-
-                            _startingAngle = currentAngle;
                         }
                         else
                         {
                             _setpointSequence = 0;
-                            _activeTarget = 0;
+                            _activeTarget = -stowAngle;
                         }
+                        
+                        _lastButton = setPointButtons[i];
                     }
                     else
                     {
 
+                    }
+                    
+                    if (_inputMap.FindAction(setPointButtons[i].ToString()).IsPressed())
+                    {
+                        _sequenceDebounce = true;
+                    }
+                    else
+                    {
+                        _sequenceDebounce = false;
                     }
                 }
             }
@@ -285,24 +328,24 @@ public class GenerateArm : MonoBehaviour
 
     private void Startup()
     {
+        _activeTarget = -stowAngle;
+        
         _setpointSequence = 0;
         
         if (_playerInput == null)
         {
-            if (transform.parent.GetComponent<PlayerInput>() != null)
+            var t = transform;
+            while (t.GetComponent<PlayerInput>() == null)
             {
-                _playerInput = transform.parent.GetComponent<PlayerInput>();
-            } 
-            else if (transform.parent.parent.GetComponent<PlayerInput>() != null)
-            {
-                _playerInput = transform.parent.parent.GetComponent<PlayerInput>();
-            } 
-            else if (transform.parent.parent.parent.GetComponent<PlayerInput>() != null)
-            {
-                _playerInput = transform.parent.parent.parent.GetComponent<PlayerInput>();
+                t = t.parent.transform;
             }
             
-            _inputMap = _playerInput.currentActionMap;
+            if (t.GetComponent<PlayerInput>() != null)
+            {
+                _playerInput = t.GetComponent<PlayerInput>();
+
+                _inputMap = _playerInput.currentActionMap;
+            }
         }
 
         if (transform.Find("ArmSec1"))

@@ -55,6 +55,8 @@ public class GenerateElevator : MonoBehaviour
     private float _activeTarget;
 
     private int _setpointSequence;
+    
+    private Buttons _lastButton;
 
     private bool _sequenceDebounce;
     // Start is called before the first frame update
@@ -138,6 +140,8 @@ public class GenerateElevator : MonoBehaviour
             if (_rb == null)
             {
                 _rb = _stationary.AddComponent<Rigidbody>();
+                _rb.drag = 0;
+                
             }
             
             _rb.interpolation = RigidbodyInterpolation.Interpolate;
@@ -148,8 +152,17 @@ public class GenerateElevator : MonoBehaviour
 
             if (_stationaryJoint == null)
             {
-                _stationaryJoint = _stationary.AddComponent<FixedJoint>();
-                _stationaryJoint.connectedBody = _robotRb;
+                var t = transform;
+                while (t.GetComponent<Rigidbody>() == null)
+                {
+                    t = t.parent.transform;
+                }
+
+                if (t.GetComponent<Rigidbody>() != null)
+                {
+                    _stationaryJoint = _stationary.AddComponent<FixedJoint>();
+                    _stationaryJoint.connectedBody = t.GetComponent<Rigidbody>();
+                }
             }
 
             if (_stationaryLeftModel == null)
@@ -235,7 +248,7 @@ public class GenerateElevator : MonoBehaviour
                 if (_rbs[i] == null)
                 {
                     _rbs[i] = _stage[i].AddComponent<Rigidbody>();
-                    _rbs[i].drag = 1;
+                    _rbs[i].drag = 0;
                     _rbs[i].angularDrag = 1;
                 }
             
@@ -290,7 +303,6 @@ public class GenerateElevator : MonoBehaviour
                 {
                     _cgs[i] = _stage[i].AddComponent<ConfigurableJoint>();
                     _cgs[i].connectedBody = _rb;
-                    _cgs[i].projectionMode = JointProjectionMode.PositionAndRotation;
                     _cgs[i].enablePreprocessing = true;
                 }
 
@@ -301,7 +313,7 @@ public class GenerateElevator : MonoBehaviour
                 _cgs[i].angularZMotion = ConfigurableJointMotion.Locked;
 
                 _stage1Drive.maximumForce = 900000000000f;
-                _stage1Drive.positionDamper = 90000000f;
+                _stage1Drive.positionDamper = 900000000000f;
                 _stage1Drive.positionSpring = 0;
 
                 _cgs[i].yDrive = _stage1Drive;
@@ -360,10 +372,30 @@ public class GenerateElevator : MonoBehaviour
                     }
                 } else if (controlType == ControlType.sequence)
                 {
-                    if (_inputMap.FindAction(setpointButton[0].ToString()).triggered && _sequenceDebounce == false)
+                    if (_inputMap.FindAction(setpointButton[i].ToString()).triggered && _sequenceDebounce == false)
                     {
+                        
                         if (_setpointSequence < setpoints.Length)
                         {
+                            if (_lastButton != setpointButton[i])
+                            {
+                                _setpointSequence = 0;
+                                _lastButton = setpointButton[i];
+                            }
+                            
+                            while (setpointButton[i] != setpointButton[_setpointSequence])
+                            {
+                                _setpointSequence ++;
+
+                                if (_setpointSequence+1 > setpoints.Length)
+                                {
+                                    _setpointSequence = 0;
+                                    _activeTarget = 0;
+                                    return;
+                                }
+
+
+                            }
                             _activeTarget = -setpoints[_setpointSequence];
 
                             _setpointSequence += 1;
@@ -374,14 +406,14 @@ public class GenerateElevator : MonoBehaviour
                             _activeTarget = 0;
                         }
                         
-                        
+                        _lastButton = setpointButton[i];
                     }
                     else
                     {
                        
                     }
                     
-                    if (_inputMap.FindAction(setpointButton[1].ToString()).IsPressed())
+                    if (_inputMap.FindAction(setpointButton[i].ToString()).IsPressed())
                     {
                         _sequenceDebounce = true;
                     }
@@ -442,20 +474,18 @@ public class GenerateElevator : MonoBehaviour
         
         if (_playerInput == null)
         {
-            if (transform.parent.GetComponent<PlayerInput>() != null)
+            var t = transform;
+            while (t.GetComponent<PlayerInput>() == null)
             {
-                _playerInput = transform.parent.GetComponent<PlayerInput>();
-            } 
-            else if (transform.parent.parent.GetComponent<PlayerInput>() != null)
-            {
-                _playerInput = transform.parent.parent.GetComponent<PlayerInput>();
-            } 
-            else if (transform.parent.parent.parent.GetComponent<PlayerInput>() != null)
-            {
-                _playerInput = transform.parent.parent.parent.GetComponent<PlayerInput>();
+                t = t.parent.transform;
             }
-            
-            _inputMap = _playerInput.currentActionMap;
+
+            if (t.GetComponent<PlayerInput>() != null)
+            {
+                _playerInput = t.GetComponent<PlayerInput>();
+
+                _inputMap = _playerInput.currentActionMap;
+            }
         }
         
         if (_elevator == null)

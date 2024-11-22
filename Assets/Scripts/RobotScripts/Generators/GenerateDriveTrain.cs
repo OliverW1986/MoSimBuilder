@@ -45,13 +45,13 @@ public class GenerateDriveTrain : MonoBehaviour
     [Tooltip("In Inches")]
     [SerializeField] private float wheelDiameter = 4;
 
-    [SerializeField] private float drivetrainWeight = 60;
+    [SerializeField] private float drivetrainWeight = 65;
 
     [Tooltip("Max Drive Free Speed in ft/s")]
     [SerializeField] private float driveSpeed = 16;
 
     [Tooltip("Unitless acceleration force on the driveTrain")]
-    [SerializeField] private float driveForce = 380;
+    [SerializeField] private float driveForce = 360;
     // Start is called before the first frame update
 
     void Awake()
