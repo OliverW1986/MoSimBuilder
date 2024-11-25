@@ -37,3 +37,4 @@ The goal of this project is to be able to progress early season prototyping in F
 - Counted scoring for fields
 - Robot to game piece physics
 - color coded subsystems (unity gets mad due to the editor requirements)
+- game piece animation system
