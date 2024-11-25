@@ -17,7 +17,7 @@ The goal of this project is to be able to progress early season prototyping in F
     - Swap between The Crescendo and Evergreen fields
     - Crescendo features a fully dynamic chain
 - Generate hook (not Started)
-- Game Piece animation system (not started)
+- Game Piece animation system (in progress)
 - File Cleanup (Complete)
 - Example Robots (not started)
 - Early Documentation (not started)
@@ -26,6 +26,7 @@ The goal of this project is to be able to progress early season prototyping in F
 - metric support (non inch settings)
 - non 1x2 tubing mechanisms
 - Non Square drive trains
+- delay options for game piece system
 - Multi jointed arms
 - different swerve module configs and shapes
 - Generate Turret
