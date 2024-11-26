@@ -18,8 +18,12 @@ The goal of this project is to be able to progress early season prototyping in F
     - Crescendo features a fully dynamic chain
 - Generate hook (not Started)
 - Game Piece animation system (in progress)
+    - 3 stage system consisting of intake, stow, and outake.
+    - no delete game piece system means there is no need for "hidden" objects
+    - Generic nature of the system allows for use in most years games.
+    - Ability to form complex interacitons using the ability to have multiple outputs from a stow locatoin.
 - File Cleanup (Complete)
-- Example Robots (not started)
+- Example Robots (in progress)
 - Early Documentation (not started)
 
 ***Missing or future update features***
@@ -37,4 +41,3 @@ The goal of this project is to be able to progress early season prototyping in F
 - Counted scoring for fields
 - Robot to game piece physics
 - color coded subsystems (unity gets mad due to the editor requirements)
-- game piece animation system
