@@ -51,7 +51,7 @@ public class GenerateDriveTrain : MonoBehaviour
     [SerializeField] private float driveSpeed = 16;
 
     [Tooltip("Unitless acceleration force on the driveTrain")]
-    [SerializeField] private float driveForce = 360;
+    [SerializeField] private float driveForce = 300;
     // Start is called before the first frame update
 
     void Awake()

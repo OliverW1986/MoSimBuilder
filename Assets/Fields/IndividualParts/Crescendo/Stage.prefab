@@ -9313,7 +9313,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615547122987292428}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2b193619412380045a23f350326da550, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -26881,7 +26881,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4576955314700189803}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2b193619412380045a23f350326da550, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -51168,7 +51168,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8574671135362033365}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2b193619412380045a23f350326da550, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -56018,7 +56018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1751517499315313110, guid: 00b9355c13ad55244bd4a94c51f18fa9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.241
+      value: 1.157
       objectReference: {fileID: 0}
     - target: {fileID: 1751517499315313110, guid: 00b9355c13ad55244bd4a94c51f18fa9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -56092,7 +56092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1751517499315313110, guid: 00b9355c13ad55244bd4a94c51f18fa9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.241
+      value: 1.157
       objectReference: {fileID: 0}
     - target: {fileID: 1751517499315313110, guid: 00b9355c13ad55244bd4a94c51f18fa9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -56166,7 +56166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1751517499315313110, guid: 00b9355c13ad55244bd4a94c51f18fa9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.241
+      value: 1.157
       objectReference: {fileID: 0}
     - target: {fileID: 1751517499315313110, guid: 00b9355c13ad55244bd4a94c51f18fa9, type: 3}
       propertyPath: m_LocalPosition.z

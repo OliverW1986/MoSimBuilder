@@ -90,7 +90,7 @@ public class GenerateArm : MonoBehaviour
                 _rb.interpolation = RigidbodyInterpolation.Interpolate;
                 _rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
                 _rb.excludeLayers = LayerMask.GetMask("Robot");
-                _rb.useGravity = false;
+                _rb.useGravity = true;
                 _rb.drag = 0;
             }
 
@@ -251,7 +251,7 @@ public class GenerateArm : MonoBehaviour
             }
 
 
-            if (continuousAim && _activeTarget == 0)
+            if (continuousAim && Mathf.Approximately(_activeTarget, -stowAngle))
             {
                 Quaternion targetShooterRotation;
                 targetShooterRotation = Quaternion.LookRotation(-_armSec1.transform.position + target, Vector3.up);

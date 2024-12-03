@@ -13,6 +13,18 @@ public enum ControlType
     sequence
 }
 
+public enum IntakeType
+{
+    hold,
+    always
+}
+
+public enum TransferType
+{
+    button,
+    instant
+}
+
 public enum CameraMode
 {
     DriverStation,
