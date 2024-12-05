@@ -3,7 +3,7 @@ The goal of this project is to be able to progress early season prototyping in F
 ***Alpha 1 proggress***
 - generate drive train (at Alpha 1 Goal)\
     - set frame width and length seperatly
-    - set bumper height
+    - set bumper height (relative to center of frame)
     - set max speed
     - set acceleration force
 - Generate Elevator (at Alpha 1 Goal)
