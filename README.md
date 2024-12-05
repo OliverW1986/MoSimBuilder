@@ -1,7 +1,11 @@
 The goal of this project is to be able to progress early season prototyping in FRC after crayon cadding by making an easy to use tool for making simulated versions of robots in unity. Allowing for FRC robots to be conceptualized then put through virtual representations that assume perfect execution of the design.
 
 ***Alpha 1 proggress***
-- generate drive train (at Alpha 1 Goal)
+- generate drive train (at Alpha 1 Goal)\
+    - set frame width and length seperatly
+    - set bumper height
+    - set max speed
+    - set acceleration force
 - Generate Elevator (at Alpha 1 Goal)
     - One Script as many stages as you want
     - Set the height of the elevator in inches
