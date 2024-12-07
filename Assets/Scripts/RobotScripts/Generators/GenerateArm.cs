@@ -14,6 +14,9 @@ public class GenerateArm : MonoBehaviour
 
     [SerializeField] private Vector3 target;
 
+    [Tooltip("leave Null for inline Continuous Aiming")]
+    [SerializeField] private GameObject indicatorAim;
+
     [SerializeField] private float angleOffset;
     
     [SerializeField] private float[] setPoints;
@@ -253,8 +256,19 @@ public class GenerateArm : MonoBehaviour
 
             if (continuousAim && Mathf.Approximately(_activeTarget, -stowAngle))
             {
+                Vector3 aimingPoint;
+
+                if (indicatorAim == null)
+                {
+                    aimingPoint = _armSec1.transform.position;
+                }
+                else
+                {
+                    aimingPoint = indicatorAim.transform.position;
+                }
+                
                 Quaternion targetShooterRotation;
-                targetShooterRotation = Quaternion.LookRotation(-_armSec1.transform.position + target, Vector3.up);
+                targetShooterRotation = Quaternion.LookRotation(-aimingPoint + target, Vector3.up);
                 
                 _position = Quaternion.Angle(_armSec1.transform.rotation, transform.rotation) + angleOffset;
 

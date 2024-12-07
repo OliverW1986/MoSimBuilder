@@ -38,7 +38,15 @@ public enum Buttons
     A,
     X,
     Y,
-    B
+    B,
+    Lt,
+    Rt,
+    Lb,
+    Rb,
+    DpadUp,
+    DpadDown,
+    DpadLeft,
+    DpadRight
 }
 
 public enum DriveTrain
@@ -46,6 +54,12 @@ public enum DriveTrain
     Tank,
     HDrive,
     Swerve
+}
+
+public enum SpawnType
+{
+    RobotDetect,
+    PieceThreshold
 }
 
 //Unused for now

@@ -194,6 +194,8 @@ public class GenerateStow : MonoBehaviour
                     {
                         var target = endpoints[i].GetComponent<GenerateStow>();
                         
+                        if (target.hasObject) return;
+                        
                         target.hasObject = true;
                         target.GamePiece = GamePiece;
                         
@@ -204,6 +206,8 @@ public class GenerateStow : MonoBehaviour
                     } else if (endpoints[i].GetComponent<GenerateOutake>())
                     {
                         var target = endpoints[i].GetComponent<GenerateOutake>();
+                        
+                        if (target.hasObject) return;
                         
                         target.hasObject = true;
                         target.gamePiece = GamePiece;
@@ -219,6 +223,8 @@ public class GenerateStow : MonoBehaviour
                     {
                         var target = endpoints[i].GetComponent<GenerateStow>();
                         
+                        if (target.hasObject) return;
+                        
                         target.hasObject = true;
                         target.GamePiece = GamePiece;
                         
@@ -229,6 +235,8 @@ public class GenerateStow : MonoBehaviour
                     } else if (endpoints[i].GetComponent<GenerateOutake>())
                     {
                         var target = endpoints[i].GetComponent<GenerateOutake>();
+                        
+                        if (target.hasObject) return;
                         
                         target.hasObject = true;
                         target.gamePiece = GamePiece;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,19 @@ public class GamePieceScript : MonoBehaviour
 {
     [SerializeField] private GameObject colliderParent;
 
-    [SerializeField] private GameObject detectParent;
-
     [SerializeField] private Rigidbody rb;
+
+    public bool lowPerformanceMode;
+    
     // Start is called before the first frame update
+    private void Start()
+    {
+        if (lowPerformanceMode)
+        {
+            rb.solverIterations = 1;
+            rb.solverVelocityIterations = 1;
+        }
+    }
 
     public void ReleaseToWorld(float vel, float sideSpin, float backSpin)
     {
@@ -57,7 +67,7 @@ public class GamePieceScript : MonoBehaviour
 
     public void Destroy()
     {
-        Destroy(gameObject);
+        DestroyImmediate(gameObject);
     }
     
     

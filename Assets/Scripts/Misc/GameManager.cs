@@ -41,8 +41,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject scoreCard;
 
-    public SpawnCargo filedCargo;
-
     private IResettable[] resettables;
 
     private DriveController[] swerveControllers;
@@ -247,9 +245,6 @@ public class GameManager : MonoBehaviour
 
 
         StartCoroutine(spawnBots());
-
-        //Reset default field notes
-        filedCargo.InstantiateCargo();
 
         button.SetActive(false);
         isResetting = false;

@@ -42,7 +42,7 @@ public class DriveController : MonoBehaviour
     [HideInInspector][Tooltip("sets Max Speed in ft/s")]
     public float maxSpeed = 5;
 
-    [FormerlySerializedAs("AccelerationSpeed")] [Tooltip("sets constant acceleration")]
+    [HideInInspector][FormerlySerializedAs("AccelerationSpeed")] [Tooltip("sets constant acceleration")]
     public float accelerationSpeed = 20f;
 
     [HideInInspector][FormerlySerializedAs("SteerMultiplyer")] [Tooltip("sets modified base steering")]
@@ -100,7 +100,7 @@ public class DriveController : MonoBehaviour
     public Material[] materialPrefab = new Material[2];
 
     [Tooltip("Game Objects for bumper recoloring")]
-    private GameObject[] bumper;
+    [HideInInspector] public GameObject[] bumper;
 
     private Material _bumperMat;
 

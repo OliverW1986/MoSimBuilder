@@ -9,7 +9,7 @@ public class LowerSolver : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _rb.solverIterations = 4;
+        _rb.solverIterations = 1;
         _rb.solverVelocityIterations = 1;
     }
 

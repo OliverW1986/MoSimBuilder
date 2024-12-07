@@ -80,6 +80,78 @@ public partial class @CrayonButtons: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Lt"",
+                    ""type"": ""Button"",
+                    ""id"": ""8fb337b6-54bf-4d08-a6ee-204b4e9bfd44"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rt"",
+                    ""type"": ""Button"",
+                    ""id"": ""d61d2ccd-1a77-4a5b-ae01-a9572e394c41"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Lb"",
+                    ""type"": ""Button"",
+                    ""id"": ""b8a593e3-e888-4f2d-a0b9-c0562e7f73c6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rb"",
+                    ""type"": ""Button"",
+                    ""id"": ""796ba2ed-be48-4172-96a8-560f2e03ab10"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DpadUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""4f881ae8-ed10-4183-9b06-441b5c1ef2e4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DpadLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d1d6ad4-a236-40a7-9801-717fcd2b73fe"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DpadRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""801d2b18-b25f-420d-929d-13ba11f71ba7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DpadDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""d1cee96a-4426-4029-a59f-9ba6a39ea2c6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -302,6 +374,94 @@ public partial class @CrayonButtons: IInputActionCollection2, IDisposable
                     ""action"": ""B"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7604206-1f9f-48a0-8d0d-f6334f161487"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lt"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""922ce299-4b0d-4afd-918d-3742f636dcb9"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rt"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46d76c20-4286-4314-b089-2d64ac3f6e7c"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c419c5b-7b51-44fa-817a-5e7578a0e495"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""330a7bcc-a20d-4a92-a365-840e14115970"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DpadUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""068bf81b-013b-4353-83ea-1ae73b41e733"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DpadLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6cd1f00e-84e9-4df0-b98d-e3bfa91a9954"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DpadRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d778fe9-85eb-4c35-94b7-aaeb6059e889"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DpadDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -333,6 +493,14 @@ public partial class @CrayonButtons: IInputActionCollection2, IDisposable
         m_Robot_X = m_Robot.FindAction("X", throwIfNotFound: true);
         m_Robot_Y = m_Robot.FindAction("Y", throwIfNotFound: true);
         m_Robot_B = m_Robot.FindAction("B", throwIfNotFound: true);
+        m_Robot_Lt = m_Robot.FindAction("Lt", throwIfNotFound: true);
+        m_Robot_Rt = m_Robot.FindAction("Rt", throwIfNotFound: true);
+        m_Robot_Lb = m_Robot.FindAction("Lb", throwIfNotFound: true);
+        m_Robot_Rb = m_Robot.FindAction("Rb", throwIfNotFound: true);
+        m_Robot_DpadUp = m_Robot.FindAction("DpadUp", throwIfNotFound: true);
+        m_Robot_DpadLeft = m_Robot.FindAction("DpadLeft", throwIfNotFound: true);
+        m_Robot_DpadRight = m_Robot.FindAction("DpadRight", throwIfNotFound: true);
+        m_Robot_DpadDown = m_Robot.FindAction("DpadDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -400,6 +568,14 @@ public partial class @CrayonButtons: IInputActionCollection2, IDisposable
     private readonly InputAction m_Robot_X;
     private readonly InputAction m_Robot_Y;
     private readonly InputAction m_Robot_B;
+    private readonly InputAction m_Robot_Lt;
+    private readonly InputAction m_Robot_Rt;
+    private readonly InputAction m_Robot_Lb;
+    private readonly InputAction m_Robot_Rb;
+    private readonly InputAction m_Robot_DpadUp;
+    private readonly InputAction m_Robot_DpadLeft;
+    private readonly InputAction m_Robot_DpadRight;
+    private readonly InputAction m_Robot_DpadDown;
     public struct RobotActions
     {
         private @CrayonButtons m_Wrapper;
@@ -410,6 +586,14 @@ public partial class @CrayonButtons: IInputActionCollection2, IDisposable
         public InputAction @X => m_Wrapper.m_Robot_X;
         public InputAction @Y => m_Wrapper.m_Robot_Y;
         public InputAction @B => m_Wrapper.m_Robot_B;
+        public InputAction @Lt => m_Wrapper.m_Robot_Lt;
+        public InputAction @Rt => m_Wrapper.m_Robot_Rt;
+        public InputAction @Lb => m_Wrapper.m_Robot_Lb;
+        public InputAction @Rb => m_Wrapper.m_Robot_Rb;
+        public InputAction @DpadUp => m_Wrapper.m_Robot_DpadUp;
+        public InputAction @DpadLeft => m_Wrapper.m_Robot_DpadLeft;
+        public InputAction @DpadRight => m_Wrapper.m_Robot_DpadRight;
+        public InputAction @DpadDown => m_Wrapper.m_Robot_DpadDown;
         public InputActionMap Get() { return m_Wrapper.m_Robot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -437,6 +621,30 @@ public partial class @CrayonButtons: IInputActionCollection2, IDisposable
             @B.started += instance.OnB;
             @B.performed += instance.OnB;
             @B.canceled += instance.OnB;
+            @Lt.started += instance.OnLt;
+            @Lt.performed += instance.OnLt;
+            @Lt.canceled += instance.OnLt;
+            @Rt.started += instance.OnRt;
+            @Rt.performed += instance.OnRt;
+            @Rt.canceled += instance.OnRt;
+            @Lb.started += instance.OnLb;
+            @Lb.performed += instance.OnLb;
+            @Lb.canceled += instance.OnLb;
+            @Rb.started += instance.OnRb;
+            @Rb.performed += instance.OnRb;
+            @Rb.canceled += instance.OnRb;
+            @DpadUp.started += instance.OnDpadUp;
+            @DpadUp.performed += instance.OnDpadUp;
+            @DpadUp.canceled += instance.OnDpadUp;
+            @DpadLeft.started += instance.OnDpadLeft;
+            @DpadLeft.performed += instance.OnDpadLeft;
+            @DpadLeft.canceled += instance.OnDpadLeft;
+            @DpadRight.started += instance.OnDpadRight;
+            @DpadRight.performed += instance.OnDpadRight;
+            @DpadRight.canceled += instance.OnDpadRight;
+            @DpadDown.started += instance.OnDpadDown;
+            @DpadDown.performed += instance.OnDpadDown;
+            @DpadDown.canceled += instance.OnDpadDown;
         }
 
         private void UnregisterCallbacks(IRobotActions instance)
@@ -459,6 +667,30 @@ public partial class @CrayonButtons: IInputActionCollection2, IDisposable
             @B.started -= instance.OnB;
             @B.performed -= instance.OnB;
             @B.canceled -= instance.OnB;
+            @Lt.started -= instance.OnLt;
+            @Lt.performed -= instance.OnLt;
+            @Lt.canceled -= instance.OnLt;
+            @Rt.started -= instance.OnRt;
+            @Rt.performed -= instance.OnRt;
+            @Rt.canceled -= instance.OnRt;
+            @Lb.started -= instance.OnLb;
+            @Lb.performed -= instance.OnLb;
+            @Lb.canceled -= instance.OnLb;
+            @Rb.started -= instance.OnRb;
+            @Rb.performed -= instance.OnRb;
+            @Rb.canceled -= instance.OnRb;
+            @DpadUp.started -= instance.OnDpadUp;
+            @DpadUp.performed -= instance.OnDpadUp;
+            @DpadUp.canceled -= instance.OnDpadUp;
+            @DpadLeft.started -= instance.OnDpadLeft;
+            @DpadLeft.performed -= instance.OnDpadLeft;
+            @DpadLeft.canceled -= instance.OnDpadLeft;
+            @DpadRight.started -= instance.OnDpadRight;
+            @DpadRight.performed -= instance.OnDpadRight;
+            @DpadRight.canceled -= instance.OnDpadRight;
+            @DpadDown.started -= instance.OnDpadDown;
+            @DpadDown.performed -= instance.OnDpadDown;
+            @DpadDown.canceled -= instance.OnDpadDown;
         }
 
         public void RemoveCallbacks(IRobotActions instance)
@@ -493,5 +725,13 @@ public partial class @CrayonButtons: IInputActionCollection2, IDisposable
         void OnX(InputAction.CallbackContext context);
         void OnY(InputAction.CallbackContext context);
         void OnB(InputAction.CallbackContext context);
+        void OnLt(InputAction.CallbackContext context);
+        void OnRt(InputAction.CallbackContext context);
+        void OnLb(InputAction.CallbackContext context);
+        void OnRb(InputAction.CallbackContext context);
+        void OnDpadUp(InputAction.CallbackContext context);
+        void OnDpadLeft(InputAction.CallbackContext context);
+        void OnDpadRight(InputAction.CallbackContext context);
+        void OnDpadDown(InputAction.CallbackContext context);
     }
 }
