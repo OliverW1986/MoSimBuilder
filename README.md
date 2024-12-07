@@ -20,8 +20,9 @@ The goal of this project is to be able to progress early season prototyping in F
 - Changeable field (at Alpha 1 goal)
     - Swap between The Crescendo and Evergreen fields
     - Crescendo features a fully dynamic chain
+    - Optimized Variant of Crescendo field with lower physics ticks on gamepieces and every 5th chain piece is dynamic
 - Generate hook (at Alpha 1 Goal)
-- Game Piece animation system (in progress)
+- Game Piece animation system (at alpha 1 goal)
     - 3 stage system consisting of intake, stow, and outake.
     - no delete game piece system means there is no need for "hidden" objects
     - Generic nature of the system allows for use in most years games.
