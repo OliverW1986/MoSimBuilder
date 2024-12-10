@@ -13,8 +13,8 @@
     * install from the main page using Code -> Download Zip
     * go to your downloads folder and unzip to a location
   *  _advanced install_  (optionally fork first)
-    * open the github Desktop app
-    * File -> clone Repository -> fill out fields
+     * Open the github Desktop app
+     * File -> clone Repository -> fill out fields
 ### The final Step is to let unity hub install the correct version of unity for you
   * in the unity hub app click the Add button in the top right
   * next add project from disk
