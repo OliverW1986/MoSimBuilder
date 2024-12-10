@@ -12,7 +12,7 @@
   * simple install
     * install from the main page using Code -> Download Zip
     * go to your downloads folder and unzip to a location
-  * _ _advanced install_ _ (optionally fork first)
+  *  _advanced install_  (optionally fork first)
     * open the github Desktop app
     * File -> clone Repository -> fill out fields
 ### The final Step is to let unity hub install the correct version of unity for you
