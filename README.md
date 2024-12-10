@@ -29,7 +29,7 @@ The goal of this project is to be able to progress early season prototyping in F
     - Ability to form complex interacitons using the ability to have multiple outputs from a stow locatoin.
 - File Cleanup (Complete)
 - Example Robots (in progress)
-- Early Documentation (not started)
+- Early Documentation (in progress)
 
 ***Missing or future update features***
 - metric support (non inch settings)
@@ -38,6 +38,7 @@ The goal of this project is to be able to progress early season prototyping in F
 - Multi jointed arms
 - different swerve module configs and shapes
 - Generate Turret
+- Decorative Generators
 - Basic Motor simulation
 
 ***Non targeted features (unlikley/never)***
