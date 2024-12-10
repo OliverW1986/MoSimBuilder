@@ -45,4 +45,11 @@
       * Camera mode which selects which camera it is
       * alliance selects the alliance.
    * The second "componenet" is the FieldLoader. This is where you select your active field. The top field in the list is the one you will see before you. dragging a lower one to the top will result in the relevant field being selected
+* finally we return to the Project view and open the Resources Folder, then the Robots folder and we can see all of the included robots
+  ![image](https://github.com/user-attachments/assets/90746f51-7cff-4cb2-bb4e-3bd8c9a5f2f9) (photo was taken prior to completing this guide)
+   * there is no requirement that names be numbers.
+   * The file name is what you add to the Robot Spawn Controller in order to load the robot.
+   * To play you select the Play button on the top of the scene view.
+   * Controls? whatever you make them.
+
 
