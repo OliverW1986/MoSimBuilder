@@ -52,4 +52,4 @@
    * To play you select the Play button on the top of the scene view.
    * Controls? whatever you make them.
 
-[Getting Started](https://github.com/masonmm3/MoSimBuilderDev/blob/main/Documentation/FirstRobot.md)
+#[Getting Started](https://github.com/masonmm3/MoSimBuilderDev/blob/main/Documentation/FirstRobot.md)
