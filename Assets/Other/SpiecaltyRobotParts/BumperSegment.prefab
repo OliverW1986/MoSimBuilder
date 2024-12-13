@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7691042860316502325}
   - component: {fileID: 6047815643814128678}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3262694430128207606}
   - component: {fileID: 9125362776265913418}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2155492103212921641}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8851731772457702546}
   - component: {fileID: 3811627884868737187}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Box (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 847223856228527290}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BumperSegment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6272458085107651411}
   - component: {fileID: 4669957148248723912}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,6 +335,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1c8417317e7822445b6599555fa43f74, type: 3}
       propertyPath: m_Name
       value: Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1c8417317e7822445b6599555fa43f74, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

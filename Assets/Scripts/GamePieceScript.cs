@@ -26,7 +26,7 @@ public class GamePieceScript : MonoBehaviour
         rb.useGravity = true;
         rb.isKinematic = false;
         rb.velocity = transform.forward.normalized * vel;
-        rb.angularVelocity = new Vector3(0,sideSpin,-backSpin);
+        rb.angularVelocity = transform.TransformDirection(new Vector3(-backSpin, sideSpin, 0));
         
         transform.parent = transform.root.parent;
         

@@ -2382,11 +2382,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ef4aa819152894790ba58b160a0df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnVelocity: {x: 0, y: 0, z: -1}
   gamePiece: {fileID: 820803627672540513, guid: 920c0c7a4d43efe4293ba3573bb62276, type: 3}
   spawnPoint: {fileID: 3762009187400601045}
   spawnType: 0
   spawnCollider: {fileID: 2406535311967560174}
   threshold: 0
+  usePerformanceMode: 0
 --- !u!1 &326520220840792071
 GameObject:
   m_ObjectHideFlags: 0
@@ -6791,7 +6793,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864143425072276202}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2b193619412380045a23f350326da550, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -25080,7 +25082,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2920374805387714462}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2b193619412380045a23f350326da550, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -39758,11 +39760,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ef4aa819152894790ba58b160a0df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnVelocity: {x: 0, y: 0, z: -1}
   gamePiece: {fileID: 820803627672540513, guid: 920c0c7a4d43efe4293ba3573bb62276, type: 3}
   spawnPoint: {fileID: 4451388867695559039}
   spawnType: 0
   spawnCollider: {fileID: 2159853102123866184}
   threshold: 0
+  usePerformanceMode: 0
 --- !u!1 &4412711147114896132
 GameObject:
   m_ObjectHideFlags: 0
@@ -51900,7 +51904,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5626242810820844620}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2b193619412380045a23f350326da550, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -53423,11 +53427,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ef4aa819152894790ba58b160a0df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnVelocity: {x: 0, y: 0, z: -1}
   gamePiece: {fileID: 820803627672540513, guid: 920c0c7a4d43efe4293ba3573bb62276, type: 3}
   spawnPoint: {fileID: 725933309271165692}
   spawnType: 1
   spawnCollider: {fileID: 6560257347290360965}
   threshold: 1
+  usePerformanceMode: 0
 --- !u!1 &5763474129237028734
 GameObject:
   m_ObjectHideFlags: 0
@@ -74977,7 +74983,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8364768635208954330}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2b193619412380045a23f350326da550, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -77450,7 +77456,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8629599753007282803}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2b193619412380045a23f350326da550, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -78572,7 +78578,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8749441285839590855}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2b193619412380045a23f350326da550, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -79732,11 +79738,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ef4aa819152894790ba58b160a0df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnVelocity: {x: 0, y: 0, z: -1}
   gamePiece: {fileID: 820803627672540513, guid: 920c0c7a4d43efe4293ba3573bb62276, type: 3}
   spawnPoint: {fileID: 3237446206536477436}
   spawnType: 1
   spawnCollider: {fileID: 6359295875235022017}
   threshold: 1
+  usePerformanceMode: 0
 --- !u!1 &8854546545352052721
 GameObject:
   m_ObjectHideFlags: 0

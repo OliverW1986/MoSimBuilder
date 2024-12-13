@@ -8,6 +8,8 @@ using UnityEngine.Serialization;
 
 public class SpawnGamePiece : MonoBehaviour
 {
+    [SerializeField] private Vector3 spawnVelocity;
+    
     [SerializeField] private GameObject gamePiece;
     
     [SerializeField] private Transform spawnPoint;
@@ -74,15 +76,16 @@ public class SpawnGamePiece : MonoBehaviour
 
         if (spawnType == SpawnType.RobotDetect)
         {
-            Collider[] colliders = Physics.OverlapBox(spawnCollider.transform.position, spawnCollider.bounds.extents / 2, spawnCollider.transform.rotation);
+            Collider[] colliders = Physics.OverlapBox(spawnCollider.transform.position, spawnCollider.bounds.extents/1.5f, spawnCollider.transform.rotation);
             foreach (Collider coll in colliders)
             {
-                if (coll.transform.root.gameObject.layer == LayerMask.NameToLayer("Robot"))
+                if (coll.gameObject.layer == LayerMask.NameToLayer("Robot"))
                 {
                     if (timer < 0)
                     {
                        var go = Instantiate(gamePiece, spawnPoint.position, spawnPoint.rotation);
-
+                       go.GetComponent<Rigidbody>().velocity = transform.TransformVector(spawnVelocity);
+                       
                        if (usePerformanceMode)
                        {
                            go.GetComponent<GamePieceScript>().lowPerformanceMode = true;
@@ -117,6 +120,7 @@ public class SpawnGamePiece : MonoBehaviour
                 if (usePerformanceMode)
                 {
                     go.GetComponent<GamePieceScript>().lowPerformanceMode = true;
+                    go.GetComponent<Rigidbody>().velocity = transform.TransformVector(spawnVelocity);
                 }
                 timer = 2.0f;
             }
