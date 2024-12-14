@@ -1,6 +1,6 @@
-#Second Robot
+# Second Robot
 
-##Applying Heirarchy and The Game Piece system
+## Applying Heirarchy and The Game Piece system
 
 * we will be making a robot inspired by the Ri3d team cranbery alarm. This allows us to explore Heirarchy and the game piece system.
 * Start by creating a prefab and robot with a 28by28 frame, and bumper height set to 2.5 so that it is just off the ground. I will name the prefab 9998.
