@@ -58,5 +58,26 @@
 ![image](https://github.com/user-attachments/assets/f32d63ca-876d-4c1d-90d7-006cd721f16d)
 
 
+## Introduction To Heirarchy usage and climbers
+* in order to climb we need to understand how the heirarchy works. The heirarchy has two types of object references. Parents, and Childs, a parent is an object that has objects inside its "folder". A child, is the objects inside the folder.
+* For instance in the photo below. ArmSec1 is a Child of Arm. ArmSec1 is a parent of ClimbElevator(1), and Stationary is a child of ClimbElevator(1).
+  ![image](https://github.com/user-attachments/assets/f220fc6e-64ee-47b2-8858-880c89f74bde)
+* So why is this important. well, children of an object will follow their parent. so to get a set of colliders to follow our climb elevator we need to make sure to child it to the correct object on the elevator.
+* So create an empty object and add an elevator generator.
+* This is by far the most complex generator but is mostly self explanatory. You can set the weight of the non moving part of the elevator, and the weight of the moving part. The only od thing is that if you check stow top, you in essance will visually lose a stage
+* Returning to our situation we will set the Height to 15 num of stages to one, and width to 3 so that we can align the hook. Feel free to drop it lower to treat it like a telescopic tube it is not easy to line up child parts if you do though.
+* set the stationary weight to 5 and the stage weight to 1.
+* set the setpoint to 15.
+* Now drag it to one side of the shooter/stow body
+* Now, open the climb elevator by clicking the arrow next to it. then stationary > Stage 1. Create an empty object by right clicking stage 1 and name it hook
+![image](https://github.com/user-attachments/assets/44ed85d6-ed1a-44e9-b1fc-8f08076020f7)
+* Next add a hook generator to the elevator.
+* Set the width to 1, stem Height to 17, bride length to 3 and hook Height to 1.
+* Then align it with the cross bridge on the elevator, this is the "stage" it is aligned to middle in the editor for ease of spotting.
+* ![image](https://github.com/user-attachments/assets/439454c0-87f4-4a78-95c7-2b2436488b16)
+* return to the field scene and test.
+* The robot likley did not pull of the ground. this is easy to fix, simply click the climbElevator Object the Ctrl C Ctrl V (copy and paste) the game object and drag to the other side. you now have two identical climbers.
+* ![image](https://github.com/user-attachments/assets/3581d7ef-6087-471f-a70d-719b5207621b)
+
 
 
