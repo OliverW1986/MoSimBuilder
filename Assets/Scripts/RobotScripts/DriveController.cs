@@ -170,6 +170,7 @@ public class DriveController : MonoBehaviour
 
     private void Start()
     {
+        rayCastDistance = 0.15f;
 
         _playerInput = gameObject.GetComponent<PlayerInput>();
         _playerInput.actions = _inputActionAsset;

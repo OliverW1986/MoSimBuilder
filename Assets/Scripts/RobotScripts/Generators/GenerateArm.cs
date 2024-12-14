@@ -47,13 +47,14 @@ public class GenerateArm : MonoBehaviour
 
     private JointMotor _jm;
 
-    private float _startingAngle;
-
     private float _position;
     
     private Buttons _lastButton;
 
     [SerializeField] private float stowAngle = 0;
+
+    [Tooltip("leave 0,0 for no limits.")]
+    [SerializeField] private Vector2 limits;
     
     void Start()
     {
@@ -151,104 +152,113 @@ public class GenerateArm : MonoBehaviour
         }
         else
         {
+            
+            
             for (var i = 0; i < setPoints.Length; i++)
             {
-                if (controlType == ControlType.toggle)
+                switch (controlType)
                 {
-                    if (_inputMap.FindAction(setPointButtons[i].ToString()).triggered)
+                    case ControlType.toggle:
                     {
-                        if (Mathf.Approximately(_activeTarget, -setPoints[i]))
+                        if (_inputMap.FindAction(setPointButtons[i].ToString()).triggered)
                         {
-                            _activeTarget = -stowAngle;
+                            if (Mathf.Approximately(_activeTarget, -setPoints[i]))
+                            {
+                                _activeTarget = -stowAngle;
+                            }
+                            else
+                            {
+                                _activeTarget = -setPoints[i];
+                            }
                         }
-                        else
+
+                        break;
+                    }
+                    case ControlType.hold:
+                    {
+                        if (_inputMap.FindAction(setPointButtons[i].ToString()).IsPressed())
                         {
                             _activeTarget = -setPoints[i];
                         }
-
-                        float currentAngle = _hj.transform.localEulerAngles.x + 0;
-                
-                        if (Mathf.Abs(currentAngle) > 180)
+                        else if (i > 0 )
                         {
-                            currentAngle -= 360 * (currentAngle / Mathf.Abs(currentAngle));
-                        }
-
-                        _startingAngle = currentAngle;
-
-                    }
-                }
-                else if (controlType == ControlType.hold)
-                {
-                    if (_inputMap.FindAction(setPointButtons[i].ToString()).IsPressed())
-                    {
-                        if (!Mathf.Approximately(_activeTarget, -setPoints[i]))
-                        {
-                            float currentAngle = _hj.transform.localEulerAngles.x + 0;
-                
-                            if (Mathf.Abs(currentAngle) > 180)
+                            for (var t = 0; t < setPoints.Length; t++)
                             {
-                                currentAngle -= 360 * (currentAngle / Mathf.Abs(currentAngle));
-                            }
-
-                            _startingAngle = currentAngle;
-                        }
-                        
-                        _activeTarget = -setPoints[i];
-                    }
-                    else
-                    {
-                        _activeTarget = -stowAngle;
-                    }
-                }
-                else if (controlType == ControlType.sequence)
-                {
-                    if (_inputMap.FindAction(setPointButtons[i].ToString()).triggered && _sequenceDebounce == false)
-                    {
-                        if (_setpointSequence < setPoints.Length)
-                        {
-                            if (_lastButton != setPointButtons[i])
-                            {
-                                _setpointSequence = 0;
-                                _lastButton = setPointButtons[i];
-                            }
-                            
-                            while (setPointButtons[i] != setPointButtons[_setpointSequence])
-                            {
-                                _setpointSequence ++;
-
-                                if (_setpointSequence+1 > setPoints.Length)
+                                if (_inputMap.FindAction(setPointButtons[t].ToString()).IsPressed())
                                 {
-                                    _setpointSequence = 0;
-                                    _activeTarget = -stowAngle;
-                                    return;
+                                    _activeTarget = -setPoints[t];
                                 }
-
-
                             }
-                            _activeTarget = -setPoints[_setpointSequence];
-
-                            _setpointSequence += 1;
                         }
                         else
                         {
-                            _setpointSequence = 0;
                             _activeTarget = -stowAngle;
                         }
-                        
-                        _lastButton = setPointButtons[i];
-                    }
-                    else
-                    {
 
+                        break;
                     }
+                    case ControlType.sequence:
+                    {
+                        if (_inputMap.FindAction(setPointButtons[i].ToString()).triggered && _sequenceDebounce == false)
+                        {
+                            if (_setpointSequence < setPoints.Length)
+                            {
+                                if (_lastButton != setPointButtons[i])
+                                {
+                                    _setpointSequence = 0;
+                                    _lastButton = setPointButtons[i];
+                                }
+                            
+                                while (setPointButtons[i] != setPointButtons[_setpointSequence])
+                                {
+                                    _setpointSequence ++;
+
+                                    if (_setpointSequence+1 > setPoints.Length)
+                                    {
+                                        _setpointSequence = 0;
+                                        _activeTarget = -stowAngle;
+                                        return;
+                                    }
+
+
+                                }
+                                _activeTarget = -setPoints[_setpointSequence];
+
+                                _setpointSequence += 1;
+                            }
+                            else
+                            {
+                                _setpointSequence = 0;
+                                _activeTarget = -stowAngle;
+                            }
+                        
+                            _lastButton = setPointButtons[i];
+                        }
+                        else
+                        {
+
+                        }
                     
-                    if (_inputMap.FindAction(setPointButtons[i].ToString()).IsPressed())
-                    {
-                        _sequenceDebounce = true;
-                    }
-                    else
-                    {
-                        _sequenceDebounce = false;
+                        if (_inputMap.FindAction(setPointButtons[i].ToString()).IsPressed())
+                        {
+                            _sequenceDebounce = true;
+                        }
+                        else if (i > 0 )
+                        {
+                            for (var t = 0; t < setPoints.Length; t++)
+                            {
+                                if (_inputMap.FindAction(setPointButtons[t].ToString()).IsPressed())
+                                {
+                                    _sequenceDebounce = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            _sequenceDebounce = false;
+                        }
+
+                        break;
                     }
                 }
             }
@@ -325,10 +335,25 @@ public class GenerateArm : MonoBehaviour
 
                 float positionError = (Target - _position);
 
-                if (Mathf.Abs(positionError) > 180)
+                if (_position > Mathf.Repeat(-limits.x, 360) && _position+positionError < Mathf.Repeat(-limits.x, 360) && Mathf.Abs(positionError) < 180 && limits.x != 0)
+                {
+                    positionError = -1 * positionError;
+                } else if (_position < Mathf.Repeat(-limits.x, 360) && _position+positionError > Mathf.Repeat(-limits.x, 360) && Mathf.Abs(positionError) < 180 && limits.x != 0)
+                {
+                    positionError = -1 * positionError;
+                } else if (_position > Mathf.Repeat(-limits.y, 360) && _position+positionError < Mathf.Repeat(-limits.y, 360) && Mathf.Abs(positionError) < 180 && limits.y != 0)
+                {
+                    positionError = -1 * positionError;
+                } else if (_position < Mathf.Repeat(-limits.y, 360) && _position+positionError > Mathf.Repeat(-limits.y, 360) && Mathf.Abs(positionError) < 180 && limits.y != 0)
+                {
+                    positionError = -1 * positionError;
+                } else if (Mathf.Abs(positionError) > 180)
                 {
                     positionError = -1 * positionError;
                 }
+                
+                
+                
                 _jm.force = 90000000000000;
                 _jm.targetVelocity = Mathf.Clamp(positionError * 8f, -360,360);
                 _hj.useMotor = true;
