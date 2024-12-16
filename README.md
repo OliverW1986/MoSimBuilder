@@ -3,6 +3,10 @@ The goal of this project is to be able to progress early season prototyping in F
 ## [Getting Started Documentation](https://github.com/masonmm3/MoSimBuilderDev/blob/main/Documentation/GettingStarted.md)
 I have put together what is hopefully an extremely useful set of documentation to teach users the basics of the system and how to use it to its fullest.
 
+## Contributing.
+ * If you wish to make a contribution to the primary source code please make a pull request to the "Experimental" branch.
+ * If you wish to contribute to the documentation please make a pull request to the stable branch.
+
 ## Alpha 2 plans
 - bugfixes
 - metric support (non inch settings)
