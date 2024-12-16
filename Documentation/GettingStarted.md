@@ -1,9 +1,9 @@
 # Getting Started
 
 ## Downloading
-  * unity is roughly 5.21 gb
-  * Mo sim builder is roughly 1.65 gb
-  * these are estimates and untested
+  * You will need around 10 GB of space
+  * Unity is ~5.5 GB and MoSim Builder is ~2 GB
+  * Please ensure that you have enough storage space to download both of these
 
 ### The first step is going to be to download unity hub
   * [Download Here](https://unity.com/download)
