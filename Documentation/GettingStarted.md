@@ -51,5 +51,19 @@
    * The file name is what you add to the Robot Spawn Controller in order to load the robot.
    * To play you select the Play button on the top of the scene view.
    * Controls? whatever you make them.
+ ## Controls Disclaimer.
+ The controls are made for xbox controller. The following is the Keyboard Translation. (Controller:Keyboard)
+ * A : E
+ * X : Q
+ * Y: 1
+ * B : 3
+ * Lt : Shift
+ * Rt : Space
+ * Rb : K
+ * Lb : I
+ * Dpad Up: T
+ * Dpad Left : F
+ * Dpad Right: H
+ * Dpad Down :G
 
 # [First Robot](https://github.com/masonmm3/MoSimBuilderDev/blob/main/Documentation/FirstRobot.md)
