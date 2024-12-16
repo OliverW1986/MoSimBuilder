@@ -22,3 +22,5 @@
 * We are creating two independant systems not because we have to but because it is a better representation. By modeling the handof as opposed to simply transfering in between the two stows.
 ![image](https://github.com/user-attachments/assets/bbd235f5-14df-4a07-9729-6072e794ee94)
 * This is the entire robot. feel free to play around. Im sure if you play long enough with the intake dimensions and settings it could amp.
+
+[Third Robot](https://github.com/masonmm3/MoSimBuilderDev/blob/main/Documentation/ThirdRobot.md)
