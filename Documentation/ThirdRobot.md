@@ -42,3 +42,5 @@
 * put the setpoint to 16 on x in toggle mode.
   ![image](https://github.com/user-attachments/assets/a46e3b1b-c824-4803-be76-555f72e74655)
 * now go to the arm and add a setpoint for climbing at -80 on x
+
+## [Loose Ends](https://github.com/masonmm3/MoSimBuilderDev/blob/main/Documentation/LooseEnds.md)
