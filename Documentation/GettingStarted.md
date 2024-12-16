@@ -37,7 +37,7 @@
    * DsColliders houses the non field side colliders for the driver stations
    * AimFinder is a blank object that can be used to find the cordinates of an aiming point.
 * This brings us to the final thing, the Inspector window. When you select an object this window on the right side of the screen will populate with the "componenets" on the object.
-   * When youe select the GameHandler object in the Heirarchy using a left click the inspector menu will populate as it is below
+   * When you select the GameHandler object in the Heirarchy using a left click the inspector menu will populate as it is below
      ![image](https://github.com/user-attachments/assets/f35c028a-07b7-4fee-ae88-200d59513959)
    * This is where the bulk of the changes will occur.
    * The first "Componenet" of interest is the RobotSpawnController, on it we have
