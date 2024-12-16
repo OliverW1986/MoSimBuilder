@@ -279,7 +279,7 @@
                 {
                     "name": "",
                     "id": "13f9fc1f-7a0b-48f5-bf92-4a9af0a49da6",
-                    "path": "<Keyboard>/c",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controls 1",
@@ -301,7 +301,7 @@
                 {
                     "name": "",
                     "id": "f18643b3-d710-4a52-bf81-60ce89813fee",
-                    "path": "<Keyboard>/x",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controls 1",
@@ -323,7 +323,7 @@
                 {
                     "name": "",
                     "id": "b0bf6c23-d30e-4ed8-bb52-fa56b90f3efa",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controls 1",
@@ -345,7 +345,7 @@
                 {
                     "name": "",
                     "id": "71a8a977-8643-44ba-a6b0-cbf5d4ac91f4",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controls 1",
@@ -366,8 +366,30 @@
                 },
                 {
                     "name": "",
+                    "id": "6cf12d87-44ac-49ce-8b6a-480cdb4cac1c",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "922ce299-4b0d-4afd-918d-3742f636dcb9",
                     "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ff23163b-ad15-42d3-9dfd-5dfb2669cde3",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -388,8 +410,30 @@
                 },
                 {
                     "name": "",
+                    "id": "1fe1a89e-ebdb-41b2-910b-f9c88522ed19",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lb",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4c419c5b-7b51-44fa-817a-5e7578a0e495",
                     "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rb",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d5b4df4b-f76d-4662-9e3f-ca939e43c844",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -410,12 +454,12 @@
                 },
                 {
                     "name": "",
-                    "id": "068bf81b-013b-4353-83ea-1ae73b41e733",
-                    "path": "<Gamepad>/dpad/left",
+                    "id": "79d706f1-9d97-4198-b669-b0c989a550e0",
+                    "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "DpadLeft",
+                    "action": "DpadUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -432,12 +476,56 @@
                 },
                 {
                     "name": "",
+                    "id": "a028b649-c98d-4e64-911c-e2970f173abf",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DpadRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2d778fe9-85eb-4c35-94b7-aaeb6059e889",
                     "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "DpadDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "775df0cd-2482-4222-85c1-ed1f1cfe2426",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DpadDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "068bf81b-013b-4353-83ea-1ae73b41e733",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DpadLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13015ce2-f1c5-4a05-825b-3663d44aad38",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DpadLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

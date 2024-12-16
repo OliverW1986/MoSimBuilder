@@ -52,7 +52,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &677032795510109202
@@ -107,7 +107,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &820803627672540513
@@ -185,8 +185,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderParent: {fileID: 2181476473041260443}
-  detectParent: {fileID: 0}
   rb: {fileID: 2025409804446917896}
+  lowPerformanceMode: 0
 --- !u!1 &1183924522412789384
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1843641204227351139
@@ -294,7 +294,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2181476473041260443
@@ -404,7 +404,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2215233542571028875
@@ -459,7 +459,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2285834975439107076
@@ -514,7 +514,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2941498484302276767
@@ -569,7 +569,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3145982589276360664
@@ -624,7 +624,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3154774994420700085
@@ -679,7 +679,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3257181776745178340
@@ -734,7 +734,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3515323922829252444
@@ -789,7 +789,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3855476923600753807
@@ -844,7 +844,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4089909130571586853
@@ -899,7 +899,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4489025160977794109
@@ -954,7 +954,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5779932199022975881
@@ -1009,7 +1009,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5815444519975169498
@@ -1064,7 +1064,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5841310377806212713
@@ -1119,7 +1119,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6983839674076819459
@@ -1174,7 +1174,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7471845529652888850
@@ -1229,7 +1229,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7511457224541731714
@@ -1284,7 +1284,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8002425184634295193
@@ -1339,7 +1339,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8538143938346180570
@@ -1394,7 +1394,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8655697111821520078
@@ -1534,6 +1534,6 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.0245
-  m_Height: 0.1
+  m_Height: 0.105
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}

@@ -243,16 +243,6 @@ public class GenerateArm : MonoBehaviour
                         {
                             _sequenceDebounce = true;
                         }
-                        else if (i > 0 )
-                        {
-                            for (var t = 0; t < setPoints.Length; t++)
-                            {
-                                if (_inputMap.FindAction(setPointButtons[t].ToString()).IsPressed())
-                                {
-                                    _sequenceDebounce = true;
-                                }
-                            }
-                        }
                         else
                         {
                             _sequenceDebounce = false;
@@ -278,9 +268,19 @@ public class GenerateArm : MonoBehaviour
                 }
                 
                 Quaternion targetShooterRotation;
-                targetShooterRotation = Quaternion.LookRotation(-aimingPoint + target, Vector3.up);
+                targetShooterRotation = Quaternion.LookRotation(target-aimingPoint, Vector3.up);
+                float Target = targetShooterRotation.eulerAngles.x;
+                if (Target >= 360)
+                {
+                    Target -= 360;
+                }
+
+                if (Target < 0)
+                {
+                    Target += 360;
+                }
                 
-                _position = Quaternion.Angle(_armSec1.transform.rotation, transform.rotation) + angleOffset;
+                _position = Quaternion.Angle(_armSec1.transform.rotation, transform.rotation);
 
                 if (_armSec1.transform.localRotation.eulerAngles.x > 180)
                 {
@@ -291,9 +291,21 @@ public class GenerateArm : MonoBehaviour
                     _position += 360;
                 }
 
-                _position = Mathf.Repeat(_position, 360);
+                _position += angleOffset;
+                
+                if (_position >= 360)
+                {
+                    _position -= 360;
+                }
 
-                float positionError = (targetShooterRotation.eulerAngles.x - _position);
+                if (_position < 0)
+                {
+                    _position += 360;
+                }
+                
+                _position = Mathf.Repeat(_position, 360);
+                
+                float positionError = (Target - _position);
 
                 if (Mathf.Abs(positionError) > 180)
                 {

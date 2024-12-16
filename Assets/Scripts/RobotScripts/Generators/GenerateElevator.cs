@@ -422,20 +422,10 @@ public class GenerateElevator : MonoBehaviour
                     {
                        
                     }
-                    
+
                     if (_inputMap.FindAction(setpointButton[i].ToString()).IsPressed())
                     {
                         _sequenceDebounce = true;
-                    }
-                    else if (i > 0 )
-                    {
-                        for (var t = 0; t < setpoints.Length; t++)
-                        {
-                            if (_inputMap.FindAction(setpointButton[t].ToString()).IsPressed())
-                            {
-                                _sequenceDebounce = true;
-                            }
-                        }
                     }
                     else
                     {
