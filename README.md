@@ -15,6 +15,7 @@ I have put together what is hopefully an extremely useful set of documentation t
 - Multi jointed arms
 - Generate Turret
 - Decorative Generators
+- Pick and Place field (2018,2019,2023?)
 
 ## Beta 1 plans
 - control system updates. (add I and D to the custom motor loops)
@@ -22,6 +23,7 @@ I have put together what is hopefully an extremely useful set of documentation t
   - Improved field tools,
   - Documentation for making fields
   - Modular scoring system
+  - Swerve Module types and models when generating a drive train.
 
 ## Pre Release 1 plans
 - Ship as an actual .exe game with the ability to share robots and fields
