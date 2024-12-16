@@ -28,8 +28,8 @@ The goal of this project is to be able to progress early season prototyping in F
     - Generic nature of the system allows for use in most years games.
     - Ability to form complex interacitons using the ability to have multiple outputs from a stow locatoin.
 - File Cleanup (Complete)
-- Example Robots (in progress)
-- Early Documentation (in progress)
+- Example Robots (Complete)
+- Early Documentation (Complete)
 
 ***Missing or future update features***
 - metric support (non inch settings)
