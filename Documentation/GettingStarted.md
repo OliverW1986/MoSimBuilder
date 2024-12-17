@@ -26,11 +26,11 @@
 
 ### Familiarizing
 * in the photo below There is a photo of what is called the _Project Window_ this is where files and scenes are stored.
-  ![image](https://github.com/user-attachments/assets/c43656f0-f2d7-4133-ae5d-ecb374d28579)
+  ![c43656f0-f2d7-4133-ae5d-ecb374d28579](https://github.com/user-attachments/assets/666f7452-7d31-4656-8ca6-d95f3a99b3ac)
 * in the photo above I have entered the Scenes folder, and double clicked the Field scene to open into the field.
 * The Field scene is where all the magic happens all of the individual componenets come together to create the visualization of designs.
 * Looking up to the center of the screen we are greeted by the Hierarchy on the left, and the Scene/Game View in the middle with the Play button above the scene view.
-![image](https://github.com/user-attachments/assets/4eb4c310-33f1-4662-9b2c-350a3a5cac3f)
+![4eb4c310-33f1-4662-9b2c-350a3a5cac3f](https://github.com/user-attachments/assets/f023d61d-2e1f-44bb-9a21-2bd49921e62f)
 * In the Hierarchy we see a couple of things. GameHandler, GameManagement, DsColliders, AimFinder.
    * The Game Handler is where the field robots, and spawn points are set
    * The Game management houses ui and other static elements
@@ -38,7 +38,7 @@
    * AimFinder is a blank object that can be used to find the cordinates of an aiming point.
 * This brings us to the final thing, the Inspector window. When you select an object this window on the right side of the screen will populate with the "componenets" on the object.
    * When you select the GameHandler object in the Heirarchy using a left click the inspector menu will populate as it is below
-     ![image](https://github.com/user-attachments/assets/f35c028a-07b7-4fee-ae88-200d59513959)
+![f35c028a-07b7-4fee-ae88-200d59513959](https://github.com/user-attachments/assets/8b3ea1da-bfae-4a9b-ab5e-cb95bacafb5d)
    * This is where the bulk of the changes will occur.
    * The first "Componenet" of interest is the RobotSpawnController, on it we have
       * The robot name which will reference a prefab file in the Resources->Robots project folder.
@@ -46,7 +46,8 @@
       * alliance selects the alliance.
    * The second "componenet" is the FieldLoader. This is where you select your active field. The top field in the list is the one you will see before you. dragging a lower one to the top will result in the relevant field being selected
 * finally we return to the Project view and open the Resources Folder, then the Robots folder and we can see all of the included robots
-  ![image](https://github.com/user-attachments/assets/90746f51-7cff-4cb2-bb4e-3bd8c9a5f2f9) (photo was taken prior to completing this guide)
+  ![90746f51-7cff-4cb2-bb4e-3bd8c9a5f2f9](https://github.com/user-attachments/assets/6d3a6089-86a3-4efd-a17d-ba0c6aa215a7)
+ (photo was taken prior to completing this guide)
    * there is no requirement that names be numbers.
    * The file name is what you add to the Robot Spawn Controller in order to load the robot.
    * To play you select the Play button on the top of the scene view.
@@ -66,4 +67,4 @@
  * Dpad Right: H
  * Dpad Down :G
 
-# [First Robot](https://github.com/masonmm3/MoSimBuilderDev/blob/main/Documentation/FirstRobot.md)
+# [First Robot](https://github.com/masonmm3/MoSimBuilder/blob/Stable/Documentation/FirstRobot.md)
