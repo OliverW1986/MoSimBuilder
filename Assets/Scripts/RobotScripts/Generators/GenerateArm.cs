@@ -9,7 +9,32 @@ public class GenerateArm : MonoBehaviour
     private GameObject _armSec1Model;
     private Rigidbody _rb;
     private HingeJoint _hj;
+//start visible section
 
+    [Header("Arm Informatoin")]
+    
+    [SerializeField] private Units units;
+    
+    [SerializeField] private float armLength = 16;
+    [SerializeField] private float armWidth = 14;
+    [SerializeField] private float armHeight = 2;
+    [SerializeField] private float armWeight = 8;
+    
+    [Header("Setpoint Settings")]
+    
+    [SerializeField] private ControlType controlType;
+    
+    [SerializeField] private float[] setPoints;
+    
+    [SerializeField] private Buttons[] setPointButtons;
+    
+    [SerializeField] private float stowAngle = 0;
+    
+    [Tooltip("leave 0,0 for no limits.")]
+    [SerializeField] private Vector2 limits;
+    
+    [Header("Aim To Point Settings")]
+    
     [SerializeField] private bool continuousAim;
 
     [SerializeField] private Vector3 target;
@@ -19,16 +44,11 @@ public class GenerateArm : MonoBehaviour
 
     [SerializeField] private float angleOffset;
     
-    [SerializeField] private float[] setPoints;
-    private float[] _setPointBuffer;
-
-    [SerializeField] private Buttons[] setPointButtons;
-    private Buttons[] _setPointButtonsBuffer;
     
-    [SerializeField] private float armLength = 16;
-    [SerializeField] private float armWidth = 14;
-    [SerializeField] private float armHeight = 2;
-    [SerializeField] private float armWeight = 8;
+    // end visible section
+    
+    private Buttons[] _setPointButtonsBuffer;
+    private float[] _setPointBuffer;
     
     private GameObject _mainRobot;
     private Rigidbody _robotRb;
@@ -39,7 +59,7 @@ public class GenerateArm : MonoBehaviour
 
     private float _activeTarget;
     
-    [SerializeField] private ControlType controlType;
+    
     
     private int _setpointSequence;
 
@@ -51,10 +71,9 @@ public class GenerateArm : MonoBehaviour
     
     private Buttons _lastButton;
 
-    [SerializeField] private float stowAngle = 0;
+    private float _multiplier;
 
-    [Tooltip("leave 0,0 for no limits.")]
-    [SerializeField] private Vector2 limits;
+    
     
     void Start()
     {
@@ -68,6 +87,15 @@ public class GenerateArm : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _multiplier = units switch
+        {
+            Units.inch => 0.0254f,
+            Units.meter => 1,
+            Units.centimerter => 0.01f,
+            Units.millimeter => 0.001f,
+            _ => 0.0254f
+        };
+        
         if (!EditorApplication.isPlaying)
         {
             if (_mainRobot == null)
@@ -125,8 +153,8 @@ public class GenerateArm : MonoBehaviour
                 _armSec1Model.layer = LayerMask.NameToLayer("Robot");
             }
             
-            _armSec1Model.transform.localScale = new Vector3(armWidth*0.0254f, armHeight*0.0254f, armLength*0.0254f);
-            _armSec1Model.transform.localPosition = new Vector3(0, 0, armLength/2*0.0254f);
+            _armSec1Model.transform.localScale = new Vector3(armWidth*_multiplier, armHeight*_multiplier, armLength*_multiplier);
+            _armSec1Model.transform.localPosition = new Vector3(0, 0, armLength/2*_multiplier);
 
             if (setPointButtons != null)
             {
@@ -250,6 +278,15 @@ public class GenerateArm : MonoBehaviour
 
                         break;
                     }
+                    case ControlType.lastPressed:
+                    {
+                        if (_inputMap.FindAction(setPointButtons[i].ToString()).triggered)
+                        {
+                                _activeTarget = -setPoints[i];
+                        }
+
+                        break;
+                    }
                 }
             }
 
@@ -364,10 +401,8 @@ public class GenerateArm : MonoBehaviour
                     positionError = -1 * positionError;
                 }
                 
-                
-                
                 _jm.force = 90000000000000;
-                _jm.targetVelocity = Mathf.Clamp(positionError * 8f, -360,360);
+                _jm.targetVelocity = Mathf.Clamp((positionError * 8f), -360,360);
                 _hj.useMotor = true;
                 _hj.useSpring = false;
                 _hj.motor = _jm;

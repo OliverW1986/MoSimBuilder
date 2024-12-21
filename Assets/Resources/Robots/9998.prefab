@@ -8702,15 +8702,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAsset: {fileID: -944628639613478452, guid: 38d46141bc6f7ff4b9b9279120565da0, type: 3}
+  speedUnits: 0
+  driveSpeed: 16
+  driveAcceleration: 18
+  frameTubing: 0
+  units: 0
   driveTrainWidth: 28
   driveTrainLength: 28
+  drivetrainWeight: 65
   wheelWidth: 1.5
   wheelDiameter: 4
-  drivetrainWeight: 65
-  driveSpeed: 16
-  driveForce: 300
-  bumperPart: {fileID: 7866339382493728411, guid: f6e26eb5dfb4e1b4797426629ff33404, type: 3}
   bumperHeight: 2.5
+  bumperFrameOffset: {x: 0, y: 0, z: 0, w: 0}
+  bumperPart: {fileID: 7866339382493728411, guid: f6e26eb5dfb4e1b4797426629ff33404, type: 3}
 --- !u!54 &202259770232428691
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8756,7 +8760,7 @@ MonoBehaviour:
   isGrounded: 1
   isTouchingGround: 1
   maxSpeed: 16
-  accelerationSpeed: 300
+  accelerationSpeed: 59.05512
   steerMultiplyer: 1
   beforeVelocity: 0
   isRedRobot: 0
@@ -11139,21 +11143,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1e86ba86ca96b409d0d4adaac2deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  continuousAim: 0
-  target: {x: 0, y: 0, z: 0}
-  indicatorAim: {fileID: 0}
-  angleOffset: 0
-  setPoints:
-  - 110
-  - 5
-  setPointButtons: 0400000000000000
+  units: 0
   armLength: 15
   armWidth: 14
   armHeight: 2
   armWeight: 8
   controlType: 1
+  setPoints:
+  - 110
+  - 5
+  setPointButtons: 0400000000000000
   stowAngle: -60
   limits: {x: -65, y: 125}
+  continuousAim: 0
+  target: {x: 0, y: 0, z: 0}
+  indicatorAim: {fileID: 0}
+  angleOffset: 0
 --- !u!1 &8497889573714823846
 GameObject:
   m_ObjectHideFlags: 0

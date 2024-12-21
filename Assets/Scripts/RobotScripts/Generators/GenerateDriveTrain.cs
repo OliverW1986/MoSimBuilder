@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.Serialization;
 
 [ExecuteInEditMode]
 public class GenerateDriveTrain : MonoBehaviour
@@ -33,29 +34,62 @@ public class GenerateDriveTrain : MonoBehaviour
     
     private Rigidbody _rb;
     
+    private float _multiplier;
+
+    private float _velMp;
+
+    private float _maxMp;
+    
     [HideInInspector] public InputActionAsset inputAsset;
     
     private DriveController _driveController;
     
     private PlayerInput _playerInput;
-
-    [Tooltip("In Inches")]
-    [SerializeField] private float driveTrainWidth = 28;
-
-    [Tooltip("In Inches")] [SerializeField]
-    private float driveTrainLength = 28;
-    [Tooltip("In Inches")]
-    [SerializeField] private float wheelWidth = 1.5f;
-    [Tooltip("In Inches")]
-    [SerializeField] private float wheelDiameter = 4;
-
-    [SerializeField] private float drivetrainWeight = 65;
-
-    [Tooltip("Max Drive Free Speed in ft/s")]
+    
+//begin visible stack
+    [Header("Drive Settings")]
+    
+    [SerializeField] private SpeedUnit speedUnits;
+    
+    [Tooltip("Max Drive Free Speed in SpeedUnits/s")]
     [SerializeField] private float driveSpeed = 16;
 
-    [Tooltip("Unitless acceleration force on the driveTrain")]
-    [SerializeField] private float driveForce = 300;
+    [FormerlySerializedAs("driveForce")]
+    [Tooltip("max acceleration in SpeedUnits/s/s")]
+    [SerializeField] private float driveAcceleration = 6;
+
+    [Header("Frame Information")] [SerializeField]
+    private TubeType frameTubing;
+    
+    [SerializeField] private Units units;
+
+    [Tooltip("Frame Width in Units")]
+    [SerializeField] private float driveTrainWidth = 28;
+
+    [Tooltip("Frame Length in Units")] [SerializeField]
+    private float driveTrainLength = 28;
+    
+    [Tooltip("Frame Weight in lbs")]
+    [SerializeField] private float drivetrainWeight = 65;
+    
+    [Header("Wheel Information")]
+    
+    [Tooltip("Wheel Width in Units")]
+    [SerializeField] private float wheelWidth = 1.5f;
+    
+    [Tooltip("wheel Diameter in Units")]
+    [SerializeField] private float wheelDiameter = 4;
+
+    [Header("Bumper Settings")]
+
+    [Tooltip("Height of the bumper relative to the center of the frame in Units")]
+    [SerializeField] private float bumperHeight = 2.5f;
+
+    [FormerlySerializedAs("bumperGap")]
+    [Tooltip("frame gap for bumper X:Front,Y:Right,Z:Rear,W:Left")]
+    [SerializeField] private Vector4 bumperFrameOffset;
+  //end visible stack  
+    
 
     [HideInInspector] public GameObject bumperPart;
     
@@ -65,8 +99,11 @@ public class GenerateDriveTrain : MonoBehaviour
     
     private GameObject[] _bumpRend = new GameObject[4];
 
-    [Tooltip("Height of the bumper relative to the center of the frame")]
-    [SerializeField] private float bumperHeight = 2.5f;
+    private float _frameHeight;
+    
+    private float _frameWidth;
+    
+    
     // Start is called before the first frame update
 
     void Awake()
@@ -84,6 +121,48 @@ public class GenerateDriveTrain : MonoBehaviour
     {
         if (EditorApplication.isPlaying) return;
         //create frame model
+        
+        _velMp = speedUnits switch
+        {
+            SpeedUnit.M => (1/0.3048f)*(1/0.3048f),
+            SpeedUnit.ft => 1*(1/0.3048f),
+            _ => 1*(1/0.3048f)
+        };
+        
+        _maxMp = speedUnits switch
+        {
+            SpeedUnit.M => 1/0.3048f,
+            SpeedUnit.ft => 1,
+            _ => 1
+        };
+        
+        _multiplier = units switch
+        {
+            Units.inch => 0.0254f,
+            Units.meter => 1,
+            Units.centimerter => 0.01f,
+            Units.millimeter => 0.001f,
+            _ => 0.0254f
+        };
+        
+        _frameHeight = frameTubing switch
+        {
+            TubeType.oneXTwo => 2,
+            TubeType.oneXOne => 1,
+            TubeType.oneXThree => 3,
+            TubeType.twoXTwo => 2,
+            _ => 2
+        };
+        
+        _frameWidth = frameTubing switch
+        {
+            TubeType.oneXTwo => 1,
+            TubeType.oneXOne => 1,
+            TubeType.oneXThree => 1,
+            TubeType.twoXTwo => 2,
+            _ => 2
+        };
+        
         if (_driveTrain == null)
         {
             _driveTrain = new GameObject("DriveTrain");
@@ -130,15 +209,15 @@ public class GenerateDriveTrain : MonoBehaviour
             _rightRail.layer = LayerMask.NameToLayer("Robot");
         }
 
-        _frontRail.transform.localPosition = new Vector3(0, 0, (driveTrainLength-1) / (2.0f) * 0.0254f);
-        _backRail.transform.localPosition = new Vector3(0, 0, -(driveTrainLength-1) / (2.0f) * 0.0254f);
-        _leftRail.transform.localPosition = new Vector3(-(driveTrainWidth-1) / (2.0f) * 0.0254f, 0, 0);
-        _rightRail.transform.localPosition = new Vector3((driveTrainWidth-1) / (2.0f) * 0.0254f, 0, 0);
+        _frontRail.transform.localPosition = new Vector3(0, (2-_frameHeight) * 0.0254f *0.5f,((driveTrainLength * _multiplier)-(_frameWidth*0.0254f)) / (2.0f));
+        _backRail.transform.localPosition = new Vector3(0, (2-_frameHeight) * 0.0254f * 0.5f, -((driveTrainLength * _multiplier)-(_frameWidth*0.0254f)) / (2.0f));
+        _leftRail.transform.localPosition = new Vector3(-((driveTrainWidth * _multiplier)-(_frameWidth*0.0254f)) / (2.0f), (2-_frameHeight) * 0.0254f * 0.5f, 0);
+        _rightRail.transform.localPosition = new Vector3(((driveTrainWidth * _multiplier)-(_frameWidth*0.0254f)) / (2.0f), (2-_frameHeight) * 0.0254f * 0.5f, 0);
 
-        _frontRail.transform.localScale = new Vector3(driveTrainWidth * 0.0254f, 0.0254f * 2, 0.0254f);
-        _backRail.transform.localScale = new Vector3(driveTrainWidth * 0.0254f, 0.0254f * 2, 0.0254f);
-        _leftRail.transform.localScale = new Vector3(0.0254f, 0.0254f * 2, driveTrainLength * 0.0254f);
-        _rightRail.transform.localScale = new Vector3(0.0254f, 0.0254f * 2, driveTrainLength * 0.0254f);
+        _frontRail.transform.localScale = new Vector3(driveTrainWidth * _multiplier, 0.0254f * _frameHeight, 0.0254f * _frameWidth);
+        _backRail.transform.localScale = new Vector3(driveTrainWidth * _multiplier, 0.0254f * _frameHeight, 0.0254f * _frameWidth);
+        _leftRail.transform.localScale = new Vector3(0.0254f * _frameWidth, 0.0254f * _frameHeight, driveTrainLength * _multiplier);
+        _rightRail.transform.localScale = new Vector3(0.0254f * _frameWidth, 0.0254f * _frameHeight, driveTrainLength * _multiplier);
 
         //create wheels
         if (_wheelChild == null)
@@ -164,10 +243,10 @@ public class GenerateDriveTrain : MonoBehaviour
 
         _lfWheel.transform.localRotation = Quaternion.Euler(0, 0, 90);
         _lfWheel.transform.localScale =
-            new Vector3(wheelDiameter * 0.0254f, wheelWidth / 2 * 0.0254f, wheelDiameter * 0.0254f);
+            new Vector3(wheelDiameter * _multiplier, wheelWidth / 2 * _multiplier, wheelDiameter * _multiplier);
         _lfWheel.transform.localPosition =
-            new Vector3(-driveTrainWidth / 2 * 0.0254f + wheelDiameter / 2 * 0.0254f + 1.5f * 0.0254f, -0.0254f * 1,
-                driveTrainLength / 2 * 0.0254f - wheelDiameter / 2 * 0.0254f - 1.5f * 0.0254f);
+            new Vector3(-driveTrainWidth / 2 * _multiplier + wheelDiameter / 2 * _multiplier + 1.5f * _multiplier, -_multiplier * 1,
+                driveTrainLength / 2 * _multiplier - wheelDiameter / 2 * _multiplier - 1.5f * _multiplier);
         leftFrontWheel.radius = wheelDiameter / wheelWidth;
 
         WheelCollider rightFrontWheel;
@@ -187,10 +266,10 @@ public class GenerateDriveTrain : MonoBehaviour
 
         _rfWheel.transform.localRotation = Quaternion.Euler(0, 0, 90);
         _rfWheel.transform.localScale =
-            new Vector3(wheelDiameter * 0.0254f, wheelWidth / 2 * 0.0254f, wheelDiameter * 0.0254f);
+            new Vector3(wheelDiameter * _multiplier, wheelWidth / 2 * _multiplier, wheelDiameter * _multiplier);
         _rfWheel.transform.localPosition =
-            new Vector3(driveTrainWidth / 2 * 0.0254f - wheelDiameter / 2 * 0.0254f - 1.5f * 0.0254f, -0.0254f * 1,
-                driveTrainLength / 2 * 0.0254f - wheelDiameter / 2 * 0.0254f - 1.5f * 0.0254f);
+            new Vector3(driveTrainWidth / 2 * _multiplier - wheelDiameter / 2 * _multiplier - 1.5f * _multiplier, -_multiplier * 1,
+                driveTrainLength / 2 * _multiplier - wheelDiameter / 2 * _multiplier - 1.5f * _multiplier);
         rightFrontWheel.radius = wheelDiameter / wheelWidth;
 
         WheelCollider leftRearWheel;
@@ -210,10 +289,10 @@ public class GenerateDriveTrain : MonoBehaviour
 
         _lrWheel.transform.localRotation = Quaternion.Euler(0, 0, 90);
         _lrWheel.transform.localScale =
-            new Vector3(wheelDiameter * 0.0254f, wheelWidth / 2 * 0.0254f, wheelDiameter * 0.0254f);
+            new Vector3(wheelDiameter * _multiplier, wheelWidth / 2 * _multiplier, wheelDiameter * _multiplier);
         _lrWheel.transform.localPosition =
-            new Vector3(-driveTrainWidth / 2 * 0.0254f + wheelDiameter / 2 * 0.0254f + 1.5f * 0.0254f, -0.0254f * 1,
-                -driveTrainLength / 2 * 0.0254f + wheelDiameter / 2 * 0.0254f + 1.5f * 0.0254f);
+            new Vector3(-driveTrainWidth / 2 * _multiplier + wheelDiameter / 2 * _multiplier + 1.5f * _multiplier, -_multiplier * 1,
+                -driveTrainLength / 2 * _multiplier + wheelDiameter / 2 * _multiplier + 1.5f * _multiplier);
         leftRearWheel.radius = wheelDiameter / wheelWidth;
 
         WheelCollider rightRearWheel;
@@ -233,10 +312,10 @@ public class GenerateDriveTrain : MonoBehaviour
 
         _rrWheel.transform.localRotation = Quaternion.Euler(0, 0, 90);
         _rrWheel.transform.localScale =
-            new Vector3(wheelDiameter * 0.0254f, wheelWidth / 2 * 0.0254f, wheelDiameter * 0.0254f);
+            new Vector3(wheelDiameter * _multiplier, wheelWidth / 2 * _multiplier, wheelDiameter * _multiplier);
         _rrWheel.transform.localPosition =
-            new Vector3(driveTrainWidth / 2 * 0.0254f - wheelDiameter / 2 * 0.0254f - 1.5f * 0.0254f, -0.0254f * 1,
-                -driveTrainLength / 2 * 0.0254f + wheelDiameter / 2 * 0.0254f + 1.5f * 0.0254f);
+            new Vector3(driveTrainWidth / 2 * _multiplier - wheelDiameter / 2 * _multiplier - 1.5f * _multiplier, -_multiplier * 1,
+                -driveTrainLength / 2 * _multiplier + wheelDiameter / 2 * _multiplier + 1.5f * _multiplier);
         rightRearWheel.radius = wheelDiameter / wheelWidth;
 
         //create raycastObjects
@@ -262,12 +341,12 @@ public class GenerateDriveTrain : MonoBehaviour
         }
 
         _lf.transform.localPosition = new Vector3(
-            -driveTrainWidth / 2 * 0.0254f + wheelDiameter / 2 * 0.0254f + 1.5f * 0.0254f,
-            -0.0254f * 1 + (-0.0254f * wheelDiameter / 2) + (wheelDiameter * 0.0254f * 0.1f),
-            driveTrainLength / 2 * 0.0254f - wheelDiameter / 2 * 0.0254f - 1.5f * 0.0254f);
-        _lf.transform.localScale = new Vector3(wheelWidth / 2 * 0.0254f, wheelDiameter * 0.0254f, wheelDiameter * 0.0254f);
+            -driveTrainWidth / 2 * _multiplier + wheelDiameter / 2 * _multiplier + 1.5f * _multiplier,
+            -_multiplier * 1 + (-_multiplier * wheelDiameter / 2) + (wheelDiameter * _multiplier * 0.1f),
+            driveTrainLength / 2 * _multiplier - wheelDiameter / 2 * _multiplier - 1.5f * _multiplier);
+        _lf.transform.localScale = new Vector3(wheelWidth / 2 * _multiplier, wheelDiameter * _multiplier, wheelDiameter * _multiplier);
         _lf.transform.Find("LfModel").transform.localPosition = new Vector3(0,
-            (0.0254f * 1 - (0.0254f * -wheelDiameter / 2) - (wheelDiameter * 0.0254f * 0.1f) -0.0254f * 1)/(wheelDiameter * 0.0254f), 0);
+            (_multiplier * 1 - (_multiplier * -wheelDiameter / 2) - (wheelDiameter * _multiplier * 0.1f) -_multiplier * 1)/(wheelDiameter * _multiplier), 0);
 
         if (_rf == null)
         {
@@ -283,12 +362,12 @@ public class GenerateDriveTrain : MonoBehaviour
         }
 
         _rf.transform.localPosition = new Vector3(
-            driveTrainWidth / 2 * 0.0254f - wheelDiameter / 2 * 0.0254f - 1.5f * 0.0254f,
-            -0.0254f * 1 + (-0.0254f * wheelDiameter / 2) + (wheelDiameter * 0.0254f * 0.1f),
-            driveTrainLength / 2 * 0.0254f - wheelDiameter / 2 * 0.0254f - 1.5f * 0.0254f);
-        _rf.transform.localScale = new Vector3(wheelWidth / 2 * 0.0254f, wheelDiameter * 0.0254f, wheelDiameter * 0.0254f);
+            driveTrainWidth / 2 * _multiplier - wheelDiameter / 2 * _multiplier - 1.5f * _multiplier,
+            -_multiplier * 1 + (-_multiplier * wheelDiameter / 2) + (wheelDiameter * _multiplier * 0.1f),
+            driveTrainLength / 2 * _multiplier - wheelDiameter / 2 * _multiplier - 1.5f * _multiplier);
+        _rf.transform.localScale = new Vector3(wheelWidth / 2 * _multiplier, wheelDiameter * _multiplier, wheelDiameter * _multiplier);
         _rf.transform.Find("RfModel").transform.localPosition = new Vector3(0,
-            (0.0254f * 1 - (-0.0254f * wheelDiameter / 2) - (wheelDiameter * 0.0254f * 0.1f) -0.0254f * 1)/(wheelDiameter * 0.0254f), 0);
+            (_multiplier * 1 - (-_multiplier * wheelDiameter / 2) - (wheelDiameter * _multiplier * 0.1f) -_multiplier * 1)/(wheelDiameter * _multiplier), 0);
 
         if (_lr == null)
         {
@@ -304,12 +383,12 @@ public class GenerateDriveTrain : MonoBehaviour
         }
 
         _lr.transform.localPosition = new Vector3(
-            -driveTrainWidth / 2 * 0.0254f + wheelDiameter / 2 * 0.0254f + 1.5f * 0.0254f,
-            -0.0254f * 1 + (-0.0254f * wheelDiameter / 2) + (wheelDiameter * 0.0254f * 0.1f),
-            -driveTrainLength / 2 * 0.0254f + wheelDiameter / 2 * 0.0254f + 1.5f * 0.0254f);
-        _lr.transform.localScale = new Vector3(wheelWidth / 2 * 0.0254f, wheelDiameter * 0.0254f, wheelDiameter * 0.0254f);
+            -driveTrainWidth / 2 * _multiplier + wheelDiameter / 2 * _multiplier + 1.5f * _multiplier,
+            -_multiplier * 1 + (-_multiplier * wheelDiameter / 2) + (wheelDiameter * _multiplier * 0.1f),
+            -driveTrainLength / 2 * _multiplier + wheelDiameter / 2 * _multiplier + 1.5f * _multiplier);
+        _lr.transform.localScale = new Vector3(wheelWidth / 2 * _multiplier, wheelDiameter * _multiplier, wheelDiameter * _multiplier);
         _lr.transform.Find("LrModel").transform.localPosition = new Vector3(0,
-            (0.0254f * 1 - (-0.0254f * wheelDiameter / 2) - (wheelDiameter * 0.0254f * 0.1f) -0.0254f * 1)/(wheelDiameter * 0.0254f), 0);
+            (_multiplier * 1 - (-_multiplier * wheelDiameter / 2) - (wheelDiameter * _multiplier * 0.1f) -_multiplier * 1)/(wheelDiameter * _multiplier), 0);
 
         if (_rr == null)
         {
@@ -325,12 +404,12 @@ public class GenerateDriveTrain : MonoBehaviour
         }
 
         _rr.transform.localPosition = new Vector3(
-            driveTrainWidth / 2 * 0.0254f - wheelDiameter / 2 * 0.0254f - 1.5f * 0.0254f,
-            -0.0254f * 1 + (-0.0254f * wheelDiameter / 2) + (wheelDiameter * 0.0254f * 0.1f),
-            -driveTrainLength / 2 * 0.0254f + wheelDiameter / 2 * 0.0254f + 1.5f * 0.0254f);
-        _rr.transform.localScale = new Vector3(wheelWidth / 2 * 0.0254f, wheelDiameter * 0.0254f, wheelDiameter * 0.0254f);
+            driveTrainWidth / 2 * _multiplier - wheelDiameter / 2 * _multiplier - 1.5f * _multiplier,
+            -_multiplier * 1 + (-_multiplier * wheelDiameter / 2) + (wheelDiameter * _multiplier * 0.1f),
+            -driveTrainLength / 2 * _multiplier + wheelDiameter / 2 * _multiplier + 1.5f * _multiplier);
+        _rr.transform.localScale = new Vector3(wheelWidth / 2 * _multiplier, wheelDiameter * _multiplier, wheelDiameter * _multiplier);
         _rr.transform.Find("RrModel").transform.localPosition = new Vector3(0,
-            (0.0254f * 1 - (-0.0254f * wheelDiameter / 2) - (wheelDiameter * 0.0254f * 0.1f) -0.0254f * 1)/(wheelDiameter * 0.0254f), 0);
+            (_multiplier * 1 - (-_multiplier * wheelDiameter / 2) - (wheelDiameter * _multiplier * 0.1f) -_multiplier * 1)/(wheelDiameter * _multiplier), 0);
 
         //setup Rb drivecontroller, and player input.
 
@@ -355,9 +434,9 @@ public class GenerateDriveTrain : MonoBehaviour
             _driveController.rayCastDistance = 0.25f;
         }
 
-        _driveController.maxSpeed = driveSpeed;
+        _driveController.maxSpeed = driveSpeed * _maxMp;
 
-        _driveController.accelerationSpeed = driveForce;
+        _driveController.accelerationSpeed = driveAcceleration * _velMp;
 
         if (_playerInput == null)
         {
@@ -405,22 +484,22 @@ public class GenerateDriveTrain : MonoBehaviour
             if (_bumperParts != null)
             {
                 _bumperParts[0].transform.localPosition =
-                    new Vector3(0, (bumperHeight-2.5f)*0.0254f, (driveTrainLength / 2 * 0.0254f));
+                    new Vector3(((bumperFrameOffset.y-bumperFrameOffset.z)/2)*_multiplier, (bumperHeight-2.5f)*_multiplier, (((driveTrainLength+(bumperFrameOffset.x*2)) / 2) * _multiplier));
                 _bumperParts[1].transform.localPosition =
-                    new Vector3(0, (bumperHeight-2.5f)*0.0254f, -(driveTrainLength / 2 * 0.0254f));
+                    new Vector3(((bumperFrameOffset.y-bumperFrameOffset.z)/2)*_multiplier, (bumperHeight-2.5f)*_multiplier, -(((driveTrainLength+(bumperFrameOffset.w*2)) / 2) * _multiplier));
                 _bumperParts[2].transform.localPosition =
-                    new Vector3((driveTrainWidth / 2 * 0.0254f), (bumperHeight-2.5f)*0.0254f, 0);
+                    new Vector3((((driveTrainWidth+(bumperFrameOffset.y*2)) / 2) * _multiplier), (bumperHeight-2.5f)*_multiplier, ((bumperFrameOffset.x-bumperFrameOffset.w)/2)*_multiplier);
                 _bumperParts[3].transform.localPosition =
-                    new Vector3(-(driveTrainWidth / 2 * 0.0254f), (bumperHeight-2.5f)*0.0254f, 0);
+                    new Vector3(-(((driveTrainWidth+(bumperFrameOffset.z*2)) / 2)* _multiplier), (bumperHeight-2.5f)*_multiplier, ((bumperFrameOffset.x-bumperFrameOffset.w)/2)*_multiplier);
 
                 _bumperParts[0].transform.localScale =
-                    new Vector3(driveTrainWidth * 0.0254f, 1, 1);
+                    new Vector3((driveTrainWidth+bumperFrameOffset.y+bumperFrameOffset.z) * _multiplier, 1, 1);
                 _bumperParts[1].transform.localScale =
-                    new Vector3(driveTrainWidth * 0.0254f, 1, 1);
+                    new Vector3((driveTrainWidth+bumperFrameOffset.z+bumperFrameOffset.y) * _multiplier, 1, 1);
                 _bumperParts[2].transform.localScale =
-                    new Vector3((driveTrainLength * 0.0254f)+((2.5f+0.75f)*2f*0.0254f), 1, 1);
+                    new Vector3(((driveTrainLength+bumperFrameOffset.x+bumperFrameOffset.w) * _multiplier)+((2.5f+0.75f)*2f*0.0254f), 1, 1);
                 _bumperParts[3].transform.localScale =
-                    new Vector3((driveTrainLength * 0.0254f)+((2.5f+0.75f)*2f*0.0254f), 1, 1);
+                    new Vector3(((driveTrainLength+bumperFrameOffset.x+bumperFrameOffset.w) * _multiplier)+((2.5f+0.75f)*2f*0.0254f), 1, 1);
 
                 _bumperParts[0].transform.localRotation = Quaternion.Euler(0, 0, 0);
                 _bumperParts[1].transform.localRotation = Quaternion.Euler(0, 180, 0);
@@ -432,6 +511,15 @@ public class GenerateDriveTrain : MonoBehaviour
 
     private void Startup()
     {
+        _multiplier = units switch
+        {
+            Units.inch => 0.0254f,
+            Units.meter => 1,
+            Units.centimerter => 0.01f,
+            Units.millimeter => 0.001f,
+            _ => 0.0254f
+        };
+
         if (transform.Find("DriveTrain") == null) return;
         _driveTrain = transform.Find("DriveTrain").gameObject;
 

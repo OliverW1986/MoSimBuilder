@@ -197,7 +197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205105982840083302}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.0127, z: 0.055880003}
   m_LocalScale: {x: 0.0254, y: 0.0254, z: 0.01778}
   m_ConstrainProportionsScale: 0
@@ -2755,7 +2755,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783111094262648287}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.0127, z: 0}
   m_LocalScale: {x: 0.0254, y: 0.0254, z: 0.01778}
   m_ConstrainProportionsScale: 0
@@ -3859,7 +3859,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2476203277708207571}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.0127, z: 0}
   m_LocalScale: {x: 0.0254, y: 0.0254, z: 0.01778}
   m_ConstrainProportionsScale: 0
@@ -4291,15 +4291,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAsset: {fileID: -944628639613478452, guid: 38d46141bc6f7ff4b9b9279120565da0, type: 3}
+  speedUnits: 0
+  driveSpeed: 16
+  driveAcceleration: 18
+  frameTubing: 0
+  units: 0
   driveTrainWidth: 28
   driveTrainLength: 28
+  drivetrainWeight: 65
   wheelWidth: 1.5
   wheelDiameter: 4
-  drivetrainWeight: 65
-  driveSpeed: 16
-  driveForce: 300
-  bumperPart: {fileID: 7866339382493728411, guid: f6e26eb5dfb4e1b4797426629ff33404, type: 3}
   bumperHeight: 2.1
+  bumperFrameOffset: {x: 0, y: 0, z: 0, w: 0}
+  bumperPart: {fileID: 7866339382493728411, guid: f6e26eb5dfb4e1b4797426629ff33404, type: 3}
 --- !u!54 &8410506331541438367
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4345,7 +4349,7 @@ MonoBehaviour:
   isGrounded: 1
   isTouchingGround: 1
   maxSpeed: 16
-  accelerationSpeed: 300
+  accelerationSpeed: 59.05512
   steerMultiplyer: 1
   beforeVelocity: 0
   isRedRobot: 0
@@ -4876,10 +4880,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1e86ba86ca96b409d0d4adaac2deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  continuousAim: 1
-  target: {x: 8.284, y: 2.1194, z: -1.486}
-  indicatorAim: {fileID: 6627633380618467141}
-  angleOffset: 2
+  units: 0
+  armLength: 16
+  armWidth: 14
+  armHeight: 2
+  armWeight: 5
+  controlType: 2
   setPoints:
   - 0
   - 0
@@ -4888,13 +4894,12 @@ MonoBehaviour:
   - 70
   - 70
   setPointButtons: 020000000200000000000000000000000000000000000000
-  armLength: 16
-  armWidth: 14
-  armHeight: 2
-  armWeight: 5
-  controlType: 2
   stowAngle: 0
   limits: {x: 0, y: 0}
+  continuousAim: 1
+  target: {x: 8.284, y: 2.1194, z: -1.486}
+  indicatorAim: {fileID: 6627633380618467141}
+  angleOffset: 2
 --- !u!1 &3071981567464071355
 GameObject:
   m_ObjectHideFlags: 0
@@ -6322,10 +6327,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1e86ba86ca96b409d0d4adaac2deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  continuousAim: 0
-  target: {x: 0, y: 0, z: 0}
-  indicatorAim: {fileID: 0}
-  angleOffset: 0
+  units: 0
+  armLength: 19
+  armWidth: 1
+  armHeight: 2
+  armWeight: 6
+  controlType: 2
   setPoints:
   - 72
   - 72
@@ -6334,13 +6341,12 @@ MonoBehaviour:
   - -22
   - -22
   setPointButtons: 000000000000000000000000000000000200000002000000
-  armLength: 19
-  armWidth: 1
-  armHeight: 2
-  armWeight: 6
-  controlType: 2
   stowAngle: -20
   limits: {x: 0, y: 0}
+  continuousAim: 0
+  target: {x: 0, y: 0, z: 0}
+  indicatorAim: {fileID: 0}
+  angleOffset: 0
 --- !u!1 &3652371099953765954
 GameObject:
   m_ObjectHideFlags: 0
@@ -6450,10 +6456,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1e86ba86ca96b409d0d4adaac2deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  continuousAim: 0
-  target: {x: 0, y: 0, z: 0}
-  indicatorAim: {fileID: 0}
-  angleOffset: 0
+  units: 0
+  armLength: 19
+  armWidth: 1
+  armHeight: 2
+  armWeight: 6
+  controlType: 2
   setPoints:
   - 72
   - 72
@@ -6462,13 +6470,12 @@ MonoBehaviour:
   - -22
   - -22
   setPointButtons: 000000000000000000000000000000000200000002000000
-  armLength: 19
-  armWidth: 1
-  armHeight: 2
-  armWeight: 6
-  controlType: 2
   stowAngle: -20
   limits: {x: 0, y: 0}
+  continuousAim: 0
+  target: {x: 0, y: 0, z: 0}
+  indicatorAim: {fileID: 0}
+  angleOffset: 0
 --- !u!1 &3737029675611884928
 GameObject:
   m_ObjectHideFlags: 0
@@ -7770,7 +7777,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4634889327199143742}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.0381, z: 0.027940001}
   m_LocalScale: {x: 0.0254, y: 0.0254, z: 0.07366}
   m_ConstrainProportionsScale: 0
@@ -8467,7 +8474,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4913033185837810822}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.0381, z: 0.027940001}
   m_LocalScale: {x: 0.0254, y: 0.0254, z: 0.07366}
   m_ConstrainProportionsScale: 0
@@ -9449,20 +9456,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1e86ba86ca96b409d0d4adaac2deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  continuousAim: 0
-  target: {x: 0, y: 0, z: 0}
-  indicatorAim: {fileID: 0}
-  angleOffset: 0
-  setPoints:
-  - 100
-  setPointButtons: 04000000
+  units: 0
   armLength: 8
   armWidth: 20
   armHeight: 2
   armWeight: 3
   controlType: 1
+  setPoints:
+  - 100
+  setPointButtons: 04000000
   stowAngle: 0
   limits: {x: 0, y: 0}
+  continuousAim: 0
+  target: {x: 0, y: 0, z: 0}
+  indicatorAim: {fileID: 0}
+  angleOffset: 0
 --- !u!1 &5442767742820972877
 GameObject:
   m_ObjectHideFlags: 0
@@ -12683,7 +12691,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8325451618658551794}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.0127, z: 0.055880003}
   m_LocalScale: {x: 0.0254, y: 0.0254, z: 0.01778}
   m_ConstrainProportionsScale: 0
