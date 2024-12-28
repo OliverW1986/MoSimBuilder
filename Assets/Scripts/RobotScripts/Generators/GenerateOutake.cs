@@ -8,18 +8,30 @@ using UnityEngine;
 public class GenerateOutake : MonoBehaviour
 {
     private GameObject[] _borderVisuals = new GameObject[12];
+    
+    //begin visible
+    [Header("Settings")]
     [SerializeField] private Vector3 outakeSize;
-    [HideInInspector] public GameObject cubeLines;
+    
+    [SerializeField] private float actionDelay;
 
-    [HideInInspector] public bool hasObject;
-
-    [HideInInspector] public GamePieceScript gamePiece;
-
+    [Header("Outake Speeds")]
     [SerializeField] private float outakeSpeed;
 
     [SerializeField] private float sideSpin;
 
     [SerializeField] private float backSpin;
+
+    
+    //end visible
+
+    [HideInInspector] public GameObject cubeLines;
+
+    [HideInInspector] public bool hasObject;
+
+    [HideInInspector] public GamePieceScript gamePiece;
+    
+    [HideInInspector] public bool ejected;
 
     private void Start()
     {
@@ -98,11 +110,14 @@ public class GenerateOutake : MonoBehaviour
         }
         else
         {
-            if (hasObject)
+            if (hasObject && !ejected)
             {
-                gamePiece.ReleaseToWorld(outakeSpeed, sideSpin, backSpin);
-                gamePiece = null;
-                hasObject = false;
+                StartCoroutine(gamePiece.ReleaseToWorld(outakeSpeed, sideSpin, backSpin, actionDelay, this));
+                ejected = true;
+            }
+            else if (hasObject)
+            {
+                gamePiece.MoveToPose(transform);
             }
         }
     }
@@ -116,7 +131,7 @@ public class GenerateOutake : MonoBehaviour
                 _borderVisuals[i] = transform.GetChild(i).gameObject;
             }
         }
-        
-        
+
+        ejected = false;
     }
 }

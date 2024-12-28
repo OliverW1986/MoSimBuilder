@@ -2234,14 +2234,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasObject: 0
   GamePiece: {fileID: 0}
-  stowSize: {x: 14, y: 3, z: 14}
   cubeLines: {fileID: 5915627958241752108, guid: c1c8c7e209bad91448f7381b15f044c6, type: 3}
+  stowSize: {x: 14, y: 3, z: 14}
+  transferType: 0
+  actionDelay: 0.15
   endpoints:
   - {fileID: 4072266557285361452}
   - {fileID: 5487033323717117376}
   transferButton: 0500000002000000
   pressesToTransfer: 0100000001000000
-  transferType: 0
+  transfering: 0
 --- !u!1 &2803481882642074831
 GameObject:
   m_ObjectHideFlags: 0
@@ -2799,17 +2801,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b3ab06f66a1304faa6c4d3fbe0eee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  units: 0
+  tubeType: 2
   numOfStages: 1
   elevatorHeight: 15
   elevatorWidth: 3
   stationaryWeight: 5
   stageWeights:
   - 1
+  controlType: 0
   setpoints:
   - 15
   setpointButton: 00000000
-  controlType: 0
-  stowTop: 0
+  stowHieght: 0
+  offsetSetpointsByStowHeight: 0
 --- !u!1 &3069305394872037289
 GameObject:
   m_ObjectHideFlags: 0
@@ -4320,12 +4325,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outakeSize: {x: 14, y: 3, z: 2}
-  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
-  hasObject: 0
-  gamePiece: {fileID: 0}
+  actionDelay: 0
   outakeSpeed: 14
   sideSpin: 0
   backSpin: 0
+  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
+  hasObject: 0
+  gamePiece: {fileID: 0}
+  ejected: 0
 --- !u!1 &4332166527020177684
 GameObject:
   m_ObjectHideFlags: 0
@@ -4355,7 +4362,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.00635, y: 0.19049999, z: 0}
-  m_LocalScale: {x: 0.0127, y: 0.0254, z: 0.0508}
+  m_LocalScale: {x: 0.0127, y: 0.0254, z: 0.0254}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6719789306944284752}
@@ -6125,12 +6132,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outakeSize: {x: 14, y: 3, z: 2}
-  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
-  hasObject: 0
-  gamePiece: {fileID: 0}
+  actionDelay: 0
   outakeSpeed: 4.4
   sideSpin: 0
   backSpin: 4.4
+  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
+  hasObject: 0
+  gamePiece: {fileID: 0}
+  ejected: 0
 --- !u!1 &5544051920614188175
 GameObject:
   m_ObjectHideFlags: 0
@@ -6160,7 +6169,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.00635, y: 0.19049999, z: 0}
-  m_LocalScale: {x: 0.0127, y: 0.0254, z: 0.0508}
+  m_LocalScale: {x: 0.0127, y: 0.0254, z: 0.0254}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6719789306944284752}
@@ -6660,7 +6669,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0254, y: 0.19049999, z: 0}
-  m_LocalScale: {x: 0.0254, y: 0.38099998, z: 0.0508}
+  m_LocalScale: {x: 0.0254, y: 0.38099998, z: 0.0254}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6209312327625716167}
@@ -6815,17 +6824,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b3ab06f66a1304faa6c4d3fbe0eee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  units: 0
+  tubeType: 0
   numOfStages: 1
   elevatorHeight: 15
   elevatorWidth: 3
   stationaryWeight: 5
   stageWeights:
   - 1
+  controlType: 0
   setpoints:
   - 15
   setpointButton: 00000000
-  controlType: 0
-  stowTop: 0
+  stowHieght: 0
+  offsetSetpointsByStowHeight: 0
 --- !u!1 &6011376027982273783
 GameObject:
   m_ObjectHideFlags: 0
@@ -8813,10 +8825,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intakeSize: {x: 27, y: 6, z: 4}
-  transferToStow: {fileID: 6596576901252784881}
-  cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
-  button: 4
   intakeType: 0
+  actionDelay: 0.15
+  transferToStow: {fileID: 6596576901252784881}
+  button: 4
+  cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
 --- !u!65 &1396668415196107831
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10307,7 +10320,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0254, y: 0.19049999, z: 0}
-  m_LocalScale: {x: 0.0254, y: 0.38099998, z: 0.0508}
+  m_LocalScale: {x: 0.0254, y: 0.38099998, z: 0.0254}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6209312327625716167}

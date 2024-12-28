@@ -1790,10 +1790,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intakeSize: {x: 28, y: 4, z: 4}
-  transferToStow: {fileID: 4509499548005900795}
-  cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
-  button: 4
   intakeType: 0
+  actionDelay: 0.1
+  transferToStow: {fileID: 4509499548005900795}
+  button: 4
+  cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
 --- !u!65 &9133422736858415625
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3373,14 +3374,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasObject: 0
   GamePiece: {fileID: 0}
-  stowSize: {x: 14, y: 2, z: 14}
   cubeLines: {fileID: 5915627958241752108, guid: c1c8c7e209bad91448f7381b15f044c6, type: 3}
+  stowSize: {x: 14, y: 2, z: 14}
+  transferType: 0
+  actionDelay: 0
   endpoints:
   - {fileID: 2259687423868012810}
   - {fileID: 2259687423868012810}
   transferButton: 0200000000000000
   pressesToTransfer: 0100000003000000
-  transferType: 0
+  transfering: 0
 --- !u!1 &2108190780271371224
 GameObject:
   m_ObjectHideFlags: 0
@@ -3944,12 +3947,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outakeSize: {x: 14, y: 2, z: 2}
-  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
-  hasObject: 0
-  gamePiece: {fileID: 0}
+  actionDelay: 0
   outakeSpeed: 5
   sideSpin: 0
   backSpin: 0
+  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
+  hasObject: 0
+  gamePiece: {fileID: 0}
+  ejected: 0
 --- !u!1 &2266144948970830321
 GameObject:
   m_ObjectHideFlags: 0
@@ -5720,20 +5725,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b3ab06f66a1304faa6c4d3fbe0eee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  units: 0
+  tubeType: 0
   numOfStages: 1
   elevatorHeight: 26
   elevatorWidth: 3
   stationaryWeight: 1
   stageWeights:
   - 1
+  controlType: 2
   setpoints:
   - 25
   - 15
   - -5
   - -5
   setpointButton: 00000000000000000000000000000000
-  controlType: 2
-  stowTop: 0
+  stowHieght: 0
+  offsetSetpointsByStowHeight: 0
 --- !u!1 &3491920659537599725
 GameObject:
   m_ObjectHideFlags: 0
@@ -7797,16 +7805,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasObject: 0
   GamePiece: {fileID: 0}
-  stowSize: {x: 14, y: 2, z: 14}
   cubeLines: {fileID: 5915627958241752108, guid: c1c8c7e209bad91448f7381b15f044c6, type: 3}
+  stowSize: {x: 14, y: 2, z: 14}
+  transferType: 0
+  actionDelay: 0.15
   endpoints:
   - {fileID: 5994667145311917591}
   - {fileID: 2095863493843534508}
   - {fileID: 2095863493843534508}
   - {fileID: 7095790466356591069}
   transferButton: 05000000020000000000000003000000
-  pressesToTransfer: 01000000010000000100000002000000
-  transferType: 0
+  pressesToTransfer: 00000000010000000100000002000000
+  transfering: 0
 --- !u!1 &4518534019826881033
 GameObject:
   m_ObjectHideFlags: 0
@@ -9977,6 +9987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b3ab06f66a1304faa6c4d3fbe0eee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  units: 0
+  tubeType: 0
   numOfStages: 2
   elevatorHeight: 23
   elevatorWidth: 20
@@ -9984,6 +9996,7 @@ MonoBehaviour:
   stageWeights:
   - 3
   - 3
+  controlType: 2
   setpoints:
   - 0
   - 15
@@ -9992,8 +10005,8 @@ MonoBehaviour:
   - 15
   - 15
   setpointButton: 000000000000000000000000000000000200000002000000
-  controlType: 2
-  stowTop: 1
+  stowHieght: 23
+  offsetSetpointsByStowHeight: 1
 --- !u!1 &5914119173287372802
 GameObject:
   m_ObjectHideFlags: 0
@@ -10346,12 +10359,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outakeSize: {x: 14, y: 4, z: 4}
-  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
-  hasObject: 0
-  gamePiece: {fileID: 0}
+  actionDelay: 0
   outakeSpeed: 25
   sideSpin: 5
   backSpin: 0
+  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
+  hasObject: 0
+  gamePiece: {fileID: 0}
+  ejected: 0
 --- !u!1 &6016972650751604345
 GameObject:
   m_ObjectHideFlags: 0
@@ -11825,12 +11840,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outakeSize: {x: 14, y: 4, z: 4}
-  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
-  hasObject: 0
-  gamePiece: {fileID: 0}
+  actionDelay: 0
   outakeSpeed: 12
   sideSpin: 5
   backSpin: 0
+  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
+  hasObject: 0
+  gamePiece: {fileID: 0}
+  ejected: 0
 --- !u!1 &7214876592793291508
 GameObject:
   m_ObjectHideFlags: 0
@@ -15317,20 +15334,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b3ab06f66a1304faa6c4d3fbe0eee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  units: 0
+  tubeType: 0
   numOfStages: 1
   elevatorHeight: 26
   elevatorWidth: 3
   stationaryWeight: 1
   stageWeights:
   - 1
+  controlType: 2
   setpoints:
   - 25
   - 15
   - -5
   - -5
   setpointButton: 00000000000000000000000000000000
-  controlType: 2
-  stowTop: 0
+  stowHieght: 0
+  offsetSetpointsByStowHeight: 0
 --- !u!1 &8702126482578104848
 GameObject:
   m_ObjectHideFlags: 0

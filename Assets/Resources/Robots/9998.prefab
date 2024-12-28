@@ -2690,12 +2690,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outakeSize: {x: 14, y: 2, z: 2}
-  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
-  hasObject: 0
-  gamePiece: {fileID: 0}
+  actionDelay: 0.2
   outakeSpeed: 2.6
   sideSpin: 0
   backSpin: 0
+  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
+  hasObject: 0
+  gamePiece: {fileID: 0}
+  ejected: 0
 --- !u!1 &1951015658263343594
 GameObject:
   m_ObjectHideFlags: 0
@@ -4620,10 +4622,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intakeSize: {x: 14, y: 2, z: 2}
-  transferToStow: {fileID: 9079478325463568238}
-  cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
-  button: 4
   intakeType: 1
+  actionDelay: 0.1
+  transferToStow: {fileID: 9079478325463568238}
+  button: 4
+  cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
 --- !u!65 &6272769805561133216
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7225,10 +7228,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intakeSize: {x: 14, y: 2, z: 2}
-  transferToStow: {fileID: 61256153568643974}
-  cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
-  button: 4
   intakeType: 0
+  actionDelay: 0.1
+  transferToStow: {fileID: 61256153568643974}
+  button: 4
+  cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
 --- !u!65 &1802638300236886978
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8055,13 +8059,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasObject: 0
   GamePiece: {fileID: 0}
-  stowSize: {x: 14, y: 2, z: 5}
   cubeLines: {fileID: 5915627958241752108, guid: c1c8c7e209bad91448f7381b15f044c6, type: 3}
+  stowSize: {x: 14, y: 2, z: 5}
+  transferType: 1
+  actionDelay: 0.1
   endpoints:
   - {fileID: 7539355611212072590}
   transferButton: 05000000
   pressesToTransfer: 01000000
-  transferType: 1
+  transfering: 0
 --- !u!1 &6329193747229336011
 GameObject:
   m_ObjectHideFlags: 0
@@ -9835,12 +9841,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outakeSize: {x: 14, y: 2, z: 2}
-  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
-  hasObject: 0
-  gamePiece: {fileID: 0}
+  actionDelay: 0.1
   outakeSpeed: 13
   sideSpin: 0
   backSpin: 0
+  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
+  hasObject: 0
+  gamePiece: {fileID: 0}
+  ejected: 0
 --- !u!1 &7572272063553130395
 GameObject:
   m_ObjectHideFlags: 0
@@ -11419,13 +11427,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasObject: 0
   GamePiece: {fileID: 0}
-  stowSize: {x: 14, y: 2, z: 13}
   cubeLines: {fileID: 5915627958241752108, guid: c1c8c7e209bad91448f7381b15f044c6, type: 3}
+  stowSize: {x: 14, y: 2, z: 13}
+  transferType: 0
+  actionDelay: 0
   endpoints:
   - {fileID: 1932434863357353972}
   transferButton: 05000000
   pressesToTransfer: 01000000
-  transferType: 0
+  transfering: 0
 --- !u!1 &8680520719499817171
 GameObject:
   m_ObjectHideFlags: 0

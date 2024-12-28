@@ -1516,17 +1516,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b3ab06f66a1304faa6c4d3fbe0eee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  units: 0
+  tubeType: 0
   numOfStages: 1
   elevatorHeight: 16
   elevatorWidth: 3
   stationaryWeight: 1
   stageWeights:
   - 1
+  controlType: 0
   setpoints:
   - 16
   setpointButton: 01000000
-  controlType: 0
-  stowTop: 0
+  stowHieght: 0
+  offsetSetpointsByStowHeight: 0
 --- !u!1 &1005858056969454288
 GameObject:
   m_ObjectHideFlags: 0
@@ -5466,10 +5469,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intakeSize: {x: 14, y: 2, z: 2}
-  transferToStow: {fileID: 7280255217154702086}
-  cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
-  button: 4
   intakeType: 0
+  actionDelay: 0.1
+  transferToStow: {fileID: 7280255217154702086}
+  button: 4
+  cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
 --- !u!65 &6057828510778476856
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5612,12 +5616,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outakeSize: {x: 14, y: 4, z: 4}
-  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
-  hasObject: 0
-  gamePiece: {fileID: 0}
+  actionDelay: 0
   outakeSpeed: 25
   sideSpin: 0
   backSpin: 0
+  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
+  hasObject: 0
+  gamePiece: {fileID: 0}
+  ejected: 0
 --- !u!1 &5282737081398757527
 GameObject:
   m_ObjectHideFlags: 0
@@ -7258,13 +7264,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasObject: 0
   GamePiece: {fileID: 0}
-  stowSize: {x: 14, y: 2, z: 14}
   cubeLines: {fileID: 5915627958241752108, guid: c1c8c7e209bad91448f7381b15f044c6, type: 3}
+  stowSize: {x: 14, y: 2, z: 14}
+  transferType: 0
+  actionDelay: 0.1
   endpoints:
   - {fileID: 5272308059144199380}
   transferButton: 05000000
   pressesToTransfer: 01000000
-  transferType: 0
+  transfering: 0
 --- !u!1 &7344355901197594091
 GameObject:
   m_ObjectHideFlags: 0
