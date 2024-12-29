@@ -7271,7 +7271,7 @@ MonoBehaviour:
   endpoints:
   - {fileID: 5272308059144199380}
   transferButton: 05000000
-  pressesToTransfer: 01000000
+  pressesToTransfer: 00000000
   transfering: 0
 --- !u!1 &7344355901197594091
 GameObject:

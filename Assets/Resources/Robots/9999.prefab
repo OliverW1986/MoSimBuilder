@@ -2242,7 +2242,7 @@ MonoBehaviour:
   - {fileID: 4072266557285361452}
   - {fileID: 5487033323717117376}
   transferButton: 0500000002000000
-  pressesToTransfer: 0100000001000000
+  pressesToTransfer: 0000000001000000
   transfering: 0
 --- !u!1 &2803481882642074831
 GameObject:

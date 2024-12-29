@@ -56,7 +56,7 @@ public class GenerateDriveTrain : MonoBehaviour
 
     [FormerlySerializedAs("driveForce")]
     [Tooltip("max acceleration in SpeedUnits/s/s")]
-    [SerializeField] private float driveAcceleration = 6;
+    [SerializeField] private float driveAcceleration = 18;
 
     [Header("Frame Information")] [SerializeField]
     private TubeType frameTubing;
@@ -86,7 +86,7 @@ public class GenerateDriveTrain : MonoBehaviour
     [SerializeField] private float bumperHeight = 2.5f;
 
     [FormerlySerializedAs("bumperGap")]
-    [Tooltip("frame gap for bumper X:Front,Y:Right,Z:Rear,W:Left")]
+    [Tooltip("frame gap for bumper X:Front,Y:Right,Z:Left,W:Rear")]
     [SerializeField] private Vector4 bumperFrameOffset;
   //end visible stack  
     

@@ -1,12 +1,13 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 [ExecuteAlways]
-public class GenerateArm : MonoBehaviour
+public class GenerateTurret : MonoBehaviour
 {
-    private GameObject _armSec1;
-    private GameObject _armSec1Model;
+    private GameObject _turretDisk;
+    private GameObject _turretModel;
     private Rigidbody _rb;
     private HingeJoint _hj;
 //start visible section
@@ -14,11 +15,10 @@ public class GenerateArm : MonoBehaviour
     [Header("Arm Informatoin")]
     
     [SerializeField] private Units units;
-    
-    [SerializeField] private float armLength = 16;
-    [SerializeField] private float armWidth = 14;
-    [SerializeField] private float armHeight = 2;
-    [SerializeField] private float armWeight = 8;
+
+    [SerializeField] private float turretDiameter = 6;
+    [SerializeField] private float turretHeight = 1;
+    [SerializeField] private float turretWeight = 3;
     
     [Header("Setpoint Settings")]
     
@@ -33,14 +33,11 @@ public class GenerateArm : MonoBehaviour
     [Tooltip("leave 0,0 for no limits.")]
     [SerializeField] private Vector2 limits;
     
-    [Header("Aim To Point Settings")]
+    [Header("turret target")]
     
     [SerializeField] private bool continuousAim;
 
     [SerializeField] private Vector3 target;
-
-    [Tooltip("leave Null for inline Continuous Aiming")]
-    [SerializeField] private GameObject indicatorAim;
 
     [SerializeField] private float angleOffset;
     
@@ -108,17 +105,17 @@ public class GenerateArm : MonoBehaviour
                 _robotRb = _mainRobot.GetComponent<Rigidbody>();
             }
             
-            if (_armSec1 == null)
+            if (_turretDisk == null)
             {
-                _armSec1 = new GameObject("ArmSec1");
-                _armSec1.transform.parent = transform;
-                _armSec1.transform.localPosition = Vector3.zero;
-                _armSec1.layer = LayerMask.NameToLayer("Robot");
+                _turretDisk = new GameObject("TurretDisk");
+                _turretDisk.transform.parent = transform;
+                _turretDisk.transform.localPosition = Vector3.zero;
+                _turretDisk.layer = LayerMask.NameToLayer("Robot");
             }
 
             if (_rb == null)
             {
-                _rb = _armSec1.AddComponent<Rigidbody>();
+                _rb = _turretDisk.AddComponent<Rigidbody>();
                 _rb.interpolation = RigidbodyInterpolation.Interpolate;
                 _rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
                 _rb.excludeLayers = LayerMask.GetMask("Robot");
@@ -136,8 +133,8 @@ public class GenerateArm : MonoBehaviour
 
                 if (t.GetComponent<Rigidbody>() != null)
                 {
-                    _hj = _armSec1.AddComponent<HingeJoint>();
-                    _hj.axis = new Vector3(1, 0, 0);
+                    _hj = _turretDisk.AddComponent<HingeJoint>();
+                    _hj.axis = new Vector3(0, 1, 0);
                     _hj.useMotor = true;
                     _hj.connectedBody = t.GetComponent<Rigidbody>();
                 }
@@ -156,18 +153,19 @@ public class GenerateArm : MonoBehaviour
                 _hj.useLimits = false;
             }
             
-            _rb.mass = armWeight;
+            _rb.mass = turretWeight;
 
-            if (_armSec1Model == null)
+            if (_turretModel == null)
             {
-                _armSec1Model = GameObject.CreatePrimitive(PrimitiveType.Cube); 
-                _armSec1Model.name = "ArmSec1Model";
-                _armSec1Model.transform.parent = _armSec1.transform;
-                _armSec1Model.layer = LayerMask.NameToLayer("Robot");
+                _turretModel = GameObject.CreatePrimitive(PrimitiveType.Cylinder); 
+                DestroyImmediate(_turretModel.GetComponent<CapsuleCollider>());
+                _turretModel.name = "TurretModel";
+                _turretModel.transform.parent = _turretDisk.transform;
+                _turretModel.layer = LayerMask.NameToLayer("Robot");
             }
             
-            _armSec1Model.transform.localScale = new Vector3(armWidth*_multiplier, armHeight*_multiplier, armLength*_multiplier);
-            _armSec1Model.transform.localPosition = new Vector3(0, 0, armLength/2*_multiplier);
+            _turretModel.transform.localScale = new Vector3(turretDiameter*_multiplier, (turretHeight/2)*_multiplier, turretDiameter*_multiplier);
+            _turretModel.transform.localPosition = new Vector3(0, 0, 0);
 
             if (setPointButtons != null)
             {
@@ -307,19 +305,12 @@ public class GenerateArm : MonoBehaviour
             if (continuousAim && Mathf.Approximately(_activeTarget, -stowAngle))
             {
                 Vector3 aimingPoint;
-
-                if (indicatorAim == null)
-                {
-                    aimingPoint = _armSec1.transform.position;
-                }
-                else
-                {
-                    aimingPoint = indicatorAim.transform.position;
-                }
+                
+                    aimingPoint = _turretDisk.transform.position;
                 
                 Quaternion targetShooterRotation;
                 targetShooterRotation = Quaternion.LookRotation(target-aimingPoint, Vector3.up);
-                float Target = targetShooterRotation.eulerAngles.x;
+                float Target = targetShooterRotation.eulerAngles.y - transform.eulerAngles.y;
                 if (Target >= 360)
                 {
                     Target -= 360;
@@ -330,9 +321,9 @@ public class GenerateArm : MonoBehaviour
                     Target += 360;
                 }
                 
-                _position = Quaternion.Angle(_armSec1.transform.rotation, transform.rotation);
+                _position = Quaternion.Angle(_turretDisk.transform.rotation, transform.rotation);
 
-                if (_armSec1.transform.localRotation.eulerAngles.x > 180)
+                if (_turretDisk.transform.localRotation.eulerAngles.y > 180)
                 {
                     _position = -_position;
                 }
@@ -380,9 +371,9 @@ public class GenerateArm : MonoBehaviour
                     Target += 360;
                 }
 
-                _position = Quaternion.Angle(_armSec1.transform.rotation, transform.rotation);
+                _position = Quaternion.Angle(_turretDisk.transform.rotation, transform.rotation);
 
-                if (_armSec1.transform.localRotation.eulerAngles.x > 180)
+                if (_turretDisk.transform.localRotation.eulerAngles.y > 180)
                 {
                     _position = -_position;
                 }
@@ -447,23 +438,23 @@ public class GenerateArm : MonoBehaviour
             }
         }
 
-        if (transform.Find("ArmSec1"))
+        if (transform.Find("TurretDisk"))
         {
-            _armSec1 = transform.Find("ArmSec1").gameObject;
+            _turretDisk = transform.Find("TurretDisk").gameObject;
 
-            if (_armSec1.transform.Find("ArmSec1Model"))
+            if (_turretDisk.transform.Find("TurretModel"))
             {
-                _armSec1Model = _armSec1.transform.Find("ArmSec1Model").gameObject;
+                _turretModel = _turretDisk.transform.Find("TurretModel").gameObject;
             }
 
-            if (_armSec1.GetComponent<Rigidbody>())
+            if (_turretDisk.GetComponent<Rigidbody>())
             {
-                _rb = _armSec1.GetComponent<Rigidbody>();
+                _rb = _turretDisk.GetComponent<Rigidbody>();
             }
 
-            if (_armSec1.GetComponent<HingeJoint>())
+            if (_turretDisk.GetComponent<HingeJoint>())
             {
-                _hj = _armSec1.GetComponent <HingeJoint>();
+                _hj = _turretDisk.GetComponent <HingeJoint>();
             }
         }
     }

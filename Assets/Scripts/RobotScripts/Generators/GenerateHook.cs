@@ -10,14 +10,22 @@ public class GenerateHook : MonoBehaviour
     private GameObject _hookStem;
     private GameObject _hookBridge;
     private GameObject _hookClaw;
-    
+    //begin visible section
+    [Header("Global Settinsg")]
+    [SerializeField] private Units units;
     [SerializeField] private float hookWidth = 0.5f;
+    [Header("Stem Settings")]
     [SerializeField] private float hookStemHeight = 3f;
     [SerializeField] private float hookStemDepth = 0.5f;
+    [Header("Bridge Settings")]
     [SerializeField] private float hookBridgeLength = 2f;
     [SerializeField] private float hookBridgeHeight = 0.35f;
+    [Header("Claw Settings")]
     [SerializeField] private float hookClawHeight = 1f;
     [SerializeField] private float hookClawDepth = 0.5f;
+    //end Visible Section
+
+    private float _multiplier;
 
     private void Awake()
     {
@@ -33,6 +41,15 @@ public class GenerateHook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _multiplier = units switch
+        {
+            Units.inch => 0.0254f,
+            Units.meter => 1,
+            Units.centimerter => 0.01f,
+            Units.millimeter => 0.001f,
+            _ => 0.0254f
+        };
+        
         if (!EditorApplication.isPlaying)
         {
             if (_hookStem == null)
@@ -43,8 +60,8 @@ public class GenerateHook : MonoBehaviour
                 _hookStem.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
             _hookStem.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            _hookStem.transform.localScale = new Vector3(hookWidth*0.0254f, hookStemHeight*0.0254f, hookStemDepth*0.0254f);
-            _hookStem.transform.localPosition = new Vector3(0, hookStemHeight*0.0254f * 0.5f, 0);
+            _hookStem.transform.localScale = new Vector3(hookWidth*_multiplier, hookStemHeight*_multiplier, hookStemDepth*_multiplier);
+            _hookStem.transform.localPosition = new Vector3(0, hookStemHeight*_multiplier * 0.5f, 0);
 
             if (_hookBridge == null)
             {
@@ -54,8 +71,8 @@ public class GenerateHook : MonoBehaviour
                 _hookBridge.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
             _hookBridge.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            _hookBridge.transform.localScale = new Vector3(hookWidth*0.0254f, hookBridgeHeight*0.0254f, hookBridgeLength*0.0254f);
-            _hookBridge.transform.localPosition = new Vector3(0, (hookStemHeight*0.0254f) + (hookBridgeHeight*0.5f*0.0254f), (hookBridgeLength*0.0254f*0.5f)-(hookStemDepth*0.5f*0.0254f));
+            _hookBridge.transform.localScale = new Vector3(hookWidth*_multiplier, hookBridgeHeight*_multiplier, hookBridgeLength*_multiplier);
+            _hookBridge.transform.localPosition = new Vector3(0, (hookStemHeight*_multiplier) + (hookBridgeHeight*0.5f*_multiplier), (hookBridgeLength*_multiplier*0.5f)-(hookStemDepth*0.5f*_multiplier));
 
             if (_hookClaw == null)
             {
@@ -65,8 +82,8 @@ public class GenerateHook : MonoBehaviour
                 _hookClaw.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
             _hookClaw.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            _hookClaw.transform.localScale = new Vector3(hookWidth*0.0254f, hookClawHeight*0.0254f, hookClawDepth*0.0254f);
-            _hookClaw.transform.localPosition = new Vector3(0, (hookStemHeight*0.0254f)-(hookClawHeight*0.0254f*0.5f), (hookBridgeLength*0.0254f) - (hookClawDepth*0.0254f*0.5f)-(hookStemDepth*0.5f*0.0254f));
+            _hookClaw.transform.localScale = new Vector3(hookWidth*_multiplier, hookClawHeight*_multiplier, hookClawDepth*_multiplier);
+            _hookClaw.transform.localPosition = new Vector3(0, (hookStemHeight*_multiplier)-(hookClawHeight*_multiplier*0.5f), (hookBridgeLength*_multiplier) - (hookClawDepth*_multiplier*0.5f)-(hookStemDepth*0.5f*_multiplier));
         }
         else
         {
@@ -75,6 +92,15 @@ public class GenerateHook : MonoBehaviour
 
     private void Startup()
     {
+        _multiplier = units switch
+        {
+            Units.inch => 0.0254f,
+            Units.meter => 1,
+            Units.centimerter => 0.01f,
+            Units.millimeter => 0.001f,
+            _ => 0.0254f
+        };
+        
         if (transform.Find("HookStem"))
         {
             _hookStem = transform.Find("HookStem").gameObject;

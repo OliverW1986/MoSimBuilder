@@ -1565,14 +1565,14 @@ HingeJoint:
     targetVelocity: 0
     force: 0
     freeSpin: 0
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_ExtendedLimits: 0
   m_UseAcceleration: 0
   m_Limits:
-    min: 0
-    max: 0
+    min: 150
+    max: 270
     bounciness: 0
-    bounceMinVelocity: 0.2
+    bounceMinVelocity: 0
     contactDistance: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
@@ -4130,9 +4130,9 @@ MonoBehaviour:
   setPoints:
   - 45
   - 45
-  - 79
-  - 79
-  - 79
+  - 80
+  - 80
+  - 80
   setPointButtons: 0200000002000000000000000000000000000000
   stowAngle: 0
   limits: {x: 0, y: 0}
@@ -5563,9 +5563,9 @@ MonoBehaviour:
   armWeight: 4
   controlType: 2
   setPoints:
-  - 50
-  - 50
-  - 50
+  - 45
+  - 58
+  - 58
   setPointButtons: 000000000000000000000000
   stowAngle: 180
   limits: {x: 0, y: 0}
@@ -6184,7 +6184,7 @@ Transform:
   m_GameObject: {fileID: 3593511153433325048}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3107, y: 0, z: 0.2938}
+  m_LocalPosition: {x: 0.2815, y: 0, z: 0.2938}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6210,9 +6210,9 @@ MonoBehaviour:
   armWeight: 4
   controlType: 2
   setPoints:
-  - 50
-  - 50
-  - 50
+  - 45
+  - 58
+  - 58
   setPointButtons: 000000000000000000000000
   stowAngle: 180
   limits: {x: 0, y: 0}
@@ -10345,9 +10345,9 @@ MonoBehaviour:
   setPoints:
   - -135
   - -135
-  - -145
-  - -145
-  - -145
+  - -130
+  - -130
+  - -130
   setPointButtons: 0200000002000000000000000000000000000000
   stowAngle: 80
   limits: {x: 90, y: -150}
@@ -10532,8 +10532,8 @@ Transform:
   m_GameObject: {fileID: 6380678953593315333}
   serializedVersion: 2
   m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.0372, z: 0.5006}
-  m_LocalScale: {x: 0.02, y: 0.04, z: 0.02}
+  m_LocalPosition: {x: 0, y: 0.0504, z: 0.5006}
+  m_LocalScale: {x: 0.02, y: 0.06, z: 0.02}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3573893155999014838}
@@ -12327,8 +12327,8 @@ Transform:
   m_GameObject: {fileID: 7207734620611224010}
   serializedVersion: 2
   m_LocalRotation: {x: 1, y: -0, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.0372, z: 0.5006}
-  m_LocalScale: {x: 0.02, y: 0.04, z: 0.02}
+  m_LocalPosition: {x: 0, y: 0.0504, z: 0.5006}
+  m_LocalScale: {x: 0.02, y: 0.06, z: 0.02}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1478184624993347088}
@@ -12766,8 +12766,8 @@ MonoBehaviour:
   - 13.5
   - 13.5
   - 0
-  - 15
-  - 15
+  - 9.8
+  - 9.8
   setpointButton: 0200000002000000000000000000000000000000
   stowHieght: 17
   offsetSetpointsByStowHeight: 1
@@ -13062,7 +13062,7 @@ MonoBehaviour:
   - {fileID: 6965916146146768968}
   - {fileID: 6965916146146768968}
   transferButton: 050000000200000000000000
-  pressesToTransfer: 010000000200000003000000
+  pressesToTransfer: 000000000200000003000000
   transfering: 0
 --- !u!1 &7497519801470646914
 GameObject:

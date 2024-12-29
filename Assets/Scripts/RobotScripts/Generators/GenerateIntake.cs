@@ -151,7 +151,7 @@ public class GenerateIntake : MonoBehaviour
                 _gamePieces[i] = null;
             }
             
-            Collider[] colliders = Physics.OverlapBox(intakeCollider.transform.position, intakeCollider.bounds.extents/2, intakeCollider.transform.rotation);
+            Collider[] colliders = Physics.OverlapBox(transform.position, (intakeSize*0.0254f)/4, transform.rotation);
             foreach (Collider coll in colliders)
             {
                 if (coll.transform.parent.parent != null)
