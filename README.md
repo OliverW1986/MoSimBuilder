@@ -7,7 +7,7 @@ I have put together what is hopefully an extremely useful set of documentation t
  * If you wish to make a contribution to the primary source code please make a pull request to the "Experimental" branch.
  * If you wish to contribute to the documentation please make a pull request to the stable branch.
 
-## [Alpha 2 plans](https://github.com/masonmm3/MoSimBuilder/blob/Experimental/Documentation/ChangeLogs.md)
+## [Alpha 2 Changelog](https://github.com/masonmm3/MoSimBuilder/blob/Experimental/Documentation/ChangeLogs.md)
 
 
 ## Beta 1 plans
