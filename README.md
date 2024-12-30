@@ -7,15 +7,8 @@ I have put together what is hopefully an extremely useful set of documentation t
  * If you wish to make a contribution to the primary source code please make a pull request to the "Experimental" branch.
  * If you wish to contribute to the documentation please make a pull request to the stable branch.
 
-## Alpha 2 plans
-- bugfixes
-- metric support (non inch settings)
-- non 1x2 tubing mechanisms
-- delay options for game piece system
-- Multi jointed arms
-- Generate Turret
-- Decorative Generators
-- Pick and Place field (2018,2019,2023?)
+## [Alpha 2 plans](https://github.com/masonmm3/MoSimBuilder/blob/Experimental/Documentation/ChangeLogs.md)
+
 
 ## Beta 1 plans
 - control system updates. (add I and D to the custom motor loops)
