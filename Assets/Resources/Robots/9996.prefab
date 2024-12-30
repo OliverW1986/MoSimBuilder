@@ -618,6 +618,7 @@ MonoBehaviour:
   setPointButtons: 000000000000000000000000000000000300000003000000
   stowAngle: 45
   limits: {x: 0, y: 0}
+  hasHardLimits: 0
   continuousAim: 1
   target: {x: 8.284, y: 2.1194, z: -1.486}
   indicatorAim: {fileID: 5994667145311917591}
@@ -1792,6 +1793,7 @@ MonoBehaviour:
   intakeSize: {x: 28, y: 4, z: 4}
   intakeType: 0
   actionDelay: 0.1
+  intakesGamePieces: 00000000
   transferToStow: {fileID: 4509499548005900795}
   button: 4
   cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
@@ -8546,6 +8548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9820173a492f4ec498ddaf303ebf7494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  units: 0
   hookWidth: 1
   hookStemHeight: 7
   hookStemDepth: 1
@@ -9498,6 +9501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9820173a492f4ec498ddaf303ebf7494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  units: 0
   hookWidth: 1
   hookStemHeight: 7
   hookStemDepth: 1

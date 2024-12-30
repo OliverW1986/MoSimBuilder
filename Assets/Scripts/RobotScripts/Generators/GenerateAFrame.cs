@@ -52,6 +52,7 @@ public class GenerateAFrame : MonoBehaviour
             }
             _AFrameUpright.transform.localScale = new Vector3(AFrameWidth*_multiplier, AFrameHeight*_multiplier, TubeHeight*_multiplier);
             _AFrameUpright.transform.localPosition = new Vector3(0, (AFrameHeight*_multiplier)/2, 0);
+            _AFrameUpright.layer = LayerMask.NameToLayer("Robot");
 
             if (_AFrame == null)
             {
@@ -63,6 +64,7 @@ public class GenerateAFrame : MonoBehaviour
             _AFrame.transform.localPosition = new Vector3(0, AFrameHeight*0.5f*_multiplier, ((-TubeHeight* _multiplier)/5) + (AFrameLength*0.5f*_multiplier));
             _AFrame.transform.localRotation = Quaternion.Euler(Mathf.Atan2(AFrameHeight, AFrameLength)*57.2958f, 0, 0);
             _AFrame.transform.localScale = new Vector3(AFrameWidth*_multiplier, TubeHeight*_multiplier, TubeHeight*_multiplier -(_multiplier * Mathf.Sqrt((AFrameHeight*AFrameHeight)+(AFrameLength*AFrameLength))));
+            _AFrame.layer = LayerMask.NameToLayer("Robot");
         }
     }
     

@@ -4624,6 +4624,7 @@ MonoBehaviour:
   intakeSize: {x: 14, y: 2, z: 2}
   intakeType: 1
   actionDelay: 0.1
+  intakesGamePieces: 00000000
   transferToStow: {fileID: 9079478325463568238}
   button: 4
   cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
@@ -7230,6 +7231,7 @@ MonoBehaviour:
   intakeSize: {x: 14, y: 2, z: 2}
   intakeType: 0
   actionDelay: 0.1
+  intakesGamePieces: 00000000
   transferToStow: {fileID: 61256153568643974}
   button: 4
   cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
@@ -11163,6 +11165,7 @@ MonoBehaviour:
   setPointButtons: 0400000000000000
   stowAngle: -60
   limits: {x: -65, y: 125}
+  hasHardLimits: 0
   continuousAim: 0
   target: {x: 0, y: 0, z: 0}
   indicatorAim: {fileID: 0}

@@ -60,6 +60,7 @@ public class GenerateHook : MonoBehaviour
                 _hookStem.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
             _hookStem.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            _hookStem.layer = LayerMask.NameToLayer("Robot");
             _hookStem.transform.localScale = new Vector3(hookWidth*_multiplier, hookStemHeight*_multiplier, hookStemDepth*_multiplier);
             _hookStem.transform.localPosition = new Vector3(0, hookStemHeight*_multiplier * 0.5f, 0);
 
@@ -73,7 +74,8 @@ public class GenerateHook : MonoBehaviour
             _hookBridge.transform.localRotation = Quaternion.Euler(0, 0, 0);
             _hookBridge.transform.localScale = new Vector3(hookWidth*_multiplier, hookBridgeHeight*_multiplier, hookBridgeLength*_multiplier);
             _hookBridge.transform.localPosition = new Vector3(0, (hookStemHeight*_multiplier) + (hookBridgeHeight*0.5f*_multiplier), (hookBridgeLength*_multiplier*0.5f)-(hookStemDepth*0.5f*_multiplier));
-
+            _hookBridge.layer = LayerMask.NameToLayer("Robot");
+            
             if (_hookClaw == null)
             {
                 _hookClaw = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -84,6 +86,7 @@ public class GenerateHook : MonoBehaviour
             _hookClaw.transform.localRotation = Quaternion.Euler(0, 0, 0);
             _hookClaw.transform.localScale = new Vector3(hookWidth*_multiplier, hookClawHeight*_multiplier, hookClawDepth*_multiplier);
             _hookClaw.transform.localPosition = new Vector3(0, (hookStemHeight*_multiplier)-(hookClawHeight*_multiplier*0.5f), (hookBridgeLength*_multiplier) - (hookClawDepth*_multiplier*0.5f)-(hookStemDepth*0.5f*_multiplier));
+            _hookClaw.layer = LayerMask.NameToLayer("Robot");
         }
         else
         {

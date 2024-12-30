@@ -9,6 +9,8 @@ public class GamePieceScript : MonoBehaviour
     [SerializeField] private GameObject colliderParent;
 
     [SerializeField] private Rigidbody rb;
+    
+    public GamePieces gamePiece;
 
     public bool lowPerformanceMode;
     
@@ -23,7 +25,7 @@ public class GamePieceScript : MonoBehaviour
         
     }
 
-    public IEnumerator ReleaseToWorld(float vel, float sideSpin, float backSpin, float actionDelay, GenerateOutake outakePoint)
+    public IEnumerator ReleaseToWorld(float vel, float sideSpin, float backSpin, float actionDelay, GenerateOutake outakePoint, Direction direction)
     {
         yield return new WaitForSeconds(actionDelay);
         
@@ -34,7 +36,19 @@ public class GamePieceScript : MonoBehaviour
         
             rb.useGravity = true;
             rb.isKinematic = false;
-            rb.velocity = transform.forward.normalized * vel;
+            switch (direction)
+            {
+                case Direction.forward:
+                    rb.velocity = transform.forward.normalized * vel;
+                    break;
+                case Direction.up:
+                    rb.velocity = transform.up.normalized * vel;
+                    break;
+                default:
+                    rb.velocity = transform.forward.normalized * vel;
+                    break;
+            }
+            
             rb.angularVelocity = transform.TransformDirection(new Vector3(-backSpin, sideSpin, 0));
 
             transform.parent = transform.root.parent;

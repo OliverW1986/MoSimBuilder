@@ -3895,6 +3895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9820173a492f4ec498ddaf303ebf7494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  units: 0
   hookWidth: 1
   hookStemHeight: 17
   hookStemDepth: 0.5
@@ -8827,6 +8828,7 @@ MonoBehaviour:
   intakeSize: {x: 27, y: 6, z: 4}
   intakeType: 0
   actionDelay: 0.15
+  intakesGamePieces: 00000000
   transferToStow: {fileID: 6596576901252784881}
   button: 4
   cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
@@ -10745,6 +10747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9820173a492f4ec498ddaf303ebf7494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  units: 0
   hookWidth: 1
   hookStemHeight: 17
   hookStemDepth: 0.5

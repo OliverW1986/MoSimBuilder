@@ -33,6 +33,8 @@ public class GenerateArm : MonoBehaviour
     [Tooltip("leave 0,0 for no limits.")]
     [SerializeField] private Vector2 limits;
     
+    [SerializeField] private bool hasHardLimits = false;
+    
     [Header("Aim To Point Settings")]
     
     [SerializeField] private bool continuousAim;
@@ -143,7 +145,7 @@ public class GenerateArm : MonoBehaviour
                 }
             }
             
-            if (limits.x != 0 && limits.y != 0)
+            if (limits.x != 0 && limits.y != 0 && hasHardLimits)
             {
                 var limit = new JointLimits();
                 limit.min = Mathf.Repeat(-limits.x, 360);

@@ -14,6 +14,8 @@ public class GenerateOutake : MonoBehaviour
     [SerializeField] private Vector3 outakeSize;
     
     [SerializeField] private float actionDelay;
+    
+    [SerializeField] private Direction outakeDirection;
 
     [Header("Outake Speeds")]
     [SerializeField] private float outakeSpeed;
@@ -112,7 +114,7 @@ public class GenerateOutake : MonoBehaviour
         {
             if (hasObject && !ejected)
             {
-                StartCoroutine(gamePiece.ReleaseToWorld(outakeSpeed, sideSpin, backSpin, actionDelay, this));
+                StartCoroutine(gamePiece.ReleaseToWorld(outakeSpeed, sideSpin, backSpin, actionDelay, this, outakeDirection));
                 ejected = true;
             }
             else if (hasObject)

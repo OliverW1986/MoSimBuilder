@@ -23,6 +23,9 @@ public class GenerateIntake : MonoBehaviour
     [SerializeField] private IntakeType intakeType;
 
     [SerializeField] private float actionDelay;
+    
+    [Header("Game Piece Settings")]
+    [SerializeField] private GamePieces[] intakesGamePieces;
 
     [Header("Controls and output")]
     
@@ -133,10 +136,17 @@ public class GenerateIntake : MonoBehaviour
             bool intakeActive = intakeType == IntakeType.always;
             if (_gamePieces[0] != null && (_inputMap.FindAction(button.ToString()).IsPressed() || intakeActive) && !transferToStow.hasObject && !_hasGamePiece)
             {
-                _gamePieces[0].transform.parent.parent.GetComponent<GamePieceScript>().MoveToPose(transform);
-                StartCoroutine(_gamePieces[0].transform.parent.parent.GetComponent<GamePieceScript>().TransferObject(transferToStow.transform, actionDelay));
-                _hasGamePiece = true;
-                _gamePiece = _gamePieces[0];
+                for (var i = 0; i < intakesGamePieces.Length; i++)
+                {
+                    if (intakesGamePieces[i] ==
+                        _gamePieces[0].transform.parent.parent.GetComponent<GamePieceScript>().gamePiece)
+                    {
+                        _gamePieces[0].transform.parent.parent.GetComponent<GamePieceScript>().MoveToPose(transform);
+                        StartCoroutine(_gamePieces[0].transform.parent.parent.GetComponent<GamePieceScript>().TransferObject(transferToStow.transform, actionDelay));
+                        _hasGamePiece = true;
+                        _gamePiece = _gamePieces[0];
+                    }
+                }
             }
             else
             {

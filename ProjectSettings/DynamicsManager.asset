@@ -7,7 +7,7 @@ PhysicsManager:
   m_Gravity: {x: 0, y: -9.81, z: 0}
   m_DefaultMaterial: {fileID: 0}
   m_BounceThreshold: 2
-  m_DefaultMaxDepenetrationVelocity: 8
+  m_DefaultMaxDepenetrationVelocity: 9
   m_SleepThreshold: 0.05
   m_DefaultContactOffset: 0.00001
   m_DefaultSolverIterations: 4
@@ -32,5 +32,5 @@ PhysicsManager:
   m_ImprovedPatchFriction: 0
   m_SolverType: 0
   m_DefaultMaxAngularSpeed: 5e+11
-  m_ScratchBufferChunkCount: 64
+  m_ScratchBufferChunkCount: 128
   m_FastMotionThreshold: 3.4028235e+38

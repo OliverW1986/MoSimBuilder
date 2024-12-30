@@ -6,6 +6,19 @@ public enum Alliance
     Blue
 }
 
+public enum GamePieces
+{
+    Note,
+    Cone,
+    Cube
+}
+
+public enum Direction
+{
+    forward,
+    up
+}
+
 public enum TubeType
 {
     oneXTwo,
