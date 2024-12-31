@@ -6,15 +6,29 @@ as help when referencing the next set of information.
 ## Sequencing motion of subsystems
 * The final mode for movement is Sequence. This mode is really helpful when something requires multiple steps. it can also allow for toggles on things that require multiple presses.
 * The system moves down the available setpoints starting at the top. if a setpoint has a different keybind assinged it is skiped completly. Only setpoints with the same keybind are sequenced together.
-![3d1a8d52-6586-4e5c-a197-b28825bea8c5](https://github.com/user-attachments/assets/d4cec4c5-e8f0-4c96-badb-5a1f01e66c98)
+![image](https://github.com/user-attachments/assets/778e12c5-9108-40d7-964c-11ff46e0344b)
+
 
 
   ## Game Piece Sequencing.
   * similar to the motion sequences its possible to create sequences of game piece movement. This is done using "presses to transfer" on a stow object
   * When a stow object has a game piece the presses to transfer is the number of times in a row that button must be pressed to transfer to that buttons relevant endpoint. (endpoints can be other stows or outakes)
   * Transfering between two stows does not count towards the presses. so if you transfer from storage a to b by pressing y and motion system b goes to setpoint by pressing y you only need one press as the first of the two is spent transfering from stow a to b.
-![2268dcab-d351-469a-a41c-1ad92ec5a773](https://github.com/user-attachments/assets/e76eb2fd-7193-45e2-8590-797806896cfe)
+![image](https://github.com/user-attachments/assets/50e50902-d79a-49fe-b98d-7cbdfa051531)
+
+## Changing fields disclaimer.
+
+* when changing fields you will have to relocate the robot spawn points, these can be handled by simply going to the field scene and opening the game handler dropdown, a child of GameHandler is blueRobotSpawn, this controls the location and angle of your robot spawn.
+![image](https://github.com/user-attachments/assets/e5baff41-a3c7-49ce-a7c5-5c2e47b3ad5d)
 
 
-### This is all of the information needed to competently build robots in MoSim Builder Alpha 1+
+## Unused Generators
+* Generate A frame allows you to generate a fairly common structure for decoration or geometry following. 6328 and 6329 example  robots are good examples.
+![image](https://github.com/user-attachments/assets/0884e4f9-9a8e-4d7b-9e97-2e86f4d7ba26)
+
+* Generate Turret has also been added. currently these function almost identically to Arms, except they have functional side to side continous aim. 254 is a good example of a use case.
+![image](https://github.com/user-attachments/assets/5f51a851-1d1a-4555-9a5b-63575a6bcb6d)
+
+
+### This is all of the information needed to competently build robots in MoSim Builder Alpha 2+
  
