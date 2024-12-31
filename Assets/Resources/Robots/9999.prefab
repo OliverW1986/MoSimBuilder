@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 4266418684876807537}
   - component: {fileID: 529637811210765026}
   - component: {fileID: 7897146152858534914}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HookClaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 1303306236058287762}
   - component: {fileID: 5625986705868012470}
   - component: {fileID: 5391844837148930857}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HookClaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4327,6 +4327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outakeSize: {x: 14, y: 3, z: 2}
   actionDelay: 0
+  outakeDirection: 0
   outakeSpeed: 14
   sideSpin: 0
   backSpin: 0
@@ -4623,7 +4624,7 @@ GameObject:
   - component: {fileID: 6045773059664280879}
   - component: {fileID: 6180481708656564215}
   - component: {fileID: 3850763675967011245}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HookStem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5512,7 +5513,7 @@ GameObject:
   - component: {fileID: 7386902919601665593}
   - component: {fileID: 1735849796909911017}
   - component: {fileID: 8840062469157175912}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HookBridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5864,7 +5865,7 @@ GameObject:
   - component: {fileID: 4766666028936446973}
   - component: {fileID: 5721725570881156203}
   - component: {fileID: 916613509867765600}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HookBridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6134,6 +6135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outakeSize: {x: 14, y: 3, z: 2}
   actionDelay: 0
+  outakeDirection: 0
   outakeSpeed: 4.4
   sideSpin: 0
   backSpin: 4.4
@@ -11044,7 +11046,7 @@ GameObject:
   - component: {fileID: 5339456292100972637}
   - component: {fileID: 7927372388798879336}
   - component: {fileID: 4827447487560301603}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HookStem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
