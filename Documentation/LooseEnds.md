@@ -21,6 +21,8 @@ as help when referencing the next set of information.
 * when changing fields you will have to relocate the robot spawn points, these can be handled by simply going to the field scene and opening the game handler dropdown, a child of GameHandler is blueRobotSpawn, this controls the location and angle of your robot spawn.
 ![image](https://github.com/user-attachments/assets/e5baff41-a3c7-49ce-a7c5-5c2e47b3ad5d)
 
+## Units system
+* the units system does not automatically translate. if you change from inch to meter it will not multiply you inputs by 0.0254; 1 inch becomes 1 meter. 
 
 ## Unused Generators
 * Generate A frame allows you to generate a fairly common structure for decoration or geometry following. 6328 and 6329 example  robots are good examples.
