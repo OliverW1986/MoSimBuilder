@@ -26,6 +26,7 @@ as help when referencing the next set of information.
 
 ## Unused Generators
 * Generate A frame allows you to generate a fairly common structure for decoration or geometry following. 6328 and 6329 example  robots are good examples.
+
 ![image](https://github.com/user-attachments/assets/0884e4f9-9a8e-4d7b-9e97-2e86f4d7ba26)
 
 * Generate Turret has also been added. currently these function almost identically to Arms, except they have functional side to side continous aim. 254 is a good example of a use case.
