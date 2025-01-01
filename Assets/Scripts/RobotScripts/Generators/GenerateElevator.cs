@@ -29,20 +29,40 @@ public class GenerateElevator : MonoBehaviour
     private FixedJoint _stationaryJoint;
     private JointDrive _stage1Drive;
 
+    private bool _isStowed;
+
+    //start visible stuff
+    [Header("Elevator Information")]
+    [SerializeField] private Units units;
+    [SerializeField] private TubeType tubeType;
     [SerializeField] private int numOfStages = 1;
     [SerializeField] private float elevatorHeight = 16;
     [SerializeField] private float elevatorWidth = 13;
 
+    [Header("Weights")]
     [SerializeField] private float stationaryWeight = 15;
     [SerializeField] private float[] stageWeights;
-    private float[] _stageWeightBuffer;
+    
 
-    [SerializeField] private float[] setpoints;
-    [SerializeField] private Buttons[] setpointButton;
-    private Buttons[] _setpointBuffer;
+    [Header("Setpoints")]
     [SerializeField] private ControlType controlType;
-    [Tooltip("Check box to have elevator stow to the top of the stage instead of the bottom, !!Target Will have 1/2 elevator height added to it!!")]
-    [SerializeField] private bool stowTop;
+    [Tooltip("Height in Units to go to")]
+    [SerializeField] private float[] setpoints;
+    [Tooltip("Button correlating to setpoint to go to")]
+    [SerializeField] private Buttons[] setpointButton;
+    
+    [SerializeField] private float stowHieght;
+
+    [SerializeField] private bool offsetSetpointsByStowHeight;
+    
+    
+    //end visible stuff
+    
+    private float _multiplier;
+    
+    private float[] _stageWeightBuffer;
+    
+    private Buttons[] _setpointBuffer;
     
     private DriveController _driveController;
     
@@ -59,6 +79,9 @@ public class GenerateElevator : MonoBehaviour
     private Buttons _lastButton;
 
     private bool _sequenceDebounce;
+    
+    private float _tubeHeight;
+    private float _tubeWidth;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +96,33 @@ public class GenerateElevator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _multiplier = units switch
+        {
+            Units.inch => 0.0254f,
+            Units.meter => 1,
+            Units.centimerter => 0.01f,
+            Units.millimeter => 0.001f,
+            _ => 0.0254f
+        };
+        
+        _tubeHeight = tubeType switch
+        {
+            TubeType.oneXTwo => 2,
+            TubeType.oneXOne => 1,
+            TubeType.oneXThree => 3,
+            TubeType.twoXTwo => 2,
+            _ => 2
+        };
+        
+        _tubeWidth = tubeType switch
+        {
+            TubeType.oneXTwo => 1,
+            TubeType.oneXOne => 1,
+            TubeType.oneXThree => 1,
+            TubeType.twoXTwo => 2,
+            _ => 2
+        };
+        
         if (_mainRobot == null)
         {
             _mainRobot = transform.root.gameObject;
@@ -175,8 +225,8 @@ public class GenerateElevator : MonoBehaviour
                 
             }
             
-            _stationaryLeftModel.transform.localPosition = new Vector3(-elevatorWidth/2 * 0.0254f+(0.5f*0.0254f), elevatorHeight/2 * 0.0254f, 0);
-            _stationaryLeftModel.transform.localScale = new Vector3(1*0.0254f, elevatorHeight*0.0254f, 2*0.0254f);
+            _stationaryLeftModel.transform.localPosition = new Vector3(-elevatorWidth/2 * _multiplier+((_tubeWidth/2)*0.0254f), elevatorHeight/2 * _multiplier, 0);
+            _stationaryLeftModel.transform.localScale = new Vector3(_tubeWidth*0.0254f, elevatorHeight*_multiplier, _tubeHeight*0.0254f);
             
             if (_stationaryRightModel == null)
             {
@@ -187,8 +237,8 @@ public class GenerateElevator : MonoBehaviour
                 _stationaryRightModel.transform.localRotation = Quaternion.Euler(Vector3.zero);
             }
             
-            _stationaryRightModel.transform.localPosition = new Vector3(elevatorWidth/2 * 0.0254f-(0.5f*0.0254f), elevatorHeight/2 * 0.0254f, 0);
-            _stationaryRightModel.transform.localScale = new Vector3(1*0.0254f, elevatorHeight*0.0254f, 2*0.0254f);
+            _stationaryRightModel.transform.localPosition = new Vector3(elevatorWidth/2 * _multiplier-((_tubeWidth/2)*0.0254f), elevatorHeight/2 * _multiplier, 0);
+            _stationaryRightModel.transform.localScale = new Vector3(_tubeWidth*0.0254f, elevatorHeight*_multiplier, _tubeHeight*0.0254f);
             if (_stage != null)
             {
                 if (numOfStages != _stage.Length)
@@ -269,13 +319,13 @@ public class GenerateElevator : MonoBehaviour
 
                 if (i + 1 == numOfStages)
                 {
-                    _stageLeftModel[i].transform.localPosition = new Vector3(-elevatorWidth/4 * 0.0254f+(((i+1)*0.5f)*0.0254f+(((i)*0.05f)*0.0254f)), elevatorHeight/2 * 0.0254f,0);
-                    _stageLeftModel[i].transform.localScale = new Vector3((elevatorWidth/2*0.0254f) - ((i + 1)*0.0254f), 1*0.0254f, 2*0.0254f);
+                    _stageLeftModel[i].transform.localPosition = new Vector3(-elevatorWidth/4 * _multiplier+(((i+1)*(_tubeWidth/2))*0.0254f+(((i)*0.05f)*0.0254f)), elevatorHeight/2 * _multiplier,0);
+                    _stageLeftModel[i].transform.localScale = new Vector3((elevatorWidth/2*_multiplier) - ((i + 1)*0.0254f), _tubeWidth*0.0254f, _tubeHeight*0.0254f);
                 }
                 else
                 {
-                    _stageLeftModel[i].transform.localPosition = new Vector3( -elevatorWidth/2 * 0.0254f+((i +1 +0.5f +((i+1)*0.05f))*0.0254f), elevatorHeight/2 * 0.0254f,0);
-                    _stageLeftModel[i].transform.localScale = new Vector3(1*0.0254f, elevatorHeight*0.0254f, 2*0.0254f);
+                    _stageLeftModel[i].transform.localPosition = new Vector3( -elevatorWidth/2 * _multiplier+((i +1 +(_tubeWidth/2) +((i+1)*0.05f))*0.0254f), elevatorHeight/2 * _multiplier,0);
+                    _stageLeftModel[i].transform.localScale = new Vector3(_tubeWidth*0.0254f, elevatorHeight*_multiplier, _tubeHeight*0.0254f);
                 }
                  
             
@@ -290,13 +340,13 @@ public class GenerateElevator : MonoBehaviour
 
                 if (i + 1 == numOfStages)
                 {
-                    _stageRightModel[i].transform.localPosition = new Vector3(elevatorWidth/4 * 0.0254f-(((i+1)*0.5f)*0.0254f-(((i)*0.05f)*0.0254f)), elevatorHeight/2 * 0.0254f,0);
-                    _stageRightModel[i].transform.localScale = new Vector3((elevatorWidth/2*0.0254f) - ((i + 1)*0.0254f), 1*0.0254f, 2*0.0254f);
+                    _stageRightModel[i].transform.localPosition = new Vector3(elevatorWidth/4 * _multiplier-(((i+1)*(_tubeWidth/2))*0.0254f-(((i)*0.05f)*0.0254f)), elevatorHeight/2 * _multiplier,0);
+                    _stageRightModel[i].transform.localScale = new Vector3((elevatorWidth/2*_multiplier) - ((i + 1)*0.0254f), _tubeWidth*0.0254f, _tubeHeight*0.0254f);
                 }
                 else
                 {
-                    _stageRightModel[i].transform.localPosition = new Vector3(elevatorWidth/2 * 0.0254f-((i +1 +0.5f +((i+1)*0.05f))*0.0254f), elevatorHeight / 2 * 0.0254f, 0);
-                    _stageRightModel[i].transform.localScale = new Vector3(1 * 0.0254f, elevatorHeight * 0.0254f, 2 * 0.0254f);
+                    _stageRightModel[i].transform.localPosition = new Vector3(elevatorWidth/2 * _multiplier-((i +1 +(_tubeWidth/2) +((i+1)*0.05f))*0.0254f), elevatorHeight / 2 * _multiplier, 0);
+                    _stageRightModel[i].transform.localScale = new Vector3(_tubeWidth * 0.0254f, elevatorHeight *_multiplier, _tubeHeight * 0.0254f);
                 }
 
                 if (_cgs[i] == null)
@@ -346,90 +396,118 @@ public class GenerateElevator : MonoBehaviour
         {
             for (var i = 0; i < setpoints.Length; i++)
             {
-                if (controlType == ControlType.toggle)
+                switch (controlType)
                 {
-                    if (_inputMap.FindAction(setpointButton[i].ToString()).triggered)
+                    case ControlType.toggle:
                     {
-                        if (Mathf.Approximately(_activeTarget, -setpoints[i]))
+                        if (_inputMap.FindAction(setpointButton[i].ToString()).triggered)
                         {
-                            _activeTarget = 0;
+                            if (Mathf.Approximately(_activeTarget, -setpoints[i]))
+                            {
+                                _activeTarget = -stowHieght + _tubeWidth;
+                                _isStowed = true;
+                            }
+                            else
+                            {
+                                _activeTarget = -setpoints[i];
+                                _isStowed = false;
+                            }
+
                         }
-                        else
+
+                        break;
+                    }
+                    case ControlType.hold:
+                    {
+                        if (_inputMap.FindAction(setpointButton[i].ToString()).IsPressed())
                         {
                             _activeTarget = -setpoints[i];
+                            _isStowed = false;
                         }
-
-                    }
-                } else if (controlType == ControlType.hold)
-                {
-                    if (_inputMap.FindAction(setpointButton[i].ToString()).IsPressed())
-                    {
-                        _activeTarget = -setpoints[i];
-                    }
-                    else if (i > 0 )
-                    {
-                        for (var t = 0; t < setpoints.Length; t++)
+                        else if (i > 0)
                         {
-                            if (_inputMap.FindAction(setpointButton[t].ToString()).IsPressed())
+                            for (var t = 0; t < setpoints.Length; t++)
                             {
-                                _activeTarget = -setpoints[t];
-                            }
-                        }
-                    }
-                    else
-                    {
-                        _activeTarget = 0;
-                    }
-                } else if (controlType == ControlType.sequence)
-                {
-                    if (_inputMap.FindAction(setpointButton[i].ToString()).triggered && _sequenceDebounce == false)
-                    {
-                        
-                        if (_setpointSequence < setpoints.Length)
-                        {
-                            if (_lastButton != setpointButton[i])
-                            {
-                                _setpointSequence = 0;
-                                _lastButton = setpointButton[i];
-                            }
-                            
-                            while (setpointButton[i] != setpointButton[_setpointSequence])
-                            {
-                                _setpointSequence ++;
-
-                                if (_setpointSequence+1 > setpoints.Length)
+                                if (_inputMap.FindAction(setpointButton[t].ToString()).IsPressed())
                                 {
-                                    _setpointSequence = 0;
-                                    _activeTarget = 0;
-                                    return;
+                                    _activeTarget = -setpoints[t];
+                                    _isStowed = false;
                                 }
-
-
                             }
-                            _activeTarget = -setpoints[_setpointSequence];
-
-                            _setpointSequence += 1;
                         }
                         else
                         {
-                            _setpointSequence = 0;
-                            _activeTarget = 0;
+                            _activeTarget = -stowHieght + _tubeWidth;
+                            _isStowed = true;
                         }
                         
-                        _lastButton = setpointButton[i];
+                        break;
                     }
-                    else
+                    case ControlType.sequence:
                     {
-                       
-                    }
+                        if (_inputMap.FindAction(setpointButton[i].ToString()).triggered && _sequenceDebounce == false)
+                        {
+                        
+                            if (_setpointSequence < setpoints.Length)
+                            {
+                                if (_lastButton != setpointButton[i])
+                                {
+                                    _setpointSequence = 0;
+                                    _lastButton = setpointButton[i];
+                                    _isStowed = false;
+                                }
+                            
+                                while (setpointButton[i] != setpointButton[_setpointSequence])
+                                {
+                                    _setpointSequence ++;
 
-                    if (_inputMap.FindAction(setpointButton[i].ToString()).IsPressed())
+                                    if (_setpointSequence+1 > setpoints.Length)
+                                    {
+                                        _setpointSequence = 0;
+                                        _activeTarget = -stowHieght + _tubeWidth;
+                                        _isStowed = true;
+                                        return;
+                                    }
+
+
+                                }
+                                _activeTarget = -setpoints[_setpointSequence];
+                                _isStowed = false;
+                                _setpointSequence += 1;
+                            }
+                            else
+                            {
+                                _setpointSequence = 0;
+                                _activeTarget = -stowHieght + _tubeWidth;
+                                _isStowed = true;
+                            }
+                        
+                            _lastButton = setpointButton[i];
+                        }
+                        else
+                        {
+                       
+                        }
+
+                        if (_inputMap.FindAction(setpointButton[i].ToString()).IsPressed())
+                        {
+                            _sequenceDebounce = true;
+                        }
+                        else
+                        {
+                            _sequenceDebounce = false;
+                        }
+
+                        break;
+                    } case ControlType.lastPressed:
                     {
-                        _sequenceDebounce = true;
-                    }
-                    else
-                    {
-                        _sequenceDebounce = false;
+                        if (_inputMap.FindAction(setpointButton[i].ToString()).triggered)
+                        {
+                            _activeTarget = -setpoints[i];
+                            _isStowed = false;
+                        }
+
+                        break;
                     }
                 }
             }
@@ -440,35 +518,38 @@ public class GenerateElevator : MonoBehaviour
                 if (i + 1 == numOfStages)
                 {
                     float stowOffset;
-                    if (stowTop)
+                    
+                    if (offsetSetpointsByStowHeight && !_isStowed)
                     {
-                        stowOffset = -(elevatorHeight / 2)+0.5f;
+                        stowOffset = ((elevatorHeight / 2)) - stowHieght + (_tubeWidth/2);
                     }
                     else
                     {
-                        stowOffset = (elevatorHeight / 2)-0.5f;
+                        stowOffset = (elevatorHeight / 2) - (_tubeWidth/2);
                     }
-                    _cgs[i].targetVelocity = new Vector3(0, Mathf.Clamp((-_stage[i].transform.localPosition.y - ((_activeTarget+stowOffset) * 0.0254f)) * -8f, -5, 5), 0);
+                    
+                    _cgs[i].targetVelocity = new Vector3(0, Mathf.Clamp((-_stage[i].transform.localPosition.y - ((_activeTarget+stowOffset) * _multiplier)) * -8f, -5, 5), 0);
                 }
                 else
                 {
                     float stowOffset;
-                    if (stowTop)
+                    
+                    if (offsetSetpointsByStowHeight && !_isStowed)
                     {
-                        stowOffset = elevatorHeight - 1f;
+                        stowOffset = stowHieght -_tubeWidth/2;
                     }
                     else
                     {
-                        stowOffset = 0;
+                        stowOffset = -_tubeWidth/2;
                     }
                     
                     if (-_activeTarget + stowOffset >= ((numOfStages-i-1) * (elevatorHeight)))
                     {
-                        _cgs[i].targetVelocity = new Vector3(0, Mathf.Clamp((-_stage[i].transform.localPosition.y - (_activeTarget - (stowOffset) - 1 + (numOfStages-i-1) * elevatorHeight) * 0.0254f ) * -8f, -5, 5), 0);
+                        _cgs[i].targetVelocity = new Vector3(0, Mathf.Clamp((-_stage[i].transform.localPosition.y - (_activeTarget - (stowOffset) - (_tubeWidth/2) + (numOfStages-i-1) * elevatorHeight) * _multiplier ) * -8f, -5, 5), 0);
                     }
                     else
                     {
-                        _cgs[i].targetVelocity = new Vector3(0, Mathf.Clamp((-_stage[i].transform.localPosition.y -(0 * 0.0254f)) * -8f, -3, 3), 0);
+                        _cgs[i].targetVelocity = new Vector3(0, Mathf.Clamp((-_stage[i].transform.localPosition.y -(0 * _multiplier)) * -8f, -3, 3), 0);
                     }
                     
                 }
@@ -478,9 +559,39 @@ public class GenerateElevator : MonoBehaviour
 
     private void Startup()
     {
+        
+        _activeTarget = -stowHieght + _tubeWidth;
+        
+        _isStowed = true;
+        
         _setpointSequence = 0;
         
-        _activeTarget = 0;
+        _multiplier = units switch
+        {
+            Units.inch => 0.0254f,
+            Units.meter => 1,
+            Units.centimerter => 0.01f,
+            Units.millimeter => 0.001f,
+            _ => 0.0254f
+        };
+        
+        _tubeHeight = tubeType switch
+        {
+            TubeType.oneXTwo => 2,
+            TubeType.oneXOne => 1,
+            TubeType.oneXThree => 3,
+            TubeType.twoXTwo => 2,
+            _ => 2
+        };
+        
+        _tubeWidth = tubeType switch
+        {
+            TubeType.oneXTwo => 1,
+            TubeType.oneXOne => 1,
+            TubeType.oneXThree => 1,
+            TubeType.twoXTwo => 2,
+            _ => 2
+        };
         
         if (_playerInput == null)
         {

@@ -8,7 +8,8 @@
 * Then make a standard robot frame same as previous.
 * Now add a generate arm
 * Push it to the front then set the length to 28. and the rotation of the Arm not the ArmSec1 to 180.
-  ![594f79cc-0e27-4b23-9dc5-b1ed469f1b13](https://github.com/user-attachments/assets/6e71b2fc-e285-4069-946b-6cd4c80af6a7)
+ ![image](https://github.com/user-attachments/assets/19fc3c38-e740-41c4-a732-1e2f3aeb98bc)
+
 * Leave the Limits at 0,0
 * Enable contious aim.
 * return to the field and find the AimFinder game object.
@@ -20,8 +21,8 @@
 ![716682b5-ecf3-41dd-9c66-ab3c6f92bbb7](https://github.com/user-attachments/assets/8a48d910-6e48-45a0-9d14-e6fa52e1d6a1)
 
 * Now create an intake, stow and outake on the arm section we just added. set the angle to 130 this time.
-* Go ahead and set up the the intake to Lt and stow to outake on Rt. set outake speed to 25.
-![9927a782-c3cc-4533-bb30-06a13467e297](https://github.com/user-attachments/assets/ad2f7926-4361-4bc6-810a-ae5ed2094303)
+* Go ahead and set up the the intake to Lt and stow to outake on Rt. set outake speed to 25, shoot direction of forward.
+![image](https://github.com/user-attachments/assets/65a963aa-2c55-4b81-8fa6-eaf62b67a25e)
 * now return to the aim and set the indicator aim to Outake.
 
 ## Shooting and limitations.
@@ -29,10 +30,10 @@
 * set the first setpoint to 1 a, now to add a setpoint click the plus under setpoint and it will automatically ad a setpoint button for you. (if you try adding a setpoint button it will be deleted and likley mess up the controls.)
 * it may be tempting to set it to 0 however because 0 is your stow angle it will not leave continous aim mode. the condition for continous aim is that the setpoint is the stow angle and continous aim is enabled.
 * Now add a control on y for -100.
-![0ec5d7fd-112e-4acd-9e83-c26ab27cdb88](https://github.com/user-attachments/assets/5377fe2d-58ad-49a2-b0b6-3002ccf8b86d)
+![image](https://github.com/user-attachments/assets/b8d37977-5a47-4d87-80f1-358306e7f2ab)
 * return to the main scene set the robot and test.
 * Chances are it lifted up. This is because we didnt set an angle offset. this is important when tuning a shooter, especially non inline ones.
-* To fix this set the angle offset to -48. you may note that the angle 130-180+2 gives you this.
+* To fix this set the angle offset to -48. you may note that the angle 130(rotation of the cube relative to arm)-180(the rotation of the arm)+2(aiming constant for 2024) gives you this.
 * You may also notice that the amp is iffy, this is because the design relies on game piece bending and the downside of the systems in use is that it will not work with amp systems that require bending that can not be adjusted.
 
 ## Climbing
@@ -41,7 +42,7 @@
 * add a hook generator to stage 1.
 * Flip the y rotation 180 and align with the carriage.
 * put the setpoint to 16 on x in toggle mode.
-![a46e3b1b-c824-4803-be76-555f72e74655](https://github.com/user-attachments/assets/ff2a0873-21ce-4d68-afdc-ce4b461b5a08)
+![image](https://github.com/user-attachments/assets/bde4c3e6-3d75-4abf-ac83-f1d36bcdd451)
 
 * now go to the arm and add a setpoint for climbing at -80 on x
 

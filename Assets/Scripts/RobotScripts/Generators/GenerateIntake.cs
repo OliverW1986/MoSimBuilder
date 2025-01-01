@@ -14,10 +14,26 @@ public class GenerateIntake : MonoBehaviour
     private Collider intakeCollider;
     
     private GameObject[] _borderVisuals = new GameObject[12];
+    // visible section
+    
+    [Header("settigns")]
     
     [SerializeField] private Vector3 intakeSize;
+    
+    [SerializeField] private IntakeType intakeType;
 
+    [SerializeField] private float actionDelay;
+    
+    [Header("Game Piece Settings")]
+    [SerializeField] private GamePieces[] intakesGamePieces;
+
+    [Header("Controls and output")]
+    
     [SerializeField] private GenerateStow transferToStow;
+    
+    [SerializeField] private Buttons button;
+    
+    //end visible section
     
     [HideInInspector] public GameObject cubeLines;
     
@@ -27,10 +43,11 @@ public class GenerateIntake : MonoBehaviour
     
     private InputActionMap _inputMap;
 
-    [SerializeField] private Buttons button;
+    private bool _hasGamePiece;
     
-    [SerializeField] private IntakeType intakeType;
-    // Start is called before the first frame update
+    private GameObject _gamePiece;
+
+    
     private void Start()
     {
         Startup();
@@ -117,11 +134,26 @@ public class GenerateIntake : MonoBehaviour
         else
         {
             bool intakeActive = intakeType == IntakeType.always;
-            if (_gamePieces[0] != null && (_inputMap.FindAction(button.ToString()).IsPressed() || intakeActive) && !transferToStow.hasObject)
+            if (_gamePieces[0] != null && (_inputMap.FindAction(button.ToString()).IsPressed() || intakeActive) && !transferToStow.hasObject && !_hasGamePiece)
             {
-                _gamePieces[0].transform.parent.parent.GetComponent<GamePieceScript>().MoveToPose(transferToStow.transform);
-                transferToStow.hasObject = true;
-                transferToStow.GamePiece = _gamePieces[0].transform.parent.parent.GetComponent<GamePieceScript>();
+                for (var i = 0; i < intakesGamePieces.Length; i++)
+                {
+                    if (intakesGamePieces[i] ==
+                        _gamePieces[0].transform.parent.parent.GetComponent<GamePieceScript>().gamePiece)
+                    {
+                        _gamePieces[0].transform.parent.parent.GetComponent<GamePieceScript>().MoveToPose(transform);
+                        StartCoroutine(_gamePieces[0].transform.parent.parent.GetComponent<GamePieceScript>().TransferObject(transferToStow.transform, actionDelay));
+                        _hasGamePiece = true;
+                        _gamePiece = _gamePieces[0];
+                    }
+                }
+            }
+            else
+            {
+                if (_hasGamePiece)
+                { 
+                    _gamePiece.transform.parent.parent.GetComponent<GamePieceScript>().MoveToPose(transform);
+                }
             }
             
             for (int i = 0; i < _gamePieces.Length; i++)
@@ -129,7 +161,7 @@ public class GenerateIntake : MonoBehaviour
                 _gamePieces[i] = null;
             }
             
-            Collider[] colliders = Physics.OverlapBox(gameObject.transform.position, intakeCollider.bounds.extents/2, intakeCollider.transform.rotation);
+            Collider[] colliders = Physics.OverlapBox(transform.position, (intakeSize*0.0254f)/4, transform.rotation);
             foreach (Collider coll in colliders)
             {
                 if (coll.transform.parent.parent != null)
@@ -153,6 +185,12 @@ public class GenerateIntake : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void GetGamePiece()
+    {
+        _gamePiece = null;
+        _hasGamePiece = false;
     }
 
     private void Startup()

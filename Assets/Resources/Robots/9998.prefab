@@ -2690,12 +2690,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outakeSize: {x: 14, y: 2, z: 2}
-  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
-  hasObject: 0
-  gamePiece: {fileID: 0}
+  actionDelay: 0.2
   outakeSpeed: 2.6
   sideSpin: 0
   backSpin: 0
+  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
+  hasObject: 0
+  gamePiece: {fileID: 0}
+  ejected: 0
 --- !u!1 &1951015658263343594
 GameObject:
   m_ObjectHideFlags: 0
@@ -4620,10 +4622,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intakeSize: {x: 14, y: 2, z: 2}
-  transferToStow: {fileID: 9079478325463568238}
-  cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
-  button: 4
   intakeType: 1
+  actionDelay: 0.1
+  intakesGamePieces: 00000000
+  transferToStow: {fileID: 9079478325463568238}
+  button: 4
+  cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
 --- !u!65 &6272769805561133216
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7225,10 +7229,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intakeSize: {x: 14, y: 2, z: 2}
-  transferToStow: {fileID: 61256153568643974}
-  cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
-  button: 4
   intakeType: 0
+  actionDelay: 0.1
+  intakesGamePieces: 00000000
+  transferToStow: {fileID: 61256153568643974}
+  button: 4
+  cubeLines: {fileID: 5915627958241752108, guid: e958cb47afb913547870751de9dd137e, type: 3}
 --- !u!65 &1802638300236886978
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8055,13 +8061,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasObject: 0
   GamePiece: {fileID: 0}
-  stowSize: {x: 14, y: 2, z: 5}
   cubeLines: {fileID: 5915627958241752108, guid: c1c8c7e209bad91448f7381b15f044c6, type: 3}
+  stowSize: {x: 14, y: 2, z: 5}
+  transferType: 1
+  actionDelay: 0.1
   endpoints:
   - {fileID: 7539355611212072590}
   transferButton: 05000000
   pressesToTransfer: 01000000
-  transferType: 1
+  transfering: 0
 --- !u!1 &6329193747229336011
 GameObject:
   m_ObjectHideFlags: 0
@@ -8702,15 +8710,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputAsset: {fileID: -944628639613478452, guid: 38d46141bc6f7ff4b9b9279120565da0, type: 3}
+  speedUnits: 0
+  driveSpeed: 16
+  driveAcceleration: 18
+  frameTubing: 0
+  units: 0
   driveTrainWidth: 28
   driveTrainLength: 28
+  drivetrainWeight: 65
   wheelWidth: 1.5
   wheelDiameter: 4
-  drivetrainWeight: 65
-  driveSpeed: 16
-  driveForce: 300
-  bumperPart: {fileID: 7866339382493728411, guid: f6e26eb5dfb4e1b4797426629ff33404, type: 3}
   bumperHeight: 2.5
+  bumperFrameOffset: {x: 0, y: 0, z: 0, w: 0}
+  bumperPart: {fileID: 7866339382493728411, guid: f6e26eb5dfb4e1b4797426629ff33404, type: 3}
 --- !u!54 &202259770232428691
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8756,7 +8768,7 @@ MonoBehaviour:
   isGrounded: 1
   isTouchingGround: 1
   maxSpeed: 16
-  accelerationSpeed: 300
+  accelerationSpeed: 59.05512
   steerMultiplyer: 1
   beforeVelocity: 0
   isRedRobot: 0
@@ -9831,12 +9843,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outakeSize: {x: 14, y: 2, z: 2}
-  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
-  hasObject: 0
-  gamePiece: {fileID: 0}
+  actionDelay: 0.1
   outakeSpeed: 13
   sideSpin: 0
   backSpin: 0
+  cubeLines: {fileID: 5915627958241752108, guid: 78868a33d42a9fc4e96eff956cdbeedd, type: 3}
+  hasObject: 0
+  gamePiece: {fileID: 0}
+  ejected: 0
 --- !u!1 &7572272063553130395
 GameObject:
   m_ObjectHideFlags: 0
@@ -11139,21 +11153,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1e86ba86ca96b409d0d4adaac2deea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  continuousAim: 0
-  target: {x: 0, y: 0, z: 0}
-  indicatorAim: {fileID: 0}
-  angleOffset: 0
-  setPoints:
-  - 110
-  - 5
-  setPointButtons: 0400000000000000
+  units: 0
   armLength: 15
   armWidth: 14
   armHeight: 2
   armWeight: 8
   controlType: 1
+  setPoints:
+  - 110
+  - 5
+  setPointButtons: 0400000000000000
   stowAngle: -60
   limits: {x: -65, y: 125}
+  hasHardLimits: 0
+  continuousAim: 0
+  target: {x: 0, y: 0, z: 0}
+  indicatorAim: {fileID: 0}
+  angleOffset: 0
 --- !u!1 &8497889573714823846
 GameObject:
   m_ObjectHideFlags: 0
@@ -11414,13 +11430,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasObject: 0
   GamePiece: {fileID: 0}
-  stowSize: {x: 14, y: 2, z: 13}
   cubeLines: {fileID: 5915627958241752108, guid: c1c8c7e209bad91448f7381b15f044c6, type: 3}
+  stowSize: {x: 14, y: 2, z: 13}
+  transferType: 0
+  actionDelay: 0
   endpoints:
   - {fileID: 1932434863357353972}
   transferButton: 05000000
   pressesToTransfer: 01000000
-  transferType: 0
+  transfering: 0
 --- !u!1 &8680520719499817171
 GameObject:
   m_ObjectHideFlags: 0
