@@ -9,6 +9,11 @@ I have put together what is hopefully an extremely useful set of documentation t
 
 ## [Alpha 2 Changelog](https://github.com/masonmm3/MoSimBuilder/blob/Experimental/Documentation/ChangeLogs.md)
 
+## Alpha 3 plans
+ - 2025 Field (if not already added)
+ - Game Piece Animations
+ - Generate Pass Through (re route animations so its not a straight line/ a thousand different stow locations)
+ - Generate Sequencer (macro style system to help with complex pick and place sequences)
 
 ## Beta 1 plans
 - control system updates. (add I and D to the custom motor loops)
