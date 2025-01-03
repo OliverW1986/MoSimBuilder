@@ -22,6 +22,10 @@
   * if you selected properly is will ask you if you want to install the correct version of unity, click yes.
   * you can now open the project once the download is complete.
 
+### Updating
+ * if you used the advanced install simply fetch from origin then pull the origin on the github desktop app
+ * if you used the simple install you will need to start from scratch.
+
 ## Getting Started
 
 ### Familiarizing
