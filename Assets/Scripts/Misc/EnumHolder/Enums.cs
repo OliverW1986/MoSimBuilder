@@ -6,11 +6,47 @@ public enum Alliance
     Blue
 }
 
+public enum GamePieces
+{
+    Note,
+    Cone,
+    Cube
+}
+
+public enum Direction
+{
+    forward,
+    up
+}
+
+public enum TubeType
+{
+    oneXTwo,
+    twoXTwo,
+    oneXOne,
+    oneXThree
+}
+
+public enum SpeedUnit
+{
+    ft,
+    M,
+}
+
+public enum Units
+{
+    inch,
+    centimerter,
+    millimeter,
+    meter
+}
+
 public enum ControlType
 {
     toggle,
     hold,
-    sequence
+    sequence,
+    lastPressed
 }
 
 public enum IntakeType

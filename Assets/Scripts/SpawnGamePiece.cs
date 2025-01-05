@@ -20,6 +20,8 @@ public class SpawnGamePiece : MonoBehaviour
 
     [SerializeField] private int threshold;
 
+    [SerializeField] private float spawnTimer = 2.0f;
+
     [SerializeField] private bool usePerformanceMode;
     
     private GameObject[] _gamePieces;
@@ -70,7 +72,7 @@ public class SpawnGamePiece : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (flag) return;
 
@@ -92,7 +94,7 @@ public class SpawnGamePiece : MonoBehaviour
                        }
                     }
 
-                    timer = 2.0f;
+                    timer = spawnTimer;
                 }
                 else
                 {
@@ -114,15 +116,21 @@ public class SpawnGamePiece : MonoBehaviour
 
             if (_thresholdCounter < threshold && timer < 0 )
             {
+                timer = spawnTimer;
                 
                 var go = Instantiate(gamePiece, spawnPoint.position, spawnPoint.rotation);
 
                 if (usePerformanceMode)
                 {
                     go.GetComponent<GamePieceScript>().lowPerformanceMode = true;
-                    go.GetComponent<Rigidbody>().velocity = transform.TransformVector(spawnVelocity);
                 }
-                timer = 2.0f;
+                
+                go.GetComponent<Rigidbody>().velocity = transform.TransformVector(spawnVelocity);
+                
+                
+            } else if (_thresholdCounter == threshold)
+            {
+                timer = spawnTimer;
             }
             else
             {

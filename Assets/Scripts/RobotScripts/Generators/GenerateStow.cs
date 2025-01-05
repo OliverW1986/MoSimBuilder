@@ -17,16 +17,29 @@ public class GenerateStow : MonoBehaviour
     [HideInInspector]
     public GamePieceScript GamePiece;
     
-    [FormerlySerializedAs("intakeSize")] [SerializeField] private Vector3 stowSize;
-    
     [HideInInspector] public GameObject cubeLines;
     
-    [SerializeField] private GameObject[] endpoints;
-    [SerializeField] private Buttons[] transferButton;
-    private Buttons[] _buttonBuffer;
-    [SerializeField] private int[] pressesToTransfer;
-    private int[] _pressesToTransferBuffer;
+    //visible section
+    [Header("Settings")]
+    [FormerlySerializedAs("intakeSize")] [SerializeField] private Vector3 stowSize;
+    
     [SerializeField] private TransferType transferType;
+    
+    [SerializeField] private float actionDelay;
+    
+    [Header("Controls and Interactions")]
+    
+    [SerializeField] private GameObject[] endpoints;
+    
+    [SerializeField] private Buttons[] transferButton;
+    
+    [SerializeField] private int[] pressesToTransfer;
+    
+    // end visible section
+    
+    private Buttons[] _buttonBuffer;
+    
+    private int[] _pressesToTransferBuffer;
     
     private PlayerInput _playerInput;
     
@@ -35,6 +48,8 @@ public class GenerateStow : MonoBehaviour
     private Buttons[] _lastButton;
 
     private float _sequenceBuffer;
+
+    [HideInInspector] public bool transfering;
     
     
     // Start is called before the first frame update
@@ -188,36 +203,30 @@ public class GenerateStow : MonoBehaviour
 
             for (int i = 0; i < endpoints.Length; i++)
             {
-                if (_inputMap.FindAction(transferButton[i].ToString()).IsPressed() && transferType == TransferType.button && hasObject && (_sequenceBuffer >= pressesToTransfer[i]))
-                {
+                if (_inputMap.FindAction(transferButton[i].ToString()).IsPressed() && transferType == TransferType.button && hasObject && (_sequenceBuffer >= pressesToTransfer[i]) && !transfering)
+                { 
                     if (endpoints[i].GetComponent<GenerateStow>())
                     {
                         var target = endpoints[i].GetComponent<GenerateStow>();
                         
                         if (target.hasObject) return;
                         
-                        target.hasObject = true;
-                        target.GamePiece = GamePiece;
+                        StartCoroutine(GamePiece.TransferObject(endpoints[i].transform, actionDelay));
                         
-                        GamePiece.MoveToPose(endpoints[i].transform);
-
-                        hasObject = false;
-                        GamePiece = null;
+                        transfering = true;
+                        
                     } else if (endpoints[i].GetComponent<GenerateOutake>())
                     {
                         var target = endpoints[i].GetComponent<GenerateOutake>();
                         
                         if (target.hasObject) return;
                         
-                        target.hasObject = true;
-                        target.gamePiece = GamePiece;
+                        StartCoroutine(GamePiece.TransferObject(endpoints[i].transform, actionDelay));
                         
-                        GamePiece.MoveToPose(endpoints[i].transform);
+                        transfering = true;
 
-                        hasObject = false;
-                        GamePiece = null;
                     }
-                } else if (transferType == TransferType.instant && hasObject)
+                } else if (transferType == TransferType.instant && hasObject && !transfering)
                 {
                     if (endpoints[i].GetComponent<GenerateStow>())
                     {
@@ -225,26 +234,21 @@ public class GenerateStow : MonoBehaviour
                         
                         if (target.hasObject) return;
                         
-                        target.hasObject = true;
-                        target.GamePiece = GamePiece;
+                        StartCoroutine(GamePiece.TransferObject(endpoints[i].transform, actionDelay));
                         
-                        GamePiece.MoveToPose(endpoints[i].transform);
+                        transfering = true;
 
-                        hasObject = false;
-                        GamePiece = null;
                     } else if (endpoints[i].GetComponent<GenerateOutake>())
                     {
                         var target = endpoints[i].GetComponent<GenerateOutake>();
                         
                         if (target.hasObject) return;
                         
-                        target.hasObject = true;
-                        target.gamePiece = GamePiece;
                         
-                        GamePiece.MoveToPose(endpoints[i].transform);
+                        StartCoroutine(GamePiece.TransferObject(endpoints[i].transform, actionDelay));
+                        
+                        transfering = true;
 
-                        hasObject = false;
-                        GamePiece = null;
                     }
                 }
             }
@@ -286,6 +290,8 @@ public class GenerateStow : MonoBehaviour
     private void Startup()
     {
         _sequenceBuffer = 0;
+
+        transfering = false;
         
         if (transform.childCount != 0)
         {

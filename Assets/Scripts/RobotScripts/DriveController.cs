@@ -170,7 +170,7 @@ public class DriveController : MonoBehaviour
 
     private void Start()
     {
-        rayCastDistance = 0.5f*0.0254f;
+        rayCastDistance = 0.75f*0.0254f;
 
         _playerInput = gameObject.GetComponent<PlayerInput>();
         _playerInput.actions = _inputActionAsset;
@@ -213,9 +213,6 @@ public class DriveController : MonoBehaviour
 
         _gearPlayer.resource = _gearSound;
         _gearPlayer.loop = true;
-
-        accelerationSpeed = accelerationSpeed - (accelerationSpeed * (PlayerPrefs.GetFloat("movespeed") / 100f));
-        steerMultiplyer = steerMultiplyer - (steerMultiplyer * (PlayerPrefs.GetFloat("rotatespeed") / 100f));
 
         _useSounds = PlayerPrefs.GetInt("bumpSounds") == 1;
 
@@ -411,8 +408,8 @@ public class DriveController : MonoBehaviour
 
         maxSpeed = maxSpeed * transform.localScale.x * 0.3048f;
 
+        accelerationSpeed = accelerationSpeed * transform.localScale.x * 0.3048f;
         
-
         if (_rb == null)
         {
             _flag = true;
@@ -428,6 +425,10 @@ public class DriveController : MonoBehaviour
 
         _rb.interpolation = RigidbodyInterpolation.Interpolate;
         _rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        
+        Vector3 autoCg = _rb.centerOfMass;
+        _rb.automaticCenterOfMass = false;
+        _rb.centerOfMass = new Vector3(0, autoCg.y, 0);
     }
 
     private void Update()
@@ -978,25 +979,25 @@ public class DriveController : MonoBehaviour
                         if (Physics.Raycast(LeftFront.position, -transform.up, rayCastDistance))
                         {
                             LeftFront.localEulerAngles = new Vector3(0, wa2, 0);
-                            _rb.AddForceAtPosition(ws2 * LeftFront.forward * accelerationSpeed, LeftFront.position);
+                            _rb.AddForceAtPosition((LeftFront.forward * (ws2 * accelerationSpeed * _rb.mass) / 4), LeftFront.position);
                         }
 
                         if (Physics.Raycast(LeftRear.position, -transform.up, rayCastDistance))
                         {
                             LeftRear.localEulerAngles = new Vector3(0, wa3, 0);
-                            _rb.AddForceAtPosition(ws3 * LeftRear.forward * accelerationSpeed, LeftRear.position);
+                            _rb.AddForceAtPosition((LeftRear.forward * (ws3 * accelerationSpeed * _rb.mass)) / 4, LeftRear.position);
                         }
 
                         if (Physics.Raycast(RightFront.position, -transform.up, rayCastDistance))
                         {
                             RightFront.localEulerAngles = new Vector3(0, wa1, 0);
-                            _rb.AddForceAtPosition(ws1 * RightFront.forward * accelerationSpeed, RightFront.position);
+                            _rb.AddForceAtPosition((RightFront.forward * (ws1 * accelerationSpeed * _rb.mass)) / 4, RightFront.position);
                         }
 
                         if (Physics.Raycast(RightRear.position, -transform.up, rayCastDistance))
                         {
                             RightRear.localEulerAngles = new Vector3(0, wa4, 0);
-                            _rb.AddForceAtPosition(ws4 * RightRear.forward * accelerationSpeed, RightRear.position);
+                            _rb.AddForceAtPosition((RightRear.forward * (ws4 * accelerationSpeed * _rb.mass)) / 4, RightRear.position);
                         }
 
                             LeftFrontW.Wa = LeftFront.localRotation.eulerAngles.y;
