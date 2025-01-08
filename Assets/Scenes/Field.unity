@@ -144085,7 +144085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3987773f93b3d08468a70a232ab06e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  robotName: 254
+  robotName: 118
   cameraMode: 1
   alliance: 1
 --- !u!4 &755542018
