@@ -61,8 +61,6 @@ public class GamePieceScript : MonoBehaviour
     {
         rb.useGravity = false;
         rb.isKinematic = true;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
         DisableColliders();
         gameObject.transform.position = pos.position;
         gameObject.transform.rotation = pos.rotation;
@@ -85,8 +83,6 @@ public class GamePieceScript : MonoBehaviour
         
         rb.useGravity = false;
         rb.isKinematic = true;
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
         DisableColliders();
         gameObject.transform.position = pos.position;
         gameObject.transform.rotation = pos.rotation;
