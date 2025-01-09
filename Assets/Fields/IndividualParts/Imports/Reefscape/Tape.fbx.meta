@@ -3,7 +3,32 @@ guid: 5357201c3606d1f449ef800cd8478f02
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0.000000_0.000000_1.000000_0.000000_0.001
+    second: {fileID: 2100000, guid: 350850d6c61125f4bb2130f572b9fa47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0.101961_0.101961_0.101961_0.000000_0.001
+    second: {fileID: 2100000, guid: 5a0ecfe0518188846b86187f633d3b5a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 0.250980_0.250980_0.250980_0.000000_0.001
+    second: {fileID: 2100000, guid: 407e3de4fbbcf4a99b17bf5aac2d28d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1.000000_0.000000_0.000000_0.000000_0.002
+    second: {fileID: 2100000, guid: 6e3a7a7974596234c80579f96534fa10, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1.000000_1.000000_1.000000_0.000000_0.001
+    second: {fileID: 2100000, guid: 8ca9b3ad033bce1438e3c319709ed6dd, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -34,7 +59,7 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 0
+    meshCompression: 2
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1

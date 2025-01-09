@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -86,6 +87,12 @@ public class GenerateArm : MonoBehaviour
     {
         Startup();
     }
+
+    private void FixedUpdate()
+    {
+      
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -195,9 +202,9 @@ public class GenerateArm : MonoBehaviour
         }
         else
         {
-            
-            
-            for (var i = 0; i < setPoints.Length; i++)
+              if (EditorApplication.isPlaying)
+        {
+              for (var i = 0; i < setPoints.Length; i++)
             {
                 switch (controlType)
                 {
@@ -416,14 +423,14 @@ public class GenerateArm : MonoBehaviour
                     positionError = -1 * positionError;
                 }
                 
-                _jm.force = 90000000000000;
+                _jm.force = 9000000000000000;
                 _jm.targetVelocity = Mathf.Clamp((positionError * 7f), -360,360);
                 _hj.useMotor = true;
                 _hj.useSpring = false;
                 _hj.motor = _jm;
                
             }
-
+        }
         }
     }
 

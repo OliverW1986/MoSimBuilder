@@ -21,10 +21,10 @@ public class RobotSpawnController : MonoBehaviour
 
     [SerializeField] private string robotName;
     
-    private GameObject[] _blueCameras = new GameObject[8];
-    private GameObject[] _redCameras = new GameObject[8];
-    private GameObject[] _secondaryBlueCameras = new GameObject[4];
-    private GameObject[] _secondaryRedCameras = new GameObject[4];
+    private GameObject[] _blueCameras = new GameObject[10];
+    private GameObject[] _redCameras = new GameObject[10];
+    private GameObject[] _secondaryBlueCameras = new GameObject[5];
+    private GameObject[] _secondaryRedCameras = new GameObject[5];
 
     private GameObject _cameraBorder;
 
@@ -42,29 +42,35 @@ public class RobotSpawnController : MonoBehaviour
         _blueCameras[1] = transform.Find("Blue").transform.Find("Main").transform.Find("BlueFollowCam").gameObject;
         _blueCameras[2] = transform.Find("Blue").transform.Find("Main").transform.Find("BlueCloseCam").gameObject;
         _blueCameras[3] = transform.Find("Blue").transform.Find("Main").transform.Find("BlueCloseCamReversed").gameObject;
-        _blueCameras[4] = transform.Find("Blue").transform.Find("Main").transform.Find("BluePanCamSplit").gameObject;
-        _blueCameras[5] = transform.Find("Blue").transform.Find("Main").transform.Find("BlueFollowCamSplit").gameObject;
-        _blueCameras[6] = transform.Find("Blue").transform.Find("Main").transform.Find("BlueCloseCamSplit").gameObject;
-        _blueCameras[7] = transform.Find("Blue").transform.Find("Main").transform.Find("BlueCloseCamSplitReversed").gameObject;
+        _blueCameras[4] = transform.Find("Blue").transform.Find("Main").transform.Find("BlueFollowFlippedCam").gameObject;
+        _blueCameras[5] = transform.Find("Blue").transform.Find("Main").transform.Find("BluePanCamSplit").gameObject;
+        _blueCameras[6] = transform.Find("Blue").transform.Find("Main").transform.Find("BlueFollowCamSplit").gameObject;
+        _blueCameras[7] = transform.Find("Blue").transform.Find("Main").transform.Find("BlueCloseCamSplit").gameObject;
+        _blueCameras[8] = transform.Find("Blue").transform.Find("Main").transform.Find("BlueCloseCamSplitReversed").gameObject;
+        _blueCameras[9] = transform.Find("Blue").transform.Find("Main").transform.Find("BlueFollowFlippedSplitCam").gameObject;
         
         _redCameras[0] = transform.Find("Red").transform.Find("Main").transform.Find("RedPanCam").gameObject;
         _redCameras[1] = transform.Find("Red").transform.Find("Main").transform.Find("RedFollowCam").gameObject;
         _redCameras[2] = transform.Find("Red").transform.Find("Main").transform.Find("RedCloseCam").gameObject;
         _redCameras[3] = transform.Find("Red").transform.Find("Main").transform.Find("RedCloseCamReversed").gameObject;
-        _redCameras[4] = transform.Find("Red").transform.Find("Main").transform.Find("RedPanCamSplit").gameObject;
-        _redCameras[5] = transform.Find("Red").transform.Find("Main").transform.Find("RedFollowCamSplit").gameObject;
-        _redCameras[6] = transform.Find("Red").transform.Find("Main").transform.Find("RedCloseCamSplit").gameObject;
-        _redCameras[7] = transform.Find("Red").transform.Find("Main").transform.Find("RedCloseCamSplitReversed").gameObject;
+        _redCameras[4] = transform.Find("Red").transform.Find("Main").transform.Find("RedFollowFlippedCam").gameObject;
+        _redCameras[5] = transform.Find("Red").transform.Find("Main").transform.Find("RedPanCamSplit").gameObject;
+        _redCameras[6] = transform.Find("Red").transform.Find("Main").transform.Find("RedFollowCamSplit").gameObject;
+        _redCameras[7] = transform.Find("Red").transform.Find("Main").transform.Find("RedCloseCamSplit").gameObject;
+        _redCameras[8] = transform.Find("Red").transform.Find("Main").transform.Find("RedCloseCamSplitReversed").gameObject;
+        _redCameras[9] = transform.Find("Red").transform.Find("Main").transform.Find("RedFollowFlippedSplitCam").gameObject;
         
         _secondaryBlueCameras[0] = transform.Find("Blue").transform.Find("Secondary").transform.Find("BluePanCamSplit").gameObject;
         _secondaryBlueCameras[1] = transform.Find("Blue").transform.Find("Secondary").transform.Find("BlueFollowCamSplit").gameObject;
         _secondaryBlueCameras[2] = transform.Find("Blue").transform.Find("Secondary").transform.Find("BlueCloseCamSplit").gameObject;
         _secondaryBlueCameras[3] = transform.Find("Blue").transform.Find("Secondary").transform.Find("BlueCloseCamSplitReversed").gameObject;
+        _secondaryBlueCameras[4] = transform.Find("Blue").transform.Find("Main").transform.Find("BlueFollowFlippedSplitCam").gameObject;
         
         _secondaryRedCameras[0] = transform.Find("Red").transform.Find("Secondary").transform.Find("RedPanCamSplit").gameObject;
         _secondaryRedCameras[1] = transform.Find("Red").transform.Find("Secondary").transform.Find("RedFollowCamSplit").gameObject;
         _secondaryRedCameras[2] = transform.Find("Red").transform.Find("Secondary").transform.Find("RedCloseCamSplit").gameObject;
         _secondaryRedCameras[3] = transform.Find("Red").transform.Find("Secondary").transform.Find("RedCloseCamSplitReversed").gameObject;
+        _secondaryRedCameras[4] = transform.Find("Red").transform.Find("Main").transform.Find("RedFollowFlippedSplitCam").gameObject;
         
         _cameraBorder = GameObject.Find("GameManagement").transform.Find("GameGUI").transform.Find("CameraBorder").gameObject;
         
@@ -82,6 +88,7 @@ public class RobotSpawnController : MonoBehaviour
             CameraMode.Third => 1,
             CameraMode.First => 2,
             CameraMode.FlippedFirst => 3,
+            CameraMode.ThirdFlipped => 4,
             _ => _cameraMode
         };
 
@@ -145,6 +152,7 @@ public class RobotSpawnController : MonoBehaviour
                 case 1:
                     {
                         _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = true;
+                        _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = false;
 
                         break;
                     }
@@ -156,10 +164,14 @@ public class RobotSpawnController : MonoBehaviour
                     _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
                     _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = true;
                     break;
+                case 4:
+                    _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
+                    _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = true;
+                    break;
             }
 
             Instantiate(_robotPrefabs[_redRobotIndex], redSpawn.position, redSpawn.rotation);
-            _redCameras[_cameraMode + 4].SetActive(true);
+            _redCameras[_cameraMode + 5].SetActive(true);
 
 
             _robotPrefabs[_blueRobotIndex].GetComponent<PlayerInput>().defaultControlScheme = "Controls 1";
@@ -175,6 +187,7 @@ public class RobotSpawnController : MonoBehaviour
                 case 1:
                     {
                         _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().isFieldCentric = true;
+                        _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = false;
 
                         break;
                     }
@@ -186,10 +199,14 @@ public class RobotSpawnController : MonoBehaviour
                     _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
                     _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = false;
                     break;
+                case 4:
+                    _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
+                    _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = true;
+                    break;
             }
 
             Instantiate(_robotPrefabs[_blueRobotIndex], blueSpawn.position, blueSpawn.rotation);
-            _blueCameras[_cameraMode + 4].SetActive(true);
+            _blueCameras[_cameraMode + 5].SetActive(true);
         }
         else if (sameAlliance)
         {
@@ -222,10 +239,14 @@ public class RobotSpawnController : MonoBehaviour
                         _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
                         _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = true;
                         break;
+                    case 4:
+                        _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
+                        _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = true;
+                        break;
                 }
 
                 Instantiate(_robotPrefabs[_redRobotIndex], redSpawn.position, redSpawn.rotation);
-                _redCameras[_cameraMode + 4].SetActive(true);
+                _redCameras[_cameraMode + 5].SetActive(true);
 
 
                 _robotPrefabs[_blueRobotIndex].GetComponent<PlayerInput>().defaultControlScheme = "Controls 2";
@@ -250,6 +271,10 @@ public class RobotSpawnController : MonoBehaviour
                         _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = true;
                         break;
                     case 3:
+                        _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
+                        _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = true;
+                        break;
+                    case 4:
                         _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
                         _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = true;
                         break;
@@ -287,10 +312,14 @@ public class RobotSpawnController : MonoBehaviour
                         _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
                         _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = true;
                         break;
+                    case 4:
+                        _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
+                        _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = true;
+                        break;
                 }
 
                 Instantiate(_robotPrefabs[_blueRobotIndex], blueSpawn.position, blueSpawn.rotation);
-                _blueCameras[_cameraMode + 4].SetActive(true);
+                _blueCameras[_cameraMode + 5].SetActive(true);
 
 
                 _robotPrefabs[_redRobotIndex].GetComponent<PlayerInput>().defaultControlScheme = "Controls 2";
@@ -311,9 +340,13 @@ public class RobotSpawnController : MonoBehaviour
                         }
                     case 2:
                         _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
-                        _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = true;
+                        _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = false;
                         break;
                     case 3:
+                        _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
+                        _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = true;
+                        break;
+                    case 4:
                         _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
                         _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = true;
                         break;
@@ -343,14 +376,20 @@ public class RobotSpawnController : MonoBehaviour
                 else if (_cameraMode == 1)
                 {
                     _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = true;
+                    _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = false;
                 }
                 else if (_cameraMode == 2)
                 {
                     _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
+                    _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = false;
                 }
                 else if (_cameraMode == 3)
                 {
                     _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
+                } else if (_cameraMode == 4)
+                {
+                    _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = true;
+                    _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = true;
                 }
 
                 Instantiate(_robotPrefabs[_redRobotIndex], redSpawn.position, redSpawn.rotation);
@@ -372,6 +411,7 @@ public class RobotSpawnController : MonoBehaviour
                 else if (_cameraMode == 1)
                 {
                     _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().isFieldCentric = true;
+                    _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = false;
                 }
                 else if (_cameraMode == 2)
                 {
@@ -380,6 +420,10 @@ public class RobotSpawnController : MonoBehaviour
                 else if (_cameraMode == 3)
                 {
                     _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().isFieldCentric = false;
+                } else if (_cameraMode == 4)
+                {
+                    _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().isFieldCentric = true;
+                    _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = true;
                 }
 
                 Instantiate(_robotPrefabs[_blueRobotIndex], blueSpawn.position, blueSpawn.rotation);

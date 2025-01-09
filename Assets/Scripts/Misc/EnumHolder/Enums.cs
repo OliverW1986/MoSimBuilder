@@ -10,7 +10,9 @@ public enum GamePieces
 {
     Note,
     Cone,
-    Cube
+    Cube,
+    Coral,
+    Algea
 }
 
 public enum Direction
@@ -65,6 +67,7 @@ public enum CameraMode
 {
     DriverStation,
     Third,
+    ThirdFlipped,
     First,
     FlippedFirst
 }

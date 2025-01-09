@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7372d253194c95c478eadb6ce6b5a47d
+guid: fc2062ab8d812d34494d2478dcaed42f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,53 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 0.000000_0.000000_0.000000_0.000000_0.004
-    second: {fileID: 2100000, guid: ceb5735246f8c6b4fa11735f6d8b5dd1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 0.650980_0.619608_0.588235_0.000000_0.000000
-    second: {fileID: 2100000, guid: ceb5735246f8c6b4fa11735f6d8b5dd1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 0.776471_0.756863_0.737255_0.000000_0.002
-    second: {fileID: 2100000, guid: ceb5735246f8c6b4fa11735f6d8b5dd1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 0.796078_0.823529_0.937255_0.000000_0.002
-    second: {fileID: 2100000, guid: ceb5735246f8c6b4fa11735f6d8b5dd1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 0.866667_0.909804_1.000000_0.000000_0.005
-    second: {fileID: 2100000, guid: ceb5735246f8c6b4fa11735f6d8b5dd1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 1.000000_0.937255_0.137255_0.000000_0.000000
-    second: {fileID: 2100000, guid: 4251c8869cc15314d8941b52ad403909, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 1.000000_1.000000_1.000000_0.000000_0.012
-    second: {fileID: 2100000, guid: ceb5735246f8c6b4fa11735f6d8b5dd1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 1.000000_1.000000_1.000000_0.000000_0.013
-    second: {fileID: 2100000, guid: ceb5735246f8c6b4fa11735f6d8b5dd1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 1.000000_1.000000_1.000000_0.000000_0.014
-    second: {fileID: 2100000, guid: ceb5735246f8c6b4fa11735f6d8b5dd1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 1.000000_1.000000_1.000000_0.000000_1.000000
-    second: {fileID: 2100000, guid: 2d61172fcaefc024ab33b85723a70768, type: 2}
+      name: 1.000000_1.000000_1.000000_0.000000_0.002
+    second: {fileID: 2100000, guid: 42a8cc29f77b22c49af7a2c9d9cf537c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
