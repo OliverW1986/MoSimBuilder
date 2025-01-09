@@ -35,3 +35,11 @@
 	- fixed inconsistent spawn delay for game pieces
 	- added 6329(2023) example robot
 	- added 1102(2023) example robot
+ # Alpha 2.1 Changlog
+ 	- fixed an api call error with the game piece script
+	- added a 118(2024) style robot (minimal real functionality)
+	- added Reefscape(2025) FRC Game
+	- added 9995(2025) example (quakka bot 2)
+	- added 9994(2025) example (penn state ri3d)
+	- added flipped third (use for 2025)
+	- fixed driverstation view on blue
