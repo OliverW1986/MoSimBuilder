@@ -223,7 +223,7 @@ public class RobotSpawnController : MonoBehaviour
                 {
                     case 0:
                         _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = true;
-                        _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = !_robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed;
+                        _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = true;
                         break;
                     case 1:
                         {
@@ -258,7 +258,7 @@ public class RobotSpawnController : MonoBehaviour
                 {
                     case 0:
                         _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().isFieldCentric = true;
-                        _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = !_robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed;
+                        _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = true;
                         break;
                     case 1:
                         {
@@ -296,7 +296,7 @@ public class RobotSpawnController : MonoBehaviour
                 {
                     case 0:
                         _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().isFieldCentric = true;
-                        _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = !_robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed;
+                        _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = true;
                         break;
                     case 1:
                         {
@@ -330,7 +330,7 @@ public class RobotSpawnController : MonoBehaviour
                 {
                     case 0:
                         _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = true;
-                        _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = !_robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed;
+                        _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = true;
                         break;
                     case 1:
                         {
@@ -370,7 +370,7 @@ public class RobotSpawnController : MonoBehaviour
 
                 if (_cameraMode == 0)
                 {
-                    _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = !_robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed;
+                    _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().startingReversed = true;
                     _robotPrefabs[_redRobotIndex].GetComponent<DriveController>().isFieldCentric = true;
                 }
                 else if (_cameraMode == 1)
@@ -404,8 +404,7 @@ public class RobotSpawnController : MonoBehaviour
 
                 if (_cameraMode == 0)
                 {
-                    _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed =
-                        !_robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed;
+                    _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().startingReversed = true;
                     _robotPrefabs[_blueRobotIndex].GetComponent<DriveController>().isFieldCentric = true;
                 }
                 else if (_cameraMode == 1)
