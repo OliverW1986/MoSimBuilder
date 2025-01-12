@@ -12,7 +12,7 @@
  * pictured above is what this looks like.
  * the other kind of stretch is usually charachterized by mechanisms not staying in place when under load, this is an issue with unity.
 
-### My robot Mechanism is stiff or freaks out
+### My robot Mechanism is not stiff or freaks out
  * This is usually a result of stacked DOF. Unity does not appreceate stacking more than 4 dof. (elevators always count as 2)
  * This also can happen when putting elevators on arms. if the elevators size is larger than that of the arm, or not centered you may have to adjust your weights to keep it from flopping.
 
