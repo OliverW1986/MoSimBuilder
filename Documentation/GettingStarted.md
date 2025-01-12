@@ -20,6 +20,8 @@
   * next add project from disk
   * double click your project folder to open the outer layer. then select the folder with the name MoSimBuilder - V0.0.....
   * if you selected properly is will ask you if you want to install the correct version of unity, click yes.
+  * It will then ask you ask you about adding modules, the default is all that you need checked.
+    ![image](https://github.com/user-attachments/assets/cad4705a-0795-4613-ba4c-2c0d5f1c7224)
   * you can now open the project once the download is complete.
 
 ### Updating
