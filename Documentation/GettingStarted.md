@@ -74,3 +74,4 @@
  * Dpad Down :G
 
 # [First Robot](https://github.com/masonmm3/MoSimBuilder/blob/Stable/Documentation/FirstRobot.md)
+## Blue text in large font indicates a link to the next step in the documentation. Click the blue words to continue learning about Builders inner workings
