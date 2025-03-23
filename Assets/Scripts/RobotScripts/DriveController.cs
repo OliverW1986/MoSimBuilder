@@ -937,10 +937,17 @@ public class DriveController : MonoBehaviour
 
                         if (isFieldCentric)
                         {
+                            if (!startingReversed)
+                            {
+                                fwd = fieldRelativeAngle.x * velocityMp;
 
-                            fwd = fieldRelativeAngle.x * velocityMp;
+                                str = fieldRelativeAngle.z * velocityMp;
+                            } else
+                            {
+                                fwd = -fieldRelativeAngle.x * velocityMp;
 
-                            str = fieldRelativeAngle.z * velocityMp;
+                                str = -fieldRelativeAngle.z * velocityMp;
+                            }
                         }
                         else
                         {
